@@ -39,4 +39,10 @@ print('O ano é bissexto? ', ano_bissexto(2020));
 print('Obrigado por utililizar o programa!');
 print('*-*');
 
-# 
+# Fatorial
+def fatorial(n):
+    if n == 0:
+        return 1;
+    else:
+        return n * fatorial(n - 1);
+print(f'O fatorial é: ', fatorial(5));
