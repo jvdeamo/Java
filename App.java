@@ -1,61 +1,98 @@
-public class App {
-    public static void main(String[] args) {
+import java.io.PrintStream; // Importar a classe PrintStream para imprimir
+
+public class App { // Classe App (classe principal)
+    public static void main(String[] Resultados) { // Método principal da classe App
+        PrintStream out = System.out;
+        out.println("\033[H\033[2J");
         System.out.println("Ola Mundo!");
+        // Imprimir com PrintStream
+        /* out.println("Ola Mundo!"); */
 
-        /* 1 */
-        int valor1 = 10;
-        int valor2 = 4;
-        Numero.soma(valor1, valor2);
+        /* 1 - Calculando a soma */
+        System.out.println("=== Exercício 1 - Calculando a soma ==="); 
+        float valor1 = 10;
+        float valor2 = 4;
+        float soma = Calculos.CalcularSoma(valor1, valor2);
+        System.out.println("Soma (" + valor1 + " + " + valor2 + ") = " + soma + ".");
+        /* Imprimir com printf
+        %.2f = 2 casas decimais
+        System.out.printf("Soma (%.2f + %.2f) = %.2f.\n", valor1, valor2, soma); 
+        */
 
-        /* 2 */
+        /* 2 - Calculando a média */
+        System.out.println("=== Exercício 2 - Calculando a média ===");
         float valor3 = 2.5f;
         float valor4 = 4.5f;
         float valor5 = 6.5f;
-        Numero1.media(valor3, valor4, valor5);
+        float media = Calculos.CalcularMedia(valor3, valor4, valor5);
+        System.out.println("Média (" + valor3 + " + " + valor4 + " + " + valor5 + ") : " + media + ".");
+        /* Imprimir com printf
+        %.2f = 2 casas decimais
+        System.out.printf("Média (%.2f + %.2f + %.2f) : %.2f.\n", valor3, valor4, valor5, media); 
+        */
 
-        /* 3 */
-        int ano = 2020;
-        anoC.bih(ano);
+        /* 3 - Verificando se o número é par ou ímpar */
+        System.out.println("\n=== Exercício 3 - Verificando se o número é par ou ímpar ===");
+        int valor6 = 23;
+        Calculos.CalcularIP(valor6);
 
-        /* 4 */
-        int numero = 3;
-        Fatorial.fat(numero);
+        /* 4 - Verificando se o ano é bissexto */
+        System.out.println("\n=== Exercício 4 - Verificando se o ano é bissexto ===");
+        int valor7 = 1720;
+        Calculos.CalcularAno(valor7);
 
+        /* 5 - Calculando o fatorial */
+        System.out.println("\n=== Exercício 5 - Calculando o fatorial ===");
+        int valor8 = 3;
+        Calculos.CalcularFatorial(valor8);
+        System.out.println("=== Fim ===");
     }
 }
 
-class Numero {
-    public static void soma(int a, int b) {
-        System.out.println("A soma de " + a + " + " + b + " é: " + (a + b) + ".");
+class Calculos { // Classe Calculos (classe secundária)
+    public static float CalcularSoma(float a, float b) { // Método CalcularSoma da classe Calculos
+        return a + b;
     }
-}
 
-class Numero1 {
-    public static void media(float c, float d, float e) {
-        float num1 = (c);
-        float num2 = (d);
-        float num3 = (e);
-        float media = (num1 + num2 + num3) / 3;
-        System.out.println("Média de " + num1 + " + " + num2 + " + " + num3 + ": " + media + ".");
+    public static float CalcularMedia(float a, float b, float c) { // Método CalcularMedia da classe Calculos
+        return (a + b + c) / 3;
     }
-}
+    public static int CalcularIP(int a) { // Método CalcularIP da classe Calculos
+        if (a % 2 == 0) {
+            System.out.println("O número " + a + " é par.");
+            // Imprimir com printf
+            /* System.out.printf("O número %d é par.\n", a); */
+        } else {
+            System.out.println("O número " + a + " é ímpar.");
+            // Imprimir com printf
+            /* System.out.printf("O número %d é ímpar.\n", a); */
+        }
+        return a;
+    }
 
-class anoC {
-    public static void bih(int ano) {
+    public static void CalcularAno(int ano) { // Método CalcularAno da classe Calculos
         if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0) {
+            // Ano bissexto é divisível por 4 e não é divisível por 100 ou é divisível por
+            // 400
+            // se o ano for divisível por 4 e não for divisível por 100 então é bissexto
+            // se o ano for divisível por 400 então é bissexto
             System.out.println("O ano " + ano + " é bissexto.");
+            // Imprimir com printf
+            /* System.out.printf("O ano %d é bissexto.\n", ano); */
         } else {
             System.out.println("O ano " + ano + " não é bissexto.");
+            // Imprimir com printf
+            /* System.out.printf("O ano %d não é bissexto.\n", ano); */
         }
     }
-}
 
-class Fatorial {
-    public static void fat(int numero) {
+    public static void CalcularFatorial(int numero) { // Método CalcularFatorial da classe Calculos
         int fatorial = 1;
         for (int i = 1; i <= numero; i++) {
             fatorial = fatorial * i;
         }
         System.out.println("Fatorial de " + numero + " é " + fatorial + ".");
+        // Imprimir com printf
+        /* System.out.printf("Fatorial de %d é %d.\n", numero, fatorial); */
     }
 }
