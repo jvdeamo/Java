@@ -1,48 +1,110 @@
+# Calculando a soma, média, resto, ano bissexto e fatorial
+# Autor: João Victor Martins Deamo
 
-print('salve');
-print("Olá, mundo!");
 
-print('-----------------------------------------------------------------------------------------------');
+# Calculando a soma
+def soma(j, v):
+    print("A soma dos números digitados é:", resultadoSoma)
+    return j + v
 
-#  Soma1
-def soma(x, y):
-    return x + y;
-print('A soma dos números digitados é: ', soma(2, 3));
 
-print('-----------------------------------------------------------------------------------------------');
+resultadoSoma = soma(2, 3)
+# Usando format
+# print('A soma dos números digitados é: {}'.format(resultadoSoma))
+# Usando f
+# print(f'A soma dos números digitados é: {resultadoSoma}')
+print("----------------------------------------------")
 
-# Media1
-def media(a, b, c):
-    return (a + b + c) / 3;
-print('A média dos números digitados é: ', media(10, 3, 5));
 
-# Media2 #
-print('-----------------------------------------------------------------------------------------------');
+# Calculando a média
+def media(j, v, d):
+    print("A média dos números digitados é:", resultadoMedia)
+    return (j + v + d) / 3
 
-# Resto
-def resto(x, y):
-    return x % y;
-print('O resto da divisão é: ', resto(10, 3));
-print('Portanto, o número é par!');
 
-print('-----------------------------------------------------------------------------------------------');
+resultadoMedia = media(5, 4, 3)
+print("--------------------------------")
 
-# Ano bissexto
+
+# Calculando o resto
+def resto(j, v):
+    if v == 0:
+        return "Não é possível dividir por zero"
+    else:
+        resultadoResto = j % v  # Cálculo do resto
+        if resultadoResto % 2 == 0:
+            print("O número {} é par!".format(j))
+            # Usando f-string
+            # print(f'O número {j} é par!')
+            print("O resto da divisão é:", resultadoResto)
+            # Usando f-string
+            # print(f'O resto da divisão é: {resultadoResto}')
+            return resultadoResto
+        if resultadoResto % 2 != 0:
+            print("O número {} é ímpar!".format(j))
+            # Usando f-string
+            # print(f'O número {j} é ímpar!')
+            print("O resto da divisão é:", resultadoResto)
+            # Usando f-string
+            # print(f'O resto da divisão é: {resultadoResto}')
+            return resultadoResto
+
+
+resultadoResto = resto(15, 6)
+print("--------------------------------")
+
+
+# Calculando se o ano é bissexto
 def ano_bissexto(ano):
     if ano % 4 == 0 and (ano % 100 != 0 or ano % 400 == 0):
-        return 'Sim.';
+        print("O ano {} é bissexto!".format(ano))
+        # Usando f
+        # print(f'O ano {ano} é bissexto!')
+        return
     else:
-        return 'Não.';
-print('O ano é bissexto? ', ano_bissexto(2020));
+        print("O ano {} não é bissexto!".format(ano))
+        # Usando f
+        # print(f'O ano {ano} não é bissexto!')
+        return
 
 
-print('Obrigado por utililizar o programa!');
-print('*-*');
+resultadoAno = ano_bissexto(2021)
+print("--------------------------------")
 
-# Fatorial
-def fatorial(n):
-    if n == 0:
-        return 1;
+
+# Calculando o fatorial
+def fatorial(j):
+    resultado = 1
+    if j < 0:
+        print("Não existe fatorial de número negativo!")
+        # Usando f-string:
+        # print("Não existe fatorial de número negativo!")
     else:
-        return n * fatorial(n - 1);
-print(f'O fatorial é: ', fatorial(5));
+        for i in range(1, j + 1):
+            resultado = resultado * i
+        if resultado >= 0:
+            print("O fatorial de {} é: {}".format(j, resultado))
+            # Usando f-string:
+            # print(f"O fatorial de {j} é: {resultado}")
+    return resultado
+fatorial(2)
+print("--------------------------------")
+
+# Calculando o primo
+def primo(j):
+    if j < 2:
+        print("Não existe número primo menor que 2!")
+        # Usando f-string:
+        # print(f'Não existe número primo menor que 2!')
+    else:
+        for i in range(2, j):
+            if j % i == 0:
+                print("O número {} não é primo!".format(j))
+                # Usando f-string:
+                # print(f'O número {j} não é primo!')
+                return
+        print("O número {} é primo!".format(j))
+        # Usando f-string:
+        # print(f'O número {j} é primo!')
+        return
+primo(8)
