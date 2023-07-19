@@ -1,7 +1,9 @@
 import java.io.PrintStream; // Importar a classe PrintStream para imprimir
+import java.util.Scanner; // Importar a classe Scanner para ler
 
 public class App { // Classe App (classe principal)
     public static void main(String[] Resultados) { // Método principal da classe App
+        Scanner scanner = new Scanner(System.in);
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         System.out.println("Ola Mundo!");
@@ -53,11 +55,57 @@ public class App { // Classe App (classe principal)
         System.out.println("=== Exercício 6 - Número primo ===");
         int valor9 = 8;
         Calculos.CalcularPrimo(valor9);
-        System.out.println("=== Fim ===");
+
+        /* 7 - Verificando a nota */
+        System.out.println("=== Exercício 7 - Verificando a nota ===");
+        float valor10 = 100;
+        Calculos.CalcularNota(valor10);
+
+        /* 8 - Verificando a variável */
+        System.out.println("=== Exercício 8 - Verificando a variável ===");
+        String valor11 = "Teste";
+        String resultado = Calculos.CalcularVariável(valor11);
+        System.out.println("O valor da variável é '" + resultado + "'.");
+
+        /* 9 - Loop1 */
+        System.out.println("=== Exercício 9 - Fazendo o loop ===");
+        int valor12 = 5;
+        Calculos.CalcularLoop(valor12);
+
+        /* 10 - Loop2 */
+        System.out.println("=== Exercício 10 - Fazendo o loop ===");
+        int valor13 = 5;
+        Calculos.CalcularLoop1(valor13);
+
+
+        /* 11 - Maior número */
+        System.out.println("=== Exercício 11 - Verificando o maior número ===");
+        System.out.println("Digite o primeiro valor: ");
+        float valor14 = scanner.nextFloat();
+        System.out.println("Digite o segundo valor: ");
+        float valor15 = scanner.nextFloat();
+        Calculos.CalcularMaior(valor14, valor15);
+
+        /* 12 - Sequência de Fibonacci */
+        System.out.println("=== Exercício 12 - Verificando a sequência de Fibonacci ===");
+        System.out.println("Digite o número: ");
+        int valor16 = scanner.nextInt();
+        Calculos.CalcularFibonacci(valor16);
+
+        /* 13 Tabuada */
+        System.out.println("=== Exercício 13 - Verificando a tabuada ===");
+        System.out.println("Digite o número: ");
+        float valor17 = scanner.nextFloat();
+        Calculos.CalcularMult(valor17);
+        
+        System.out.println("=== Fim ===");        
+
+        scanner.close();
     }
 }
 
 class Calculos { // Classe Calculos (classe secundária)
+    
     public static float CalcularSoma(float a, float b) { // Método CalcularSoma da classe Calculos
         return a + b;
     }
@@ -121,5 +169,84 @@ class Calculos { // Classe Calculos (classe secundária)
             // Imprimir com printf
             /* System.out.printf("O número %d não é primo.\n", numero); */
         }
+    }
+
+    public static void CalcularNota(float numero) {
+        if (numero >= 90 && numero <= 100) {
+            System.out.println("Sua nota foi " + numero + ". Excelente!");
+        } else if (numero <= 90 || numero >= 70) {
+            System.out.println("Sua nota foi " + numero + ".Muito bom!");
+        } else if (numero <= 70 || numero >= 50) {
+            System.out.println("Sua nota foi " + numero + ".Bom!");
+        } else if (numero <= 50 || numero >= 30) {
+            System.out.println("Sua nota foi " + numero + ".Regular!");
+        } else if (numero <= 30 || numero >= 0) {
+            System.out.println("Sua nota foi " + numero + ".Ruim!");
+        } else {
+            System.out.println("Nota inválida!");
+        }
+    }
+
+    public static String CalcularVariável(String variavel) {
+        return variavel;
+    }
+
+    public static void CalcularLoop(int numero) {
+        for (int i = 0; i <= numero; i++) {
+            System.out.print(i + " ");
+            /* Imprimir com printf
+            System.out.printf("%d ", i); */
+        }
+        System.out.print("\n");
+    }
+
+    public static void CalcularLoop1(int numero) {
+        int soma = 0;
+        for (int i = 1; i <= numero; i++) {
+            soma = soma + i;
+            /* Imprimir com printf 
+            System.out.printf("%d ", i); */
+            System.out.print(i + " ");
+        }
+        System.out.print("\n");
+        System.out.println("A soma dos números acima é: " + soma + ".");
+        /* Imprimir com printf
+        System.out.printf("A soma dos números acima é: %d.\n", soma); */
+    }
+    public static float CalcularMaior(float a, float b) {
+        if (a > b) {
+            System.out.println("O maior valor é " + a + ".");
+            return a;
+        } else if (b > a) {
+            System.out.println("O maior valor é " + b + ".");
+            return b;
+        } else {
+            System.out.println("Os valores são iguais.");
+        }
+        return a;
+    }
+    public static int CalcularFibonacci (int numero){
+        int a = 0;
+        int b = 1;
+        int c = 0;
+        for (int i = 0; i <= numero; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+            System.out.print(c + " ");
+        }
+        System.out.print("\n");
+        return c;
+    }
+    public static float CalcularMult (float numero){
+        float tabuada = 0;
+        for (int i = 0; i <= numero; i++) {
+            tabuada = numero * i;
+            //System.out.println(numero + " x " + i + " = " + tabuada + ".");
+            // Imprimindo com printf
+            System.out.printf("Tabuada do " + numero + ": ");
+            System.out.printf("%.2f x %d = %.2f.\n", numero, i, tabuada);  
+        }
+        return tabuada;
     }
 }
