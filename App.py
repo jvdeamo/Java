@@ -138,17 +138,33 @@ def entrada():
         def input_9():
             try:
                 # receber uma lista de números
-                lista = []
+                vetor = []
                 n = int(input("Digite a quantidade de números que deseja inserir: "))
                 for i in range(n):
-                    lista.append(int(input("Digite um número: ")))
-                resultado = min(lista)
+                    vetor.append(int(input("Digite um número: ")))
+                resultado = min(vetor)
                 print(f"O menor número digitado é: {resultado}.")
-                
                 return resultado
             except ValueError:
                 print("Digite apenas números!")
                 return input_9()
+            
+        def input_10():
+            try:
+                # receber uma lista de Strings
+                vetor = []
+                txt = int(input("Digite a quantidade de frutas que deseja inserir: "))
+                for i in range(txt):
+                    fruta = input("Digite uma fruta: ")
+                    fruta = fruta.replace("&", "e")
+                    vetor.append(fruta)               
+                resultado = ', '.join(vetor)
+                print(f"O cesto de frutas tem as seguintes frutas: {resultado}.")
+                return resultado
+            except ValueError:
+                print("Digite apenas texto!")
+                return input_10()
+                
     except Exception:
         print("Digite os valores corretamente!")
         return entrada()
@@ -161,6 +177,8 @@ def entrada():
     input_8()
     imprimir_delimitador("-", 20)
     input_9()
+    imprimir_delimitador("-", 20)
+    input_10()
 
 
 entrada()
