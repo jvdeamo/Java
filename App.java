@@ -16,6 +16,7 @@ public class App { // Classe App (classe principal)
         float valor2 = 4;
         float soma = Calculos.CalcularSoma(valor1, valor2);
         System.out.println("Soma (" + valor1 + " + " + valor2 + ") = " + soma + ".");
+
         /*
          * Imprimir com printf
          * %.2f = 2 casas decimais
@@ -97,9 +98,35 @@ public class App { // Classe App (classe principal)
         System.out.println("Digite o número: ");
         float valor17 = scanner.nextFloat();
         Calculos.CalcularMult(valor17);
-        
-        System.out.println("=== Fim ===");        
 
+        /* 14 - Soma */
+        System.out.println("=== Exercício 14 - Verificando a soma ===");
+        System.out.println("Digite o primeiro valor: ");
+        float valor18 = scanner.nextFloat();
+        System.out.println("Digite o segundo valor: ");
+        float valor19 = scanner.nextFloat();
+        soma = Calculos.CalcularSoma1(valor18, valor19);
+        System.out.println("Soma (" + valor18 + " + " + valor19 + ") = " + soma + ".");
+
+        /* 15 - Média */
+        System.out.println("=== Exercício 15 - Verificando a média ===");
+        System.out.println("Digite o primeiro valor: ");
+        float valor20 = scanner.nextFloat();
+        System.out.println("Digite o segundo valor: ");
+        float valor21 = scanner.nextFloat();
+        System.out.println("Digite o terceiro valor: ");
+        float valor22 = scanner.nextFloat();
+        media = Calculos.CalcularMedia1(valor20, valor21, valor22);
+        System.out.printf("Média (" + valor20 + " + " + valor21 + " + " + valor22 + ") : %.2f.", media);
+
+        /* 16 - Par ou Ímpar */
+        System.out.println("=== Exercício 16 - Par ou Ímpar ===");
+        System.out.println("Digite o número: ");
+        int valor23 = scanner.nextInt();
+        Calculos.CalcularIP1(valor23);
+
+
+        System.out.println("=== Fim ===");        
         scanner.close();
     }
 }
@@ -238,15 +265,37 @@ class Calculos { // Classe Calculos (classe secundária)
         System.out.print("\n");
         return c;
     }
-    public static float CalcularMult (float numero){
+    public static float CalcularMult (float numero){ // Método CalcularMult da classe Calculos
         float tabuada = 0;
         for (int i = 0; i <= numero; i++) {
             tabuada = numero * i;
+            if (i >= 11 || i == 11) {
+                break;
+            }
             //System.out.println(numero + " x " + i + " = " + tabuada + ".");
             // Imprimindo com printf
             System.out.printf("Tabuada do " + numero + ": ");
             System.out.printf("%.2f x %d = %.2f.\n", numero, i, tabuada);  
         }
         return tabuada;
+    }
+    public static float CalcularSoma1 (float a, float b){ // Método CalcularSoma1 da classe Calculos
+        float soma = a + b;
+        return soma;
+    }
+    public static float CalcularMedia1(float a, float b, float c) { // Método CalcularMedia1 da classe Calculos
+        return (a + b + c) / 3;
+    }
+    public static int CalcularIP1(int a) { // Método CalcularIP da classe Calculos
+        if (a % 2 == 0) {
+            System.out.println("O número " + a + " é par.");
+            // Imprimir com printf
+            /* System.out.printf("O número %d é par.\n", a); */
+        } else {
+            System.out.println("O número " + a + " é ímpar.");
+            // Imprimir com printf
+            /* System.out.printf("O número %d é ímpar.\n", a); */
+        }
+        return a;
     }
 }
