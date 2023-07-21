@@ -78,7 +78,6 @@ public class App { // Classe App (classe principal)
         int valor13 = 5;
         Calculos.CalcularLoop1(valor13);
 
-
         /* 11 - Maior número */
         System.out.println("=== Exercício 11 - Verificando o maior número ===");
         System.out.println("Digite o primeiro valor: ");
@@ -99,7 +98,7 @@ public class App { // Classe App (classe principal)
         float valor17 = scanner.nextFloat();
         Calculos.CalcularMult(valor17);
 
-        /* 14 - Soma */
+        /* 14 - Soma 2 */
         System.out.println("=== Exercício 14 - Verificando a soma ===");
         System.out.println("Digite o primeiro valor: ");
         float valor18 = scanner.nextFloat();
@@ -108,7 +107,7 @@ public class App { // Classe App (classe principal)
         soma = Calculos.CalcularSoma1(valor18, valor19);
         System.out.println("Soma (" + valor18 + " + " + valor19 + ") = " + soma + ".");
 
-        /* 15 - Média */
+        /* 15 - Média 2 */
         System.out.println("=== Exercício 15 - Verificando a média ===");
         System.out.println("Digite o primeiro valor: ");
         float valor20 = scanner.nextFloat();
@@ -117,7 +116,7 @@ public class App { // Classe App (classe principal)
         System.out.println("Digite o terceiro valor: ");
         float valor22 = scanner.nextFloat();
         media = Calculos.CalcularMedia1(valor20, valor21, valor22);
-        System.out.printf("Média (" + valor20 + " + " + valor21 + " + " + valor22 + ") : %.2f.", media);
+        System.out.printf("Média (" + valor20 + " + " + valor21 + " + " + valor22 + ") : %.2f. \n", media);
 
         /* 16 - Par ou Ímpar */
         System.out.println("=== Exercício 16 - Par ou Ímpar ===");
@@ -125,14 +124,31 @@ public class App { // Classe App (classe principal)
         int valor23 = scanner.nextInt();
         Calculos.CalcularIP1(valor23);
 
+        /* 17 - Calculadora básica */
+        System.out.println("=== Exercício 17 - Calculadora básica ===");
+        System.out.println("Digite o primeiro valor: ");
+        float valor24 = scanner.nextFloat();
+        System.out.println("Digite o segundo valor: ");
+        float valor25 = scanner.nextFloat();
+        /*
+         * System.out.println("Digite a operação: ");
+         * String operacao = scanner.next();
+         */
+        Calculos.Calculadora(valor24, valor25, "");
 
-        System.out.println("=== Fim ===");        
+        /* 18 - Fatorial 2 */
+        System.out.println("=== Exercício 18 - Calculando o fatorial ===");
+        System.out.println("Digite o número: ");
+        int valor26 = scanner.nextInt();
+        Calculos.CalcularFatorial(valor26);
+
+        System.out.println("=== Fim ===");
         scanner.close();
     }
 }
 
 class Calculos { // Classe Calculos (classe secundária)
-    
+    /* Exercícios Java 01 */
     public static float CalcularSoma(float a, float b) { // Método CalcularSoma da classe Calculos
         return a + b;
     }
@@ -221,8 +237,10 @@ class Calculos { // Classe Calculos (classe secundária)
     public static void CalcularLoop(int numero) {
         for (int i = 0; i <= numero; i++) {
             System.out.print(i + " ");
-            /* Imprimir com printf
-            System.out.printf("%d ", i); */
+            /*
+             * Imprimir com printf
+             * System.out.printf("%d ", i);
+             */
         }
         System.out.print("\n");
     }
@@ -231,15 +249,20 @@ class Calculos { // Classe Calculos (classe secundária)
         int soma = 0;
         for (int i = 1; i <= numero; i++) {
             soma = soma + i;
-            /* Imprimir com printf 
-            System.out.printf("%d ", i); */
+            /*
+             * Imprimir com printf
+             * System.out.printf("%d ", i);
+             */
             System.out.print(i + " ");
         }
         System.out.print("\n");
         System.out.println("A soma dos números acima é: " + soma + ".");
-        /* Imprimir com printf
-        System.out.printf("A soma dos números acima é: %d.\n", soma); */
+        /*
+         * Imprimir com printf
+         * System.out.printf("A soma dos números acima é: %d.\n", soma);
+         */
     }
+
     public static float CalcularMaior(float a, float b) {
         if (a > b) {
             System.out.println("O maior valor é " + a + ".");
@@ -252,7 +275,8 @@ class Calculos { // Classe Calculos (classe secundária)
         }
         return a;
     }
-    public static int CalcularFibonacci (int numero){
+
+    public static int CalcularFibonacci(int numero) {
         int a = 0;
         int b = 1;
         int c = 0;
@@ -265,28 +289,34 @@ class Calculos { // Classe Calculos (classe secundária)
         System.out.print("\n");
         return c;
     }
-    public static float CalcularMult (float numero){ // Método CalcularMult da classe Calculos
+
+    public static float CalcularMult(float numero) { // Método CalcularMult da classe Calculos
         float tabuada = 0;
         for (int i = 0; i <= numero; i++) {
             tabuada = numero * i;
             if (i >= 11 || i == 11) {
                 break;
             }
-            //System.out.println(numero + " x " + i + " = " + tabuada + ".");
+            // System.out.println(numero + " x " + i + " = " + tabuada + ".");
             // Imprimindo com printf
             System.out.printf("Tabuada do " + numero + ": ");
-            System.out.printf("%.2f x %d = %.2f.\n", numero, i, tabuada);  
+            System.out.printf("%.2f x %d = %.2f.\n", numero, i, tabuada);
         }
         return tabuada;
     }
-    public static float CalcularSoma1 (float a, float b){ // Método CalcularSoma1 da classe Calculos
+
+    /* Exercícios Java 02 */
+
+    public static float CalcularSoma1(float a, float b) { // Método CalcularSoma1 da classe Calculos
         float soma = a + b;
         return soma;
     }
+
     public static float CalcularMedia1(float a, float b, float c) { // Método CalcularMedia1 da classe Calculos
         return (a + b + c) / 3;
     }
-    public static int CalcularIP1(int a) { // Método CalcularIP da classe Calculos
+
+    public static int CalcularIP1(int a) { // Método CalcularIP1 da classe Calculos
         if (a % 2 == 0) {
             System.out.println("O número " + a + " é par.");
             // Imprimir com printf
@@ -298,4 +328,72 @@ class Calculos { // Classe Calculos (classe secundária)
         }
         return a;
     }
+
+    /*
+     * Exercício 4 - Calculadora básica:
+     * Crie um programa que permita ao usuário escolher entre as operações de soma,
+     * subtração, multiplicação e divisão de dois números.
+     * Dica: Use um menu para mostrar as opções de operações.
+     */
+    // calculadora básica
+    public static void Calculadora(float a, float b, String operacao) {
+        Scanner scanner = new Scanner(System.in);
+        float resultado = 0;
+        boolean operacaoValida = false; // Variável de controle para verificar se a operação é válida
+
+        while (!operacaoValida) { // Enquanto a operação não for válida, o loop continua
+            System.out.println("Escolha a operação (+, -, *, /): ");
+            operacao = scanner.next();
+
+            
+
+            switch (operacao) {
+                case "+":
+                    resultado = a + b;
+                    System.out.printf("A soma de (%.2f + %.2f) = %.2f.\n", a, b, resultado);
+                    operacaoValida = true; // Se a operação for válida, o loop é interrompido
+                    break;
+                case "-":
+                    resultado = a - b;
+                    System.out.printf("A subtração de (%.2f - %.2f) = %.2f.\n", a, b, resultado);
+                    operacaoValida = true;
+                    break;
+                case "*":
+                    resultado = a * b;
+                    System.out.printf("A multiplicação de (%.2f x %.2f) = %.2f.\n", a, b, resultado);
+                    operacaoValida = true;
+                    break;
+                case "/":
+                    resultado = a / b;
+                    System.out.printf("A divisão de (%.2f / %.2f) = %.2f.\n", a, b, resultado);
+                    operacaoValida = true;
+                    break;
+                default:
+                    System.out.println("Operação inválida! Digite novamente.");
+                    break;
+            }
+        }
+        /*
+         * Usamos switch-case pois já podemos inserir o valor diretamente, por exemplo:
+         * case "/":, ao invés de usar o IF, que necessitaria de usar .equals (método de
+         * comparação)
+         */
+        /*
+         * System.out.println("Deseja realizar outra operação? (S/N)");
+         * String resposta = scanner.next();
+         * if (resposta.equals("S") || resposta.equals("s")) {
+         * System.out.println("Digite o primeiro valor: ");
+         * float valor1 = scanner.nextFloat();
+         * System.out.println("Digite o segundo valor: ");
+         * float valor2 = scanner.nextFloat();
+         * System.out.println("Digite a operação: ");
+         * String operacao1 = scanner.next();
+         * Calculadora(valor1, valor2, operacao1);
+         * } else {
+         * System.out.println("Fim!");
+         * }
+         */
+    
+    }
+    
 }
