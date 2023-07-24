@@ -32,8 +32,9 @@ public class AppIndustria {
      * 
      */
     public static void main(String[] Controle) {
-        Menu.menu();
-
+        PrintStream out = System.out;
+        out.println("\033[H\033[2J");
+        Menu.MenuExibir();
     }
 
 }
@@ -41,20 +42,20 @@ public class AppIndustria {
 class Menu {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void menu() {
+    public static void MenuExibir() {
         System.out.println("Escolha uma opção: ");
         System.out.println("1 - Cadastrar novo produto");
-        System.out.println("2 - Acompanhar o status de produção");
-        System.out.println("3 - Verificar prazo de entrega");
-        System.out.println("4 - Modificadores de acesso");
-        System.out.println("5 - Entrada e saída de dados");
-        Integer opcao = scanner.nextInt();
-        switch (opcao) {
-            case 1:
-                System.out.println(
-                        "Cadastre seu produto, informe o nome do produto, código de identificação, quantidade a ser produzida e prazo de entrega.");
+        /*
+         * System.out.println("2 - Acompanhar o status de produção");
+         * System.out.println("3 - Verificar prazo de entrega");
+         * System.out.println("4 - Modificadores de acesso");
+         * System.out.println("5 - Entrada e saída de dados");
+         */
+        Integer escolha = scanner.nextInt();
 
-                Produto.cadastrarProduto(scanner.next(), scanner.nextInt(), scanner.nextInt(), scanner.next());
+        switch (escolha) {
+            case 1:
+                MenuProduto();
                 break;
             case 2:
                 System.out.println("Acompanhar o status de produção");
@@ -74,16 +75,102 @@ class Menu {
         }
         scanner.close();
     }
+
+    private static void MenuProduto() {
+        boolean sair = false;
+        while (!sair) {
+            System.out.println("Nome do produto: ");
+            String nomeProduto = scanner.next();
+            System.out.println("Código de identificação: ");
+            int codigoProduto = scanner.nextInt();
+            System.out.println("Quantidade a ser produzida: ");
+            int quantidadeProduto = scanner.nextInt();
+            System.out.println("Prazo de entrega: ");
+            String prazoProduto = scanner.next();
+            Produto.CadastrarProduto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
+            /*
+             * caso queira exibir os dados do produto cadastrado
+             * System.out.println("Produto cadastrado: " + nomeProduto);
+             * System.out.println("Código do produto: " + codigoProduto);
+             * System.out.println("Quantidade: " + quantidadeProduto);
+             * System.out.println("Prazo: " + prazoProduto);
+             */
+            System.out.println("Produto cadastrado com sucesso!");
+
+            System.out.println("Deseja exibir os dados do produto? (S/N)");
+            String exibirProduto = scanner.next();
+            exibirProduto = exibirProduto.toUpperCase();
+
+            switch (exibirProduto.toUpperCase()) {
+                case "S":
+                    PrintStream out = System.out;
+                    out.println("\033[H\033[2J");
+                    System.out.printf("Informações do produto ID (%d)\n", codigoProduto);
+                    System.out.printf("Nome do produto: %s \n", nomeProduto);
+                    System.out.printf("Código do produto: %d \n", codigoProduto);
+                    System.out.printf("Quantidade: %d \n", quantidadeProduto);
+                    System.out.printf("Prazo: %s \n", prazoProduto);
+                    sair = true;
+                    break;
+                case "N":
+                    sair = true;
+                    break;
+                default:
+                    System.out.println("Não entendi, você quer exibir os dados do produto? (S/N)");
+                    exibirProduto = scanner.next();
+                    exibirProduto = exibirProduto.toUpperCase();
+                    switch (exibirProduto.toUpperCase()) {
+                        case "S":
+                            out = System.out;
+                            out.println("\033[H\033[2J");
+                            System.out.printf("Informações do produto ID (%d)\n", codigoProduto);
+                            System.out.printf("Nome do produto: %s \n", nomeProduto);
+                            System.out.printf("Código do produto: %d \n", codigoProduto);
+                            System.out.printf("Quantidade: %d \n", quantidadeProduto);
+                            System.out.printf("Prazo: %s \n", prazoProduto);
+                            sair = true;
+                            break;
+                        case "N":
+                            sair = true;
+                            break;
+                        default:
+                            MenuExibir();
+                            sair = true;
+                            break;
+                    }
+                    break;
+            }
+
+            System.out.println("Deseja cadastrar outro produto? (S/N)");
+            String cadastrarProduto = scanner.next();
+            cadastrarProduto = cadastrarProduto.toUpperCase();
+            switch (cadastrarProduto.toUpperCase()) {
+                case "S":
+                    PrintStream out = System.out;
+                    out.println("\033[H\033[2J");
+                    MenuExibir();
+                    break;
+                case "N":
+                    System.out.println("Obrigado por utilizar o sistema!");
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+            sair = true;
+            break;
+        }
+    }
 }
 
 class Produto {
     // Scanner
     static Scanner scanner = new Scanner(System.in);
     // Atributos
-    public String nomeProduto;
-    public Integer codigoProduto;
-    public Integer quantidadeProduto;
-    public String prazoProduto;
+    private String nomeProduto;
+    private Integer codigoProduto;
+    private Integer quantidadeProduto;
+    private String prazoProduto;
 
     // Construtor
     public Produto(String nomeProduto, Integer codigoProduto, Integer quantidadeProduto, String prazoProduto) {
@@ -93,19 +180,10 @@ class Produto {
         this.prazoProduto = prazoProduto;
     }
 
-    public static Produto criarProduto(String nomeProduto, Integer codigoProduto, Integer quantidadeProduto,
-            String prazoProduto) {
-        return new Produto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
-    }
-
     // Métodos
-    public static void cadastrarProduto(String nomeProduto, Integer codigoProduto, Integer quantidadeProduto,
+    public static Produto CadastrarProduto(String nomeProduto, int codigoProduto, int quantidadeProduto,
             String prazoProduto) {
-        System.out.println("Nome do produto: " + nomeProduto);
-        System.out.println("Código de identificação: " + codigoProduto);
-        System.out.println("Quantidade a ser produzida: " + quantidadeProduto);
-        System.out.println("Prazo de entrega: " + prazoProduto);
         Produto produto = new Produto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
-        System.out.println("Produto cadastrado com sucesso!");
+        return produto;
     }
 }
