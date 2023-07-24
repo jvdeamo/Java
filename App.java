@@ -142,6 +142,22 @@ public class App { // Classe App (classe principal)
         int valor26 = scanner.nextInt();
         Calculos.CalcularFatorial(valor26);
 
+        /* 19 - Número primo 2 */
+        System.out.println("=== Exercício 19 - Número primo ===");
+        System.out.println("Digite o número: ");
+        int valor27 = scanner.nextInt();
+        Calculos.CalcularPrimo1(valor27);
+
+        /* 5 - Verificando se o ano é bissexto 2 */
+        System.out.println("=== Exercício 20 - Ano bissexto 2 ===");
+        int valor28  = scanner.nextInt();
+        Calculos.CalcularAno(valor28);
+
+        /* 21 - Média de um array */
+        System.out.println("=== Exercício 21 - Média de um vetor ===");
+        Calculos.CalcularMediaVetor();
+        
+
         System.out.println("=== Fim ===");
         scanner.close();
     }
@@ -292,7 +308,7 @@ class Calculos { // Classe Calculos (classe secundária)
 
     public static float CalcularMult(float numero) { // Método CalcularMult da classe Calculos
         float tabuada = 0;
-        for (int i = 0; i <= numero; i++) {
+        for (int i = 0; i <= 10; i++) {
             tabuada = numero * i;
             if (i >= 11 || i == 11) {
                 break;
@@ -342,35 +358,43 @@ class Calculos { // Classe Calculos (classe secundária)
         boolean operacaoValida = false; // Variável de controle para verificar se a operação é válida
 
         while (!operacaoValida) { // Enquanto a operação não for válida, o loop continua
-            System.out.println("Escolha a operação (+, -, *, /): ");
+            System.out.println("Escolha a operação: ");
+            System.out.println("1 - Soma");
+            System.out.println("2 - Subtração");
+            System.out.println("3 - Multiplicação");
+            System.out.println("4 - Divisão");
+            System.out.println("0 - Sair");
             operacao = scanner.next();
 
-            
-
             switch (operacao) {
-                case "+":
+                case "1":
                     resultado = a + b;
                     System.out.printf("A soma de (%.2f + %.2f) = %.2f.\n", a, b, resultado);
                     operacaoValida = true; // Se a operação for válida, o loop é interrompido
                     break;
-                case "-":
+                case "2":
                     resultado = a - b;
                     System.out.printf("A subtração de (%.2f - %.2f) = %.2f.\n", a, b, resultado);
                     operacaoValida = true;
                     break;
-                case "*":
+                case "3":
                     resultado = a * b;
                     System.out.printf("A multiplicação de (%.2f x %.2f) = %.2f.\n", a, b, resultado);
                     operacaoValida = true;
                     break;
-                case "/":
+                case "4":
                     resultado = a / b;
                     System.out.printf("A divisão de (%.2f / %.2f) = %.2f.\n", a, b, resultado);
+                    operacaoValida = true;
+                    break;
+                case "0":
+                    System.out.println("Fim!");
                     operacaoValida = true;
                     break;
                 default:
                     System.out.println("Operação inválida! Digite novamente.");
                     break;
+
             }
         }
         /*
@@ -393,7 +417,54 @@ class Calculos { // Classe Calculos (classe secundária)
          * System.out.println("Fim!");
          * }
          */
-    
+
     }
-    
+
+    public static void CalcularPrimo1(int numero) { // Método CalcularPrimo da classe Calculos
+        int contador = 0;
+        for (int i = 1; i <= numero; i++) {
+            if (numero % i == 0) {
+                contador++;
+            }
+        }
+        if (contador == 2) {
+            System.out.println("O número " + numero + " é primo.");
+            // Imprimir com printf
+            /* System.out.printf("O número %d é primo.\n", numero); */
+        } else {
+            System.out.println("O número " + numero + " não é primo.");
+            // Imprimir com printf
+            /* System.out.printf("O número %d não é primo.\n", numero); */
+        }
+    }
+    // Crie um programa que calcule a média dos elementos de um array de números inteiros fornecido pelo usuário.
+    // Dica: Percorra o array somando todos os elementos e divida pelo número total de elementos.
+    // Exercício 21 - Média de um array
+    public static void CalcularMediaVetor() {
+        Scanner scanner = new Scanner(System.in);
+        float soma = 0;
+        System.out.print("Digite o tamanho do array: ");
+        int tamanho = scanner.nextInt();
+        
+        float[] vetor = new float[tamanho];
+
+        // Preenchendo o array
+        for (int i = 0; i < tamanho; i++) {
+            System.out.print("Digite o " + (i + 1) + "º valor: ");
+            vetor[i] = scanner.nextFloat(); // Atribuindo o valor digitado pelo usuário ao array no índice i
+        }
+
+        // Cálculo da média
+        for (int i = 0; i < vetor.length; i++) {
+            soma = soma + vetor[i]; //vetor 1, 5, 6
+            /* soma = 0 + vetor[0]; 0 + 1 = 1
+            soma = 1 + vetor[1]; 1 + 5 = 6
+            soma = 6 + vetor[2]; 6 + 6 = 12
+            */
+        }
+        float media = soma / vetor.length; // 12 / 3 = 4
+        System.out.println("A média dos elementos do array é: " + media + ".");
+
+        scanner.close();
+    }
 }
