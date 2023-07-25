@@ -157,7 +157,6 @@ public class App { // Classe App (classe principal)
         System.out.println("=== Exercício 21 - Média de um vetor ===");
         Calculos.CalcularMediaVetor();
         
-
         System.out.println("=== Fim ===");
         scanner.close();
     }
