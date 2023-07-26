@@ -150,13 +150,13 @@ public class App { // Classe App (classe principal)
 
         /* 5 - Verificando se o ano é bissexto 2 */
         System.out.println("=== Exercício 20 - Ano bissexto 2 ===");
-        int valor28  = scanner.nextInt();
+        int valor28 = scanner.nextInt();
         Calculos.CalcularAno(valor28);
 
         /* 21 - Média de um array */
         System.out.println("=== Exercício 21 - Média de um vetor ===");
         Calculos.CalcularMediaVetor();
-        
+
         System.out.println("=== Fim ===");
         scanner.close();
     }
@@ -416,7 +416,7 @@ class Calculos { // Classe Calculos (classe secundária)
          * System.out.println("Fim!");
          * }
          */
-
+        scanner.close();
     }
 
     public static void CalcularPrimo1(int numero) { // Método CalcularPrimo da classe Calculos
@@ -436,15 +436,18 @@ class Calculos { // Classe Calculos (classe secundária)
             /* System.out.printf("O número %d não é primo.\n", numero); */
         }
     }
-    // Crie um programa que calcule a média dos elementos de um array de números inteiros fornecido pelo usuário.
-    // Dica: Percorra o array somando todos os elementos e divida pelo número total de elementos.
+
+    // Crie um programa que calcule a média dos elementos de um array de números
+    // inteiros fornecido pelo usuário.
+    // Dica: Percorra o array somando todos os elementos e divida pelo número total
+    // de elementos.
     // Exercício 21 - Média de um array
     public static void CalcularMediaVetor() {
         Scanner scanner = new Scanner(System.in);
         float soma = 0;
         System.out.print("Digite o tamanho do array: ");
         int tamanho = scanner.nextInt();
-        
+
         float[] vetor = new float[tamanho];
 
         // Preenchendo o array
@@ -453,13 +456,28 @@ class Calculos { // Classe Calculos (classe secundária)
             vetor[i] = scanner.nextFloat(); // Atribuindo o valor digitado pelo usuário ao array no índice i
         }
 
+        // Preenchendo o array de forma automática
+        /*
+         * for (int i = 0; i < vetor.length; i++) {
+         * vetor[i] = i;
+         * }
+         */
+
         // Cálculo da média
+
+        // Como preencher um array com 1000 números aleatórios
+        /*
+        * for (int i = 0; i < vetor.length; i++) {
+        * vetor[i] = (int) (Math.random() * 1000);
+        * }
+        */
         for (int i = 0; i < vetor.length; i++) {
-            soma = soma + vetor[i]; //vetor 1, 5, 6
-            /* soma = 0 + vetor[0]; 0 + 1 = 1
-            soma = 1 + vetor[1]; 1 + 5 = 6
-            soma = 6 + vetor[2]; 6 + 6 = 12
-            */
+            soma = soma + vetor[i]; // vetor 1, 5, 6
+            /*
+             * soma = 0 + vetor[0]; 0 + 1 = 1
+             * soma = 1 + vetor[1]; 1 + 5 = 6
+             * soma = 6 + vetor[2]; 6 + 6 = 12
+             */
         }
         float media = soma / vetor.length; // 12 / 3 = 4
         System.out.println("A média dos elementos do array é: " + media + ".");

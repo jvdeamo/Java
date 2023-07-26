@@ -1,4 +1,8 @@
 import java.io.PrintStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class AppIndustria {
@@ -73,11 +77,11 @@ class Menu {
                 System.out.println("Opção inválida");
                 break;
         }
-        scanner.close();
     }
 
     private static void MenuProduto() {
         boolean sair = false;
+        boolean DataValida = false;
         while (!sair) {
             System.out.println("Nome do produto: ");
             String nomeProduto = scanner.next();
@@ -85,15 +89,64 @@ class Menu {
             int codigoProduto = scanner.nextInt();
             System.out.println("Quantidade a ser produzida: ");
             int quantidadeProduto = scanner.nextInt();
-            System.out.println("Prazo de entrega: dd-MM-yyyy");
-            String prazoProduto = scanner.next();
+            String prazoProduto = "";
+            Date dataPrazoEntrega = null;
+            while (!DataValida) {
+                System.out.println("Prazo de entrega (dd-MM-yyyy): ");
+                prazoProduto = scanner.next();
+
+                // Convertendo o prazo de entrega digitado pelo usuário para Date
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                dataPrazoEntrega = null;
+                try {
+                    dataPrazoEntrega = dateFormat.parse(prazoProduto);
+                    DataValida = true; // Se a data for válida, saímos do loop
+                } catch (ParseException e) {
+                    System.out.println("Formato esperado: dd-MM-yyyy");
+                    prazoProduto = scanner.next();
+                }
+            }
+
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.MONTH, 1);
+            Date prazoEntregaGeral = cal.getTime();
+
+            // Verificando se o prazo de entrega digitado pelo usuário está dentro do limite
+            if (dataPrazoEntrega.before(prazoEntregaGeral)) {
+                produtoAtual = Produto.CadastrarProduto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
+                String StatusProducao = produtoAtual.getStatusProduto();
+                System.out.println("Produto cadastrado com sucesso!");
+                System.out.println("Status de produção: " + StatusProducao);
+            } else {
+                /*System.out.println("Formato esperado: dd-MM-yyyy");
+                prazoProduto = scanner.next();*/
+                System.out.println("O prazo de entrega ultrapassa o limite de 1 mês. \nOs produtos da fábrica devem ser entregues até: " + prazoEntregaGeral);
+            }
+            /*
+             * while (prazoProduto.length() < 10) {
+             * 
+             * if (prazoProduto.charAt(i) == '-') {
+             * continue;
+             * }
+             * if (!Character.isDigit(prazoProduto.charAt(i))) {
+             * System.out.println("Data inválida");
+             * System.out.println("Prazo de entrega: dd-MM-yyyy");
+             * prazoProduto = scanner.next();
+             * }
+             * 
+             * // O prazo de entrega deve estar no formato dd-MM-yyyy (26-07-2023), para
+             * isso devemos fazer uma condição para verificar se o usuário digitou a data
+             * corretamente
+             * 
+             * System.out.println("Data inválida");
+             * System.out.println("Prazo de entrega: dd-MM-yyyy");
+             * prazoProduto = scanner.next();
+             * }
+             */
             produtoAtual = Produto.CadastrarProduto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
             Produto.CadastrarProduto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
             Produto produto = Produto.CadastrarProduto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto);
             String StatusProducao = produto.getStatusProduto();
-            System.out.println("Produto cadastrado com sucesso!");
-            System.out.println("Status de produção: " + StatusProducao);
-            System.out.println("Produto cadastrado com sucesso!");
             /*
              * caso queira exibir os dados do produto cadastrado
              * System.out.println("Produto cadastrado: " + nomeProduto);
@@ -118,32 +171,41 @@ class Menu {
                     sair = true;
                     break;
                 case "N":
+                    out = System.out;
+                    out.println("\033[H\033[2J");
+                    MenuExibir();
                     sair = true;
                     break;
                 default:
-                    System.out.println("Não entendi, você quer exibir os dados do produto? (S/N)");
-                    exibirProduto = scanner.next();
-                    exibirProduto = exibirProduto.toUpperCase();
-                    switch (exibirProduto.toUpperCase()) {
-                        case "S":
-                            out = System.out;
-                            out.println("\033[H\033[2J");
-                            System.out.printf("Informações do produto ID (%d)\n", codigoProduto);
-                            System.out.printf("Nome do produto: %s \n", nomeProduto);
-                            System.out.printf("Código do produto: %d \n", codigoProduto);
-                            System.out.printf("Quantidade: %d \n", quantidadeProduto);
-                            System.out.printf("Prazo: %s \n", prazoProduto);
-                            System.out.printf("Status de produção %s", StatusProducao);
-                            sair = true;
-                            break;
-                        case "N":
-                            sair = true;
-                            break;
-                        default:
-                            MenuExibir();
-                            break;
+                    while (!sair) {
+                        System.out.println("Não entendi, você quer exibir os dados do produto? (S/N)");
+                        exibirProduto = scanner.next();
+                        exibirProduto = exibirProduto.toUpperCase();
+                        switch (exibirProduto.toUpperCase()) {
+                            case "S":
+                                out = System.out;
+                                out.println("\033[H\033[2J");
+                                System.out.printf("Informações do produto ID (%d)\n", codigoProduto);
+                                System.out.printf("Nome do produto: %s \n", nomeProduto);
+                                System.out.printf("Código do produto: %d \n", codigoProduto);
+                                System.out.printf("Quantidade: %d \n", quantidadeProduto);
+                                System.out.printf("Prazo: %s \n", prazoProduto);
+                                System.out.printf("Status de produção: %s \n", StatusProducao);
+                                sair = true;
+                                break;
+                            case "N":
+                                out = System.out;
+                                out.println("\033[H\033[2J");
+                                MenuExibir();
+                                sair = true;
+                                break;
+                            default:
+                                out = System.out;
+                                out.println("\033[H\033[2J");
+                                MenuExibir();
+                                break;
+                        }
                     }
-                    break;
             }
 
             System.out.println("Deseja cadastrar outro produto? (S/N)");
@@ -154,17 +216,43 @@ class Menu {
                     PrintStream out = System.out;
                     out.println("\033[H\033[2J");
                     MenuExibir();
+                    sair = true;
                     break;
                 case "N":
+                    out = System.out;
+                    out.println("\033[H\033[2J");
                     MenuExibir();
-                default:
-                    System.out.println("Opção inválida");
-                    MenuExibir();
+                    sair = true;
                     break;
+                default:
+                    System.out.println("Não entendi, você quer cadastrar outro produto? (S/N)");
+                    cadastrarProduto = scanner.next();
+                    cadastrarProduto = cadastrarProduto.toUpperCase();
+                    switch (cadastrarProduto.toUpperCase()) {
+                        case "S":
+                            out = System.out;
+                            out.println("\033[H\033[2J");
+                            MenuProduto();
+                            sair = true;
+                            break;
+                        case "N":
+                            out = System.out;
+                            out.println("\033[H\033[2J");
+                            MenuExibir();
+                            sair = true;
+                            break;
+                        default:
+                            out = System.out;
+                            out.println("\033[H\033[2J");
+                            MenuExibir();
+                            break;
+                    }
+
             }
             sair = true;
             break;
         }
+        scanner.close(); // Mova esta linha para fora do loop while
     }
 
     private static void MenuStatusProducao() {
@@ -179,37 +267,58 @@ class Menu {
             String exibirStatus = scanner.next();
             produtoAtual = Produto.CadastrarProduto(exibirStatus, 0, 0, exibirStatus);
             exibirStatus = exibirStatus.toUpperCase();
-            
+
             switch (exibirStatus) {
                 case "1":
 
                     produtoAtual.setStatusProduto("Em fila de produção");
                     System.out.printf(
-                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto() + "\n",produtoAtual);
+                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto()
+                                    + "\n",
+                            produtoAtual);
                     sair = true;
                     break;
                 case "2":
                     produtoAtual.setStatusProduto("Em produção");
                     System.out.printf(
-                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto() + "\n", produtoAtual);
+                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto()
+                                    + "\n",
+                            produtoAtual);
                     sair = true;
                     break;
                 case "3":
                     produtoAtual.setStatusProduto("Pronto para entrega");
                     System.out.printf(
-                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto() + "\n", produtoAtual);
+                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto()
+                                    + "\n",
+                            produtoAtual);
                     sair = true;
                     break;
                 case "4":
                     produtoAtual.setStatusProduto("Entregue");
                     System.out.printf(
-                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto() + "\n",produtoAtual);
+                            "Status de produção do produto %s foi alterado para " + produtoAtual.getStatusProduto()
+                                    + "\n",
+                            produtoAtual);
                     sair = true;
                     break;
                 default:
                     System.out.println("Opção inválida");
                     break;
             }
+        }
+    }
+
+    private static boolean isValidDateFormat(String inputDate) {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        format.setLenient(false);
+        try {
+            Date date = format.parse(inputDate);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
         }
     }
 }
@@ -238,7 +347,7 @@ class Produto {
     public static Produto CadastrarProduto(String nomeProduto, int codigoProduto, int quantidadeProduto,
             String prazoProduto) {
         Produto produto = new Produto(nomeProduto, codigoProduto, quantidadeProduto, prazoProduto,
-                "Em fila de produção");
+                prazoProduto);
         return produto;
     }
 
