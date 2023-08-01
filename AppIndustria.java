@@ -1,3 +1,8 @@
+// Autor: João Victor Martins Deamo
+// Date: 31/07/2023
+// Version: 1.1
+// Senai - Desenvolvimento de Sistemas
+
 import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

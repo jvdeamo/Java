@@ -1,3 +1,8 @@
+// Autor: João Victor Martins Deamo
+// Date: 31/07/2023
+// Version: 1.1
+// Senai - Desenvolvimento de Sistemas
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -49,6 +54,8 @@ public class AppGym {
         academia = scanner.next(); // Variável para armazenar o nome da academia
         out.println("\033[H\033[2J");
         System.out.printf("* Olá, %s! Seja bem vindo à academia %s. * \n", nome, academia); // Mensagem de boas-vindas
+
+        scanner.close(); // Fechamento da instância da classe Scanner
     }
 
     public static void Calculadora(String a, String b, String TreinoAtual, String ExercicioAtual, float repeticoes,

@@ -2,6 +2,7 @@
 // Date: 31/07/2023
 // Version: 1.0
 // Senai - Desenvolvimento de Sistemas
+
 import java.util.Scanner;
 import java.io.PrintStream; // Importar a classe PrintStream para imprimir
 import java.util.Arrays; // Importar a classe Arrays para ordenar o vetor
