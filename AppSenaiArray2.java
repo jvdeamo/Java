@@ -58,6 +58,10 @@ class Vetores_2 {
         Vetores_2.Exercício13();
         Vetores_2.Exercício14();
         Vetores_2.Exercício15();
+        Vetores_2.Exercício16();
+        Vetores_2.Exercício17();
+        Vetores_2.Exercício18();
+
         /*
          * Vetores_2.Exercício15();
          * Vetores_2.Exercício16();
@@ -161,7 +165,7 @@ class Vetores_2 {
         Scanner scanner = new Scanner(System.in);
         out.println("Exercício 15");
         String[] vetor = new String[5];
-        String[] Ordem = {"Primeiro", "Segundo", "Terceiro", "Quarto", "Quinto"};
+        String[] Ordem = { "Primeiro", "Segundo", "Terceiro", "Quarto", "Quinto" };
         String[] sorteados = new String[3];
         Random aleatorio = new Random();
         int numeroAleatorio = aleatorio.nextInt(5);
@@ -169,7 +173,7 @@ class Vetores_2 {
             out.printf("Digite o nome do %s convidado: ", Ordem[i]);
             vetor[i] = scanner.next();
         }
-        out.println("Convidados: ");
+        out.print("Convidados - ");
         for (String convidados : vetor) {
             out.printf("%s, ", convidados);
         }
@@ -180,9 +184,87 @@ class Vetores_2 {
         }
         out.print("Convidados sorteados - ");
         for (String sorteadosNomes : sorteados) {
-            out.printf("%s ", sorteadosNomes);
+            out.printf("%s, ", sorteadosNomes);
         }
         out.println();
+    }
+
+    public static void Exercício16() {
+        PrintStream out = System.out;
+        Scanner scanner = new Scanner(System.in);
+        out.println("Exercício 16");
+        float[] vetor = new float[7];
+        float soma = 0.0f;
+        float media = 0.0f;
+
+        for (int i = 0; i < vetor.length; i++) {
+            out.println("Digite a quantidade de vendas do dia " + (i + 1) + ": ");
+            vetor[i] = scanner.nextFloat();
+            soma = soma + vetor[i];
+        }
+
+        out.println("Vendas diárias: ");
+        int dia = 1;
+        for (float venda : vetor) {
+            out.printf("Dia %d: %.2f vendas. \n", dia, venda);
+            dia = dia + 1;
+        }
+
+        media = soma / vetor.length;
+        out.printf("A média de vendas diárias da semana foi de: %f vendas.", media);
+        out.println("\n");
+    }
+
+    public static void Exercício17() {
+        PrintStream out = System.out;
+        Scanner scanner = new Scanner(System.in);
+        out.println("Exercício 17");
+        String[] vetor = new String[5];
+        int[] vetor2 = new int[5];
+
+        for (int i = 0; i < vetor.length; i++) {
+            out.printf("Digite o nome do %d amigo: ", (i + 1));
+            vetor[i] = scanner.next();
+            out.printf("Digite a quantidade de quebra-cabeças resolvidos pelo %s: ", vetor[i]);
+            vetor2[i] = scanner.nextInt();
+        }
+
+        out.println("Amigos e quebra-cabeças resolvidos: ");
+        for (int i = 0; i < vetor.length; i++) {
+            out.printf("%s: %d quebra-cabeças. \n", vetor[i], vetor2[i]);
+        }
+        out.println();
+    }
+
+    public static void Exercício18() {
+        PrintStream out = System.out;
+        Scanner scanner = new Scanner(System.in);
+        out.println("Exercício 18");
+        Double[] vetor = new Double[10];
+        Double maiorVariacao = 0.0;
+        Double variacao = 0.0;
+
+        for (int i = 0; i < vetor.length; i++) {
+            out.printf("Digite o preço da ação no dia %d: ", (i + 1));
+            vetor[i] = scanner.nextDouble();
+        }
+
+        out.println("Preços da ação: ");
+        int dia = 1;
+        for (Double preco : vetor) {
+            out.printf("Dia %d: R$%.2f. \n", dia, preco);
+            dia = dia + 1;
+        }
+
+        for (int i = 0; i < vetor.length - 1; i++) {
+            variacao = vetor[i + 1] - vetor[i];
+            if (variacao > maiorVariacao) {
+                maiorVariacao = variacao;
+            }
+        }
+
+        out.printf("A maior variação de preço entre dois dias consecutivos foi de: R$%.2f.", maiorVariacao);
+        out.println("\n");
     }
 
 }
