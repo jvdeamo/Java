@@ -53,8 +53,11 @@ class Vetores_2 {
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         Scanner scanner = new Scanner(System.in);
-        Vetores_2.Exercício20();
+        // Vetores_2.Exercício20();
+        Vetores_2.Exercício21();
+        scanner.close();
     }
+
     /*
      * Vetores_2.Exercício11();
      * Vetores_2.Exercício12();
@@ -65,9 +68,8 @@ class Vetores_2 {
      * Vetores_2.Exercício17();
      * Vetores_2.Exercício18();
      * Vetores_2.Exercício19();
-     */
-
-    /*
+     * 
+     * /*
      * Vetores_2.Exercício15();
      * Vetores_2.Exercício16();
      * Vetores_2.Exercício17();
@@ -339,61 +341,114 @@ class Vetores_2 {
      * 
      * // Processamento menor tempo de natação
      * // Processamento menor tempo de natação
+     * // Processamento do menor tempo de natação
      * for (int i = 0; i < vetor.length; i++) {
-     * if (vetor2[i] < menorTempo)
+     * if (vetor2[i] < menorTempo) {
      * menorTempo = vetor2[i];
      * nomeVencedor = vetor[i];
      * }
+     * }
+     * 
      * 
      * // Saídas
      * out.printf("O nadador vencedor foi %s com o tempo de %.3f segundos.",
      * nomeVencedor, menorTempo);
      * out.println("\n");
      * }
+     * 
+     * public static void Exercício20() {
+     * // Declarações
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
+     * out.println("Exercício 20");
+     * 
+     * // Inicializações
+     * float[] vetor = new float[7];
+     * String[] Nomes = new String[7];
+     * float maiorCaloria = 0.0f;
+     * float caloria = 0.0f;
+     * String nomeMaiorCaloria = "";
+     * 
+     * out.
+     * println("Relatório de calorias consumidas no período de 7 dias, informe os dados necessários: "
+     * );
+     * 
+     * // Entradas
+     * for (int i = 0; i < vetor.length; i++) {
+     * out.printf("Digite o nome do paciente %d: ", (i + 1));
+     * Nomes[i] = scanner.next();
+     * out.printf("Digite a quantidade de calorias consumidas por %s: ",
+     * (Nomes[i]));
+     * vetor[i] = scanner.nextFloat();
+     * }
+     * 
+     * // Consulta calorias consumidas
+     * out.println("Calorias consumidas: ");
+     * int dia = 1;
+     * for (int i = 0; i < vetor.length; i++) {
+     * out.printf("%s: %.1f calorias. \n", Nomes[i], vetor[i]);
+     * dia = dia + 1;
+     * }
+     * 
+     * // Processamento maior caloria
+     * for (int i = 0; i < vetor.length; i++) {
+     * caloria = vetor[i];
+     * if (caloria > maiorCaloria) {
+     * maiorCaloria = caloria;
+     * nomeMaiorCaloria = Nomes[i];
+     * }
+     * }
+     * 
+     * // Saídas
+     * out.
+     * printf("A pessoa que consumiu a maior quantidade de calorias em um único dia foi %s com %.3f calorias."
+     * ,
+     * nomeMaiorCaloria, maiorCaloria);
+     * out.println("\n");
+     * }
      */
-    public static void Exercício20() {
+    public static void Exercício21() {
         // Declarações
         PrintStream out = System.out;
         Scanner scanner = new Scanner(System.in);
-        out.println("Exercício 20");
+        out.println("Exercício 21");
+        out.println("Relatório de calorias consumidas em um determinado período, informe os dados necessários: ");
+        String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo" };
 
-        // Inicializações
-        float[] vetor = new float[7];
-        String[] Nomes = new String[7];
-        float maiorCaloria = 0.0f;
-        float caloria = 0.0f;
-        String nomeMaiorCaloria = "";
+        out.println("Quantas pessoas consumiram calorias: ");
+        int numPessoas = scanner.nextInt();
+        out.println("Quantos dias foram registrados: ");
+        int numDias = scanner.nextInt();
 
-        out.println("Relatório de calorias consumidas no período de 7 dias, informe os dados necessários: ");
+        // Matriz para armazenar as calorias consumidas por cada pessoa em cada dia
+        int[][] caloriasConsumidas = new int[numPessoas][numDias];
 
-        // Entradas
-        for (int i = 0; i < vetor.length; i++) {
-            out.printf("Digite o nome do paciente %d: ", (i + 1));
-            Nomes[i] = scanner.next();
-            out.printf("Digite a quantidade de calorias consumidas por %s: ", (Nomes[i]));
-            vetor[i] = scanner.nextFloat();
-        }
-
-        // Consulta calorias consumidas
-        out.println("Calorias consumidas: ");
-        int dia = 1;
-        for (int i = 0; i < vetor.length; i++) {
-            out.printf("%s: %.1f calorias. \n", Nomes[i], vetor[i]);
-            dia = dia + 1;
-        }
-
-        // Processamento maior caloria
-        for (int i = 0; i < vetor.length; i++) {
-            caloria = vetor[i];
-            if (caloria > maiorCaloria) {
-                maiorCaloria = caloria;
-                nomeMaiorCaloria = Nomes[i];
+        // Solicitar os dados de calorias consumidas a Oppenheimer
+        for (int pessoa = 0; pessoa < numPessoas; pessoa++) {
+            System.out.printf("Pessoa %d:\n", pessoa + 1);
+            for (int dia = 0; dia < numDias; dia++) {
+                System.out.printf("Digite a quantidade de calorias consumidas no dia de %s: ", Semana[dia]);
+                caloriasConsumidas[pessoa][dia] = scanner.nextInt();
             }
         }
 
-        // Saídas
-        out.printf("A pessoa que consumiu a maior quantidade de calorias em um único dia foi %s com %.1f calorias.",
-                nomeMaiorCaloria, maiorCaloria);
-        out.println("\n");
+        // Encontrar a pessoa que consumiu a maior quantidade de calorias em um único
+        // dia
+        int maiorCalorias = 0;
+        int pessoaMaiorCalorias = -1; // Índice da pessoa que consumiu mais calorias
+        for (int pessoa = 0; pessoa < numPessoas; pessoa++) {
+            for (int dia = 0; dia < numDias; dia++) {
+                if (caloriasConsumidas[pessoa][dia] > maiorCalorias) {
+                    maiorCalorias = caloriasConsumidas[pessoa][dia];
+                    pessoaMaiorCalorias = pessoa;
+                }
+            }
+        }
+
+        // Exibir o resultado
+        System.out.printf("A pessoa %d consumiu a maior quantidade de calorias em um único dia: %d calorias.\n",
+                pessoaMaiorCalorias + 1, maiorCalorias);
+
+        scanner.close();
     }
 }
