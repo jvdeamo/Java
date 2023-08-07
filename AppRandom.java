@@ -3,57 +3,53 @@ import java.io.PrintStream;
 import java.util.Random;
 
 /*
- * Fazer um jogo da forca, onde o usuário digita um número de 0 a 9, caso o número digitado esteja presente, o programa deve informar que o usuário acertou, caso contrário, adicione uma tentativa e informe que o usuário errou, caso o usuário erre 5 vezes, o programa deve informar que o usuário perdeu o jogo.
- * */
+  Fazer um jogo da forca, onde o usuário digita um número de 0 a 9, caso o número digitado esteja presente, o programa deve informar que o usuário acertou, caso contrário, adicione uma tentativa e informe que o usuário errou, caso o usuário erre 5 vezes, o programa deve informar que o usuário perdeu o jogo.
+ */
 public class AppRandom {
-    public static void main(String[] Resultado) {
-        PrintStream out = System.out;
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        PrintStream out = System.out;
         Random[] aleatorio = new Random[3];
         int tentativas = 0;
-        int numeroAleatorio = 0;
+        int[] numerosAleatorios = new int[3];
 
+        out.println("\033[H\033[2J");
         out.println("Jogo da Forca");
         out.println("-------------");
 
-        /*
-         * Para o tamanho do vetor, imprima um underline para cada posição, isto é, para
-         * o tamanho do vetor.
-         * Por exemplo, vetor tamanho 3, imprima ___
-         * vetor tamanho 5, imprima _____
-         */
         for (int i = 0; i < aleatorio.length; i++) {
             aleatorio[i] = new Random();
-            numeroAleatorio = aleatorio[i].nextInt(10);
-            out.print(numeroAleatorio);
+            numerosAleatorios[i] = aleatorio[i].nextInt(10);
             out.print("   _");
+        }
+        out.println("\n");
+        for (int i = 0; i < numerosAleatorios.length; i++) {
+            out.print(" " + numerosAleatorios[i]);
         }
 
         out.println();
-        out.println("\nDigite um número de 0 a 9: ");
-        int numero = in.nextInt();
+        out.println("\nVocê tem 5 tentativas para acertar o número!");
+
         boolean acertou = false;
 
-        while (!acertou && tentativas < 5) {
-            for (int i = 0; i < aleatorio.length; i++) {
-                if (numero == aleatorio[i].nextInt(10)) {
-                    out.println("O número está presente!");
+        while (acertou == false && tentativas < 5) {
+            out.print("Digite um número de 0 a 9: ");
+            int numero = in.nextInt();
+
+            for (int i = 0; i < numerosAleatorios.length; i++) {
+                if (numero == numerosAleatorios[i]) {
                     acertou = true;
-                    break; // Encerra o loop ao encontrar o número
-                } else if (numero != aleatorio[i].nextInt(10)) {
-                    tentativas = tentativas + 1;
-                    out.println("O número não está presente!");
-                    out.println("Tentativas restantes: " + (6 - (+tentativas)));
-                    out.println("Digite outro número:");
-                    numero = in.nextInt();
+                    break; // Sai do loop
                 }
             }
 
-            if (!acertou && tentativas < 5) {
+            if (acertou == true) {
+                out.println("Parabéns, você acertou um número!");
+                break;
+            } else {
+                out.println("O número não está presente!");
                 tentativas = tentativas + 1;
-            } else if (tentativas < 5) {
-                out.println("Digite outro número:");
-                numero = in.nextInt();
+                out.println("Tentativas: " + (5 - tentativas));
             }
         }
 
@@ -61,10 +57,6 @@ public class AppRandom {
             out.println("Você perdeu o jogo!");
         }
 
-        // out.println("Você acertou o número!");
-
         in.close();
-        // int numeroAleatorio = aleatorio.nextInt(10);
-        // System.out.println(aleatorio[i]);
     }
 }
