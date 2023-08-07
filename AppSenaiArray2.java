@@ -5,7 +5,7 @@
 // Senai - Desenvolvimento de Sistemas
 import java.util.Scanner;
 import java.io.PrintStream;
-import java.util.Random;
+//import java.util.Random;
 
 /*
 Exercício 11:
@@ -37,7 +37,11 @@ A Barbie está organizando uma competição de natação e precisa registrar os 
 
 Exercício 20:
 Oppenheimer está estudando os hábitos alimentares de um grupo de pessoas. Crie um programa que permita a Oppenheimer registrar a quantidade de calorias consumidas por cada pessoa durante uma semana (7 dias). Ao final, exiba a pessoa que consumiu a maior quantidade de calorias em um único dia.
+ 
+Exercício 21: Resolvido
 
+Exercício 22:
+Oppenheimer está estudando o desempenho dos alunos em uma prova. Crie um programa que permita à Oppenheimer inserir as notas de até 5 alunos em uma prova. No final, exiba a média das notas e quantos alunos tiveram notas acima da média.
  */
 public class AppSenaiArray2 {
     public static void main(String[] main) {
@@ -53,36 +57,33 @@ class Vetores_2 {
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         Scanner scanner = new Scanner(System.in);
-        // Vetores_2.Exercício20();
-        Vetores_2.Exercício21();
+        /*
+         * Vetores_2.Exercício11();
+         * Vetores_2.Exercício12();
+         * Vetores_2.Exercício13();
+         * Vetores_2.Exercício14();
+         * Vetores_2.Exercício15();
+         * Vetores_2.Exercício16();
+         * Vetores_2.Exercício17();
+         * Vetores_2.Exercício18();
+         * Vetores_2.Exercício19();
+         * Vetores_2.Exercício20();
+         * Vetores_2.Exercício20();
+         * Vetores_2.Exercício21();
+         * Vetores_2.Exercício22();
+         * Vetores_2.Exercício22();
+         */
         scanner.close();
     }
 
     /*
-     * Vetores_2.Exercício11();
-     * Vetores_2.Exercício12();
-     * Vetores_2.Exercício13();
-     * Vetores_2.Exercício14();
-     * Vetores_2.Exercício15();
-     * Vetores_2.Exercício16();
-     * Vetores_2.Exercício17();
-     * Vetores_2.Exercício18();
-     * Vetores_2.Exercício19();
-     * 
-     * /*
-     * Vetores_2.Exercício15();
-     * Vetores_2.Exercício16();
-     * Vetores_2.Exercício17();
-     * Vetores_2.Exercício18();
-     * Vetores_2.Exercício19();
-     * Vetores_2.Exercício20();
      * 
      * scanner.close();
      * }
      * 
      * public static void Exercício11() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 11");
      * String[] vetor = new String[5];
      * 
@@ -98,8 +99,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício12() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * Double[] vetor = new Double[7];
      * String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira",
      * "Quinta-feira", "Sexta-feira", "Sábado",
@@ -122,8 +123,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício13() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 13");
      * int numero = 0;
      * int tentativas = 0;
@@ -149,8 +150,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício14() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 14");
      * Double[] vetor = new Double[5];
      * Double soma = 0.0;
@@ -171,8 +172,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício15() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 15");
      * String[] vetor = new String[5];
      * String[] Ordem = { "primeiro", "segundo", "terceiro", "quarto", "quinto" };
@@ -207,8 +208,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício16() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 16");
      * float[] vetor = new float[7];
      * String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira",
@@ -239,8 +240,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício17() {
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 17");
      * String[] vetor = new String[5];
      * int[] vetor2 = new int[5];
@@ -264,8 +265,8 @@ class Vetores_2 {
      * 
      * public static void Exercício18() {
      * // Declarações
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 18");
      * 
      * // Inicializações
@@ -311,8 +312,8 @@ class Vetores_2 {
      * 
      * public static void Exercício19() {
      * // Declarações
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 19");
      * 
      * // Inicializações
@@ -358,8 +359,8 @@ class Vetores_2 {
      * 
      * public static void Exercício20() {
      * // Declarações
-     * PrintStream out = System.out;
-     * Scanner scanner = new Scanner(System.in);
+     * PrintStream out = out;
+     * Scanner scanner = new Scanner(in);
      * out.println("Exercício 20");
      * 
      * // Inicializações
@@ -406,49 +407,91 @@ class Vetores_2 {
      * nomeMaiorCaloria, maiorCaloria);
      * out.println("\n");
      * }
-     */
-    public static void Exercício21() {
+     * 
+     * public static void Exercício21() {
+     * // Declarações
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
+     * out.println("Exercício 21");
+     * out.
+     * println("Relatório de calorias consumidas em um determinado período, informe os dados necessários: "
+     * );
+     * String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira",
+     * "Quinta-feira", "Sexta-feira", "Sábado",
+     * "Domingo" };
+     * 
+     * out.println("Quantas pessoas consumiram calorias: ");
+     * int numPessoas = scanner.nextInt();
+     * out.println("Quantos dias foram registrados: ");
+     * int numDias = scanner.nextInt();
+     * 
+     * // Matriz para armazenar as calorias consumidas por cada pessoa em cada dia
+     * int[][] caloriasConsumidas = new int[numPessoas][numDias];
+     * 
+     * // Solicitar os dados de calorias consumidas a Oppenheimer
+     * for (int pessoa = 0; pessoa < numPessoas; pessoa++) {
+     * out.printf("Pessoa %d:\n", pessoa + 1);
+     * for (int dia = 0; dia < numDias; dia++) {
+     * out.printf("Digite a quantidade de calorias consumidas no dia de %s: ",
+     * Semana[dia]);
+     * caloriasConsumidas[pessoa][dia] = scanner.nextInt();
+     * }
+     * }
+     * 
+     * // Encontrar a pessoa que consumiu a maior quantidade de calorias em um único
+     * // dia
+     * int maiorCalorias = 0;
+     * int pessoaMaiorCalorias = -1; // Índice da pessoa que consumiu mais calorias
+     * for (int pessoa = 0; pessoa < numPessoas; pessoa++) {
+     * for (int dia = 0; dia < numDias; dia++) {
+     * if (caloriasConsumidas[pessoa][dia] > maiorCalorias) {
+     * maiorCalorias = caloriasConsumidas[pessoa][dia];
+     * pessoaMaiorCalorias = pessoa;
+     * }
+     * }
+     * }
+     * 
+     * // Exibir o resultado
+     * out.
+     * printf("A pessoa %d consumiu a maior quantidade de calorias em um único dia: %d calorias.\n"
+     * ,
+     * pessoaMaiorCalorias + 1, maiorCalorias);
+     * 
+     * }
+     
+    public static void Exercício22() {
         // Declarações
         PrintStream out = System.out;
-        Scanner scanner = new Scanner(System.in);
-        out.println("Exercício 21");
-        out.println("Relatório de calorias consumidas em um determinado período, informe os dados necessários: ");
-        String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo" };
-
-        out.println("Quantas pessoas consumiram calorias: ");
-        int numPessoas = scanner.nextInt();
-        out.println("Quantos dias foram registrados: ");
-        int numDias = scanner.nextInt();
-
-        // Matriz para armazenar as calorias consumidas por cada pessoa em cada dia
-        int[][] caloriasConsumidas = new int[numPessoas][numDias];
-
-        // Solicitar os dados de calorias consumidas a Oppenheimer
-        for (int pessoa = 0; pessoa < numPessoas; pessoa++) {
-            System.out.printf("Pessoa %d:\n", pessoa + 1);
-            for (int dia = 0; dia < numDias; dia++) {
-                System.out.printf("Digite a quantidade de calorias consumidas no dia de %s: ", Semana[dia]);
-                caloriasConsumidas[pessoa][dia] = scanner.nextInt();
-            }
-        }
-
-        // Encontrar a pessoa que consumiu a maior quantidade de calorias em um único
-        // dia
-        int maiorCalorias = 0;
-        int pessoaMaiorCalorias = -1; // Índice da pessoa que consumiu mais calorias
-        for (int pessoa = 0; pessoa < numPessoas; pessoa++) {
-            for (int dia = 0; dia < numDias; dia++) {
-                if (caloriasConsumidas[pessoa][dia] > maiorCalorias) {
-                    maiorCalorias = caloriasConsumidas[pessoa][dia];
-                    pessoaMaiorCalorias = pessoa;
+        Scanner in = new Scanner(System.in);
+        out.println("Exercício 22");
+        out.println("Relatório de notas de alunos em uma prova, informe os dados necessários: ");
+        String[] Matérias = { "Ciências", "Matemática", "Português", "Geografia", "História" };
+        out.println("Quantos alunos fizeram a prova? ");
+        int qtdAlunos = in.nextInt();
+        int qtdMatérias = Matérias.length;
+        String[] nomes = new String[qtdAlunos];
+        int[] notas = new int[qtdMatérias];
+        float soma = 0;
+        float media = (6 % 10);
+        int acimaMedia = 0;
+        for (int i = 0; i < nomes.length; i++) {
+            out.printf("Digite o nome e sobrenome do aluno: ");
+            nomes[i] = in.next();
+            for (int j = 0; j < notas.length; j++) {
+                out.printf("Digite a nota do %s em %s: ", nomes[i], Matérias[j]);
+                notas[j] = in.nextInt();
+                soma = soma + notas[j];
+                media = ((soma / notas.length * notas.length));
+                if (notas[j] >= media) {
+                    acimaMedia = acimaMedia + 1;
                 }
+
             }
         }
-
-        // Exibir o resultado
-        System.out.printf("A pessoa %d consumiu a maior quantidade de calorias em um único dia: %d calorias.\n",
-                pessoaMaiorCalorias + 1, maiorCalorias);
-
-        scanner.close();
+        out.printf("A média das notas foi %.1f.", media);
+        out.printf("\nA quantidade de alunos acima da média foi de: %d", acimaMedia);
+        in.close();
     }
+    */
+
 }
