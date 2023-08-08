@@ -1,0 +1,52 @@
+resultados = new int[lancamentos];
+frequencia = new int[lados]; 
+percentual = new int[lados]; 
+menor = lancamentos;
+
+resultados = new int[3] tamanho 3
+frequencia = new int[2]; tamanho 2
+percentual = new int[2];  tamanho 2
+
+menor = 3;
+resultados[i] = aleatorio.nextint(lados) + 1;
+resultados[0] = aleatorio.nextint(2) + 1;
+resultados[0] = 2;
+soma = soma + resultados[i];
+soma = 0 + 2
+soma = 2
+frequencia[resultados[i] - 1] = frequencia[resultados[i] - 1] + 1;
+
+frequencia[resultados[i] - 1] = frequencia[2 - 1] + 1;
+frequencia[1] = frequencia[1] + 1;
+
+vetor frequencia com indice 0 1  - armazena os valores 1 2 de lados do dado, isto é, armazena em 0 o 1 e no 1 o 2.
+
+percentual[i] = (frequencia[i] * 100) / lancamentos;
+percentual[0] = (frequencia[0] * 100) / 3
+percentual[0] = (1 * 100) / 3
+percentual[0] = 100 / 3
+percentual[0] = 33
+
+percentual[1] = (frequencia[1] * 100) / 3
+percentual[1] = (2 * 100) / 3
+percentual[1] = (200) / 3
+percentual[1] = 66
+
+if (frequencia[i] > maior ) {
+maior = frequencia[i];
+posicaoMaior = i;
+}
+frequencia[0] > 0 {
+maior = 1;
+posicaoMaior = 0;
+
+if (frequencia[i] < menor ) {
+menor = frequencia[i];
+posicaoMenor = i;
+}
+frequencia[0] < 3 {
+menor = 1;
+posicaoMenor = 0;
+}
+
+maior = 2

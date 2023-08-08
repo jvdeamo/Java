@@ -6,6 +6,7 @@
 
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.Random;
 
 /*
 Pergunta 1: Qual é o número de lados do dado RPG que você deseja criar?
@@ -22,7 +23,7 @@ Dica: O método deve retornar um valor inteiro representando o resultado do lan�
 
  */
 
-public class DadosRPG {
+public class DadosRPG { // classe
 
     static int lados;
     static int lancamentos;
@@ -35,44 +36,69 @@ public class DadosRPG {
     static int posicaoMaior;
     static int posicaoMenor;
 
-    public static void main(String[] Resultados) {
-        Scanner in = new Scanner(System.in);
+    public static void main(String[] Resultados) { // método main
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         out.println(Welcome());
         Calculos();
         Impressao();
+        Again();
     }
 
-    public static String Welcome() {
+    /* 5 */
+    public static String Welcome() { // método boas vindas
         return "Bem vindo ao Dados RPG!";
     }
 
-    public static void Calculos() {
+    public static void Calculos() { // método Calculos
         Scanner in = new Scanner(System.in);
         PrintStream out = System.out;
-        out.println("Digite o número de lados do dado: ");
-        lados = in.nextInt();
-        if (lados <= 0) {
-            out.println("Número de lados inválido!");
-            return;
+        boolean erro = true;
+        Random aleatorio = new Random();
+        while (erro) { // laço de repetição
+            try { // bloco try-catch
+                /* 1 */
+                out.println("Digite o número de lados do dado: ");
+                lados = in.nextInt();
+                /* 2 */
+                if (lados <= 0) {
+                    out.println("Número de lados inválido!");
+                    return;
+                }
+                /* 6 */
+                out.println("Digite o número de lançamentos: ");
+                lancamentos = in.nextInt();
+                if (lancamentos <= 0) {
+                    out.println("Número de lançamentos inválido!");
+                    return;
+                } else {
+                    erro = false;
+                }
+            } catch (Exception e) { // Tratamento de erro
+                out.println("Valor inválido!");
+                in.next();
+            }
         }
-        out.println("Digite o número de lançamentos: ");
-        lancamentos = in.nextInt();
-        resultados = new int[lancamentos];
-        frequencia = new int[lados];
-        percentual = new int[lados];
+        resultados = new int[lancamentos]; // Cria um vetor com o número de lançamentos
+        frequencia = new int[lados]; // Cria um vetor com o número de lados
+        percentual = new int[lados]; // Cria um vetor com o número de lados
         soma = 0;
         maior = 0;
         menor = lancamentos; // Inicializa com um valor maior que o número de lançamentos
         posicaoMaior = 0;
         posicaoMenor = 0;
-        for (int i = 0; i < lancamentos; i++) {
-            resultados[i] = (int) (Math.random() * lados + 1);
+        /* 3 */
+        for (int i = 0; i < lancamentos; i++) { // Cálculo dos resultados
+            resultados[i] = aleatorio.nextInt(lados) + 1; /*
+                                                           * Gera um número aleatório entre 1 e o número de lados
+                                                           * resultados[0] = (numeroaleatorio).nextInt(2) + 1;
+                                                           */
             soma = soma + resultados[i];
-            frequencia[resultados[i] - 1] = frequencia[resultados[i] - 1] + 1;
+            frequencia[resultados[i] - 1] = frequencia[resultados[i] - 1] + 1; // frequencia[0] = frequencia[0] + 1;
+            // frequencia[1 - 1] = frequencia[1 - 1] + 1;
         }
-        for (int i = 0; i < lados; i++) {
+        /* 7 */
+        for (int i = 0; i < lados; i++) { // Cálculo da frequência e percentual
             percentual[i] = (frequencia[i] * 100) / lancamentos;
             if (frequencia[i] > maior) {
                 maior = frequencia[i];
@@ -83,15 +109,18 @@ public class DadosRPG {
                 posicaoMenor = i;
             }
         }
+
     }
 
-    public static void Impressao() {
+    public static void Impressao() { // método Impressao
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         out.println("Dados RPG");
         out.println("Número de lados: " + lados);
+        /* 4 */
         out.println("Número de lançamentos: " + lancamentos);
         out.println("Resultados: ");
+        /* 8 */
         for (int i = 0; i < lancamentos; i++) {
             out.println("Lançamento " + (i + 1) + " - lado " + resultados[i]);
         }
@@ -102,5 +131,43 @@ public class DadosRPG {
         }
         out.println("Lado mais frequente: " + (posicaoMaior + 1));
         out.println("Lado menos frequente: " + (posicaoMenor + 1));
+    }
+
+    /* 9 */
+    public static void Again() { // método novamente
+        Scanner in = new Scanner(System.in);
+        PrintStream out = System.out;
+        out.println("\nDeseja lançar outro dado? (S/N)");
+        String resposta = in.next();
+        resposta = resposta.toLowerCase();
+        /*
+         * if (resposta.equals("S") || resposta.equals("s")) {
+         * Calculos();
+         * Impressao();
+         * Again();
+         * } else if (resposta.equals("N") || resposta.equals("n")) {
+         * out.println("Obrigado por jogar!");
+         * } else {
+         * out.println("Resposta inválida!");
+         * Again();
+         * }
+         */
+        switch (resposta) {
+            case "S":
+            case "s":
+                Calculos();
+                Impressao();
+                Again();
+                break;
+            case "N":
+            case "n":
+                out.println("\033[H\033[2J");
+                out.println("Obrigado por jogar!");
+                return;
+            default:
+                out.println("Resposta inválida!");
+                Again();
+                break;
+        }
     }
 }
