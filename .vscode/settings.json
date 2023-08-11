@@ -3,5 +3,11 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "python.formatting.provider": "none",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "[java]": {
+        "javascript.preferences.importModuleSpecifier": ""
+    },
+    "java.project.referencedLibraries": [
+        "java e python/src_java"
+    ]  
 }

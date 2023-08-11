@@ -1,4 +1,4 @@
-package src_java;
+package src_java.src;
 
 // Autor: João Victor Martins Deamo
 // Date: 31/07/2023
