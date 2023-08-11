@@ -109,7 +109,7 @@ public class DadosRPG { // classe
                 posicaoMenor = i;
             }
         }
-
+        in.close();
     }
 
     public static void Impressao() { // método Impressao

@@ -458,40 +458,43 @@ class Vetores_2 {
      * pessoaMaiorCalorias + 1, maiorCalorias);
      * 
      * }
-     
-    public static void Exercício22() {
-        // Declarações
-        PrintStream out = System.out;
-        Scanner in = new Scanner(System.in);
-        out.println("Exercício 22");
-        out.println("Relatório de notas de alunos em uma prova, informe os dados necessários: ");
-        String[] Matérias = { "Ciências", "Matemática", "Português", "Geografia", "História" };
-        out.println("Quantos alunos fizeram a prova? ");
-        int qtdAlunos = in.nextInt();
-        int qtdMatérias = Matérias.length;
-        String[] nomes = new String[qtdAlunos];
-        int[] notas = new int[qtdMatérias];
-        float soma = 0;
-        float media = (6 % 10);
-        int acimaMedia = 0;
-        for (int i = 0; i < nomes.length; i++) {
-            out.printf("Digite o nome e sobrenome do aluno: ");
-            nomes[i] = in.next();
-            for (int j = 0; j < notas.length; j++) {
-                out.printf("Digite a nota do %s em %s: ", nomes[i], Matérias[j]);
-                notas[j] = in.nextInt();
-                soma = soma + notas[j];
-                media = ((soma / notas.length * notas.length));
-                if (notas[j] >= media) {
-                    acimaMedia = acimaMedia + 1;
-                }
-
-            }
-        }
-        out.printf("A média das notas foi %.1f.", media);
-        out.printf("\nA quantidade de alunos acima da média foi de: %d", acimaMedia);
-        in.close();
-    }
-    */
+     * 
+     * public static void Exercício22() {
+     * // Declarações
+     * PrintStream out = System.out;
+     * Scanner in = new Scanner(System.in);
+     * out.println("Exercício 22");
+     * out.
+     * println("Relatório de notas de alunos em uma prova, informe os dados necessários: "
+     * );
+     * String[] Matérias = { "Ciências", "Matemática", "Português", "Geografia",
+     * "História" };
+     * out.println("Quantos alunos fizeram a prova? ");
+     * int qtdAlunos = in.nextInt();
+     * int qtdMatérias = Matérias.length;
+     * String[] nomes = new String[qtdAlunos];
+     * int[] notas = new int[qtdMatérias];
+     * float soma = 0;
+     * float media = (6 % 10);
+     * int acimaMedia = 0;
+     * for (int i = 0; i < nomes.length; i++) {
+     * out.printf("Digite o nome e sobrenome do aluno: ");
+     * nomes[i] = in.next();
+     * for (int j = 0; j < notas.length; j++) {
+     * out.printf("Digite a nota do %s em %s: ", nomes[i], Matérias[j]);
+     * notas[j] = in.nextInt();
+     * soma = soma + notas[j];
+     * media = ((soma / notas.length * notas.length));
+     * if (notas[j] >= media) {
+     * acimaMedia = acimaMedia + 1;
+     * }
+     * 
+     * }
+     * }
+     * out.printf("A média das notas foi %.1f.", media);
+     * out.printf("\nA quantidade de alunos acima da média foi de: %d", acimaMedia);
+     * in.close();
+     * }
+     */
 
 }
