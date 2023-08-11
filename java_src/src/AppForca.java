@@ -1,4 +1,5 @@
-package src_java.src;
+package java_src.src;
+
 
 public class AppForca {
     public static void main(String[] args) {
