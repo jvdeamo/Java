@@ -43,7 +43,7 @@ public class DadosRPG { // classe
         out.println(Welcome());
         Calculos();
         Impressao();
-        Again();
+        // Again();
     }
 
     /* 5 */

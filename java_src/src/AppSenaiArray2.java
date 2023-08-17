@@ -81,10 +81,9 @@ class Vetores_2 {
      * 
      * scanner.close();
      * }
-     * 
      * public static void Exercício11() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 11");
      * String[] vetor = new String[5];
      * 
@@ -100,8 +99,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício12() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * Double[] vetor = new Double[7];
      * String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira",
      * "Quinta-feira", "Sexta-feira", "Sábado",
@@ -124,8 +123,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício13() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 13");
      * int numero = 0;
      * int tentativas = 0;
@@ -151,8 +150,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício14() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 14");
      * Double[] vetor = new Double[5];
      * Double soma = 0.0;
@@ -173,8 +172,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício15() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 15");
      * String[] vetor = new String[5];
      * String[] Ordem = { "primeiro", "segundo", "terceiro", "quarto", "quinto" };
@@ -209,8 +208,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício16() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 16");
      * float[] vetor = new float[7];
      * String[] Semana = { "Segunda-feira", "Terça-feira", "Quarta-feira",
@@ -241,8 +240,8 @@ class Vetores_2 {
      * }
      * 
      * public static void Exercício17() {
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 17");
      * String[] vetor = new String[5];
      * int[] vetor2 = new int[5];
@@ -266,8 +265,8 @@ class Vetores_2 {
      * 
      * public static void Exercício18() {
      * // Declarações
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 18");
      * 
      * // Inicializações
@@ -313,8 +312,8 @@ class Vetores_2 {
      * 
      * public static void Exercício19() {
      * // Declarações
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 19");
      * 
      * // Inicializações
@@ -360,8 +359,8 @@ class Vetores_2 {
      * 
      * public static void Exercício20() {
      * // Declarações
-     * PrintStream out = out;
-     * Scanner scanner = new Scanner(in);
+     * PrintStream out = System.out;
+     * Scanner scanner = new Scanner(System.in);
      * out.println("Exercício 20");
      * 
      * // Inicializações

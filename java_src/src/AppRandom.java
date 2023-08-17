@@ -117,7 +117,6 @@ public class AppRandom {
                     numerosRevelados[i] = true; // Marca o número como revelado no array numerosRevelados
                 }
             }
-
             // Exibe os números secretos com "_" para as casas não reveladas
             for (int i = 0; i < numerosSecretos.length; i++) {
                 if (numerosRevelados[i]) {
@@ -126,6 +125,7 @@ public class AppRandom {
                     System.out.print("_"); // Exibe "_" se a casa ainda não foi revelada
                 }
             }
+            out.println();
             // Verifica se a tentativa do jogador é igual aos números secretos
             if (Arrays.stream(numerosSecretos).anyMatch(num -> num == tentativa)) {
                 if (acertouTodos) {
@@ -160,6 +160,7 @@ public class AppRandom {
 
             tentativas++; // Incrementa o número de tentativas
         }
+        out.println("\033[H\033[2J");
         out.println("\nVocê perdeu o jogo!");
 
         // Se chegou aqui, o jogador esgotou todas as tentativas ou acertou todos os
