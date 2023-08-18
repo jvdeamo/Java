@@ -1,8 +1,8 @@
 package java_src.src;
 
 // Autor: João Victor Martins Deamo
-// Date: 11/08/2023
-// Version: 1.2
+// Date: 18/08/2023
+// Version: 1.3
 // Senai - Desenvolvimento de Sistemas
 
 import java.io.PrintStream; // Importar a classe PrintStream para imprimir
