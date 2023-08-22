@@ -6,6 +6,7 @@ package java_src.src;
 // Senai - Desenvolvimento de Sistemas
 
 import java.io.PrintStream; // Importar a classe PrintStream para imprimir
+import java.util.Random;
 import java.util.Scanner; // Importar a classe Scanner para ler
 
 public class AppForca {
@@ -61,10 +62,6 @@ public class AppForca {
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         out.println(Welcome());
-
-        for (int i = 0; i < nome.length; i++) {
-            nome[i] = null;
-        }
         // Nome do jogador
         for (int i = 0; i < 1; i++) {
             out.println("Digite seu nome: ");
@@ -73,10 +70,17 @@ public class AppForca {
         }
 
         // Palavra secreta
-        out.println("Digite a palavra secreta: ");
-        String palavraSecreta = in.nextLine();
-        boolean palavraValida = false;
+        /*
+         * out.println("Digite a palavra secreta: ");
+         * String palavraSecreta = in.nextLine();
+         * boolean palavraValida = false;
+         * StringBuilder palavraAtual = new StringBuilder();
+         */
+        String[] palavras = { "Venom", "Lemon", "Tenon", "Canon", "Senon" };
+        Random random = new Random();
+        String palavraSecreta = palavras[random.nextInt(palavras.length)];
         StringBuilder palavraAtual = new StringBuilder();
+        boolean palavraValida = false;
         int tentativas = 0;
 
         for (int i = 0; i < palavraSecreta.length(); i++) {
@@ -129,22 +133,28 @@ public class AppForca {
             if (palavraAtual.toString().equals(palavraSecreta)) {
                 out.printf("Parabéns %s, você acertou a palavra: [%s]. ", nome[0], palavraSecreta);
                 palavraValida = true;
-                contador = contador + 1;
-                if (contador == 1) {
-                    acertos[0] = acertos[0] + 1;
-                }
+                acertos[0] = acertos[0] + 1;
+                /*
+                 * if (contador == 1) {
+                 * acertos[0] = acertos[0] + 1;
+                 * }
+                 */
                 out.printf("\nPontuação do jogador %s: %d\n", nome[0], acertos[0]);
                 out.printf("\n%s, você deseja jogar novamente? (S/N): ", nome[0]);
                 char resposta = in.next().charAt(0);
                 if (resposta == 'S' || resposta == 's') {
-                    IniciarJogo();
+                    // Coleta o nome para o próximo jogador
+                    in.nextLine(); // Limpar o buffer
+                    out.println("\033[H\033[2J");
+                    out.println(Welcome());
+                    Menu();
+                    contador = contador + 1; // Move o incremento para cá
                 }
                 if (resposta == 'N' || resposta == 'n') {
                     Menu();
                     palavraValida = true;
                     break;
                 }
-                contador = contador + 1;
 
                 break;
 
@@ -162,7 +172,13 @@ public class AppForca {
         boolean palavraValida = false;
 
         while (!palavraValida) {
-            if (contador == 0 || nome[0] == null){
+            if (contador == 0) {
+                palavraValida = true;
+                out.println("Nenhum jogador jogou ou acertou alguma palavra ainda!");
+                // Resto do código continua igual
+            }
+
+            if (contador == 0 || nome[0] == null || acertos[0] == 0) {
                 palavraValida = true;
                 out.println("Você ainda não jogou ou não acertou nenhuma palavra!");
                 out.printf("\nVocê deseja ir para o menu? (S/N): ");
@@ -199,23 +215,28 @@ public class AppForca {
                     break;
                 }
             }
-            if (nome[0] != null) {
-                // verificar as pontuações dos jogadores
-                for (int i = 0; i < nome.length; i++) {
+            for (int i = 0; i < nome.length; i++) {
+                if (nome[i] != null) {
+                    // verificar as pontuações dos jogadores
                     out.printf("\nPontuação do jogador %s: %d.\n", nome[i], acertos[i]);
                 }
-                out.printf("\n%s, você deseja ir para o menu? (S/N): ", nome[0]);
-                char resposta = in.next().charAt(0);
-                if (resposta == 'S' || resposta == 's') {
-                    Menu();
-                }
-                if (resposta == 'N' || resposta == 'n') {
-                    Sair();
-                    palavraValida = true;
-                    break;
-                }
-                palavraValida = true;
             }
+            out.printf("\n%s, você deseja ir para o menu? (S/N): ", nome[0]);
+            char resposta = in.next().charAt(0);
+            if (resposta == 'S' || resposta == 's') {
+                Menu();
+            }
+            if (resposta == 'N' || resposta == 'n') {
+                Sair();
+                palavraValida = true;
+                break;
+            }
+            if (resposta != 'S' || resposta != 's' || resposta != 'N' || resposta != 'n') {
+                out.println("Opção inválida!");
+                out.printf("\n%s, você deseja ir para o menu? (S/N): ", nome[0]);
+                resposta = in.next().charAt(0);
+            }
+            palavraValida = true;
 
             if (resposta == 'N' || resposta == 'n') {
                 Sair();
@@ -223,8 +244,10 @@ public class AppForca {
                 break;
             }
         }
+
         in.close();
         return "VerificarPontuacao";
+
     }
 
     /* 4 */
