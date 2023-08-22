@@ -33,10 +33,11 @@ public class AppForca {
          * Verificar pontuação
          * Sair
          */
-        out.println("1 - Iniciar jogo");
-        out.println("2 - Verificar pontuação");
-        out.println("3 - Sair");
-        out.println("Digite a opção desejada: ");
+        out.print("*                Menu \n");
+        out.println("1 -         Iniciar jogo");
+        out.println("2 -     Verificar pontuação");
+        out.println("3 -            Sair");
+        out.println("      Digite a opção desejada: ");
         int opcao = in.nextInt();
         switch (opcao) {
             case 1:
@@ -62,12 +63,34 @@ public class AppForca {
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         out.println(Welcome());
-        // Nome do jogador
+        // Coleta o nome para o primeiro jogador
         for (int i = 0; i < 1; i++) {
-            out.println("Digite seu nome: ");
-            nome[i] = in.nextLine();
-            out.printf("Bem vindo, %s!\n", nome[i]);
+            if (nome == null || nome[0] == null) {
+                out.println("Digite seu nome: ");
+                nome[i] = in.nextLine();
+                out.printf("Bem vindo, %s!\n", nome[i]);
+            } else {
+                out.printf("Bem vindo, %s!\n", nome[i]);
+            }
         }
+        /*
+         * if (nome == null) {
+         * out.println("Digite seu nome: ");
+         * nome[0] = in.nextLine();
+         * out.printf("Bem vindo, %s!\n", nome[0]);
+         * } else {
+         * out.printf("Bem vindo, %s!\n", nome[0]);
+         * }
+         */
+
+        /*
+         * Nome do jogador
+         * for (int i = 0; i < 1; i++) {
+         * out.println("Digite seu nome: ");
+         * nome[i] = in.nextLine();
+         * out.printf("Bem vindo, %s!\n", nome[i]);
+         * }
+         */
 
         // Palavra secreta
         /*
@@ -102,8 +125,9 @@ public class AppForca {
                 }
             }
             // se o jogador digitar mais de uma letra
-            if (letra > 1) {
-                out.println("Digite apenas uma letra!");
+            if (letra == ' ') {
+                out.println("Você digitou mais de uma letra!");
+                tentativas = tentativas + 1;
             }
             out.printf("Palavra atual : %s\n", palavraAtual);
 
@@ -117,12 +141,15 @@ public class AppForca {
                 out.printf("Você perdeu %s!", nome[0]);
                 palavraValida = true;
                 out.printf("\nPontuação do jogador %s: %d\n", nome[0], acertos[0]);
+                out.printf("A palavra secreta era: [%s]. ", palavraSecreta);
                 out.printf("\n%s, você deseja jogar novamente? (S/N): ", nome[0]);
                 char resposta = in.next().charAt(0);
                 if (resposta == 'S' || resposta == 's') {
+                    out.println("\033[H\033[2J");
                     IniciarJogo();
                 }
                 if (resposta == 'N' || resposta == 'n') {
+                    nome[0] = null;
                     Sair();
                     palavraValida = true;
                     break;
@@ -131,15 +158,23 @@ public class AppForca {
             }
 
             if (palavraAtual.toString().equals(palavraSecreta)) {
+                out.println("\033[H\033[2J");
                 out.printf("Parabéns %s, você acertou a palavra: [%s]. ", nome[0], palavraSecreta);
                 palavraValida = true;
-                acertos[0] = acertos[0] + 1;
                 /*
                  * if (contador == 1) {
                  * acertos[0] = acertos[0] + 1;
                  * }
                  */
-                out.printf("\nPontuação do jogador %s: %d\n", nome[0], acertos[0]);
+                for (int i = 0; i < nome.length; i++) {
+                    if (nome[i] != null) {
+                        acertos[i] = acertos[i] + 1;
+                        out.printf("\nPontuação do jogador %s: %d\n", nome[i], acertos[i]);
+                    }
+                }
+                contador = contador + 1;
+
+                // out.printf("\nPontuação do jogador %s: %d\n", nome[0], acertos[0]);
                 out.printf("\n%s, você deseja jogar novamente? (S/N): ", nome[0]);
                 char resposta = in.next().charAt(0);
                 if (resposta == 'S' || resposta == 's') {
@@ -148,16 +183,14 @@ public class AppForca {
                     out.println("\033[H\033[2J");
                     out.println(Welcome());
                     Menu();
-                    contador = contador + 1; // Move o incremento para cá
                 }
                 if (resposta == 'N' || resposta == 'n') {
+                    contador = contador + 1;
                     Menu();
                     palavraValida = true;
                     break;
                 }
-
                 break;
-
             }
         }
         in.close();
@@ -172,21 +205,27 @@ public class AppForca {
         boolean palavraValida = false;
 
         while (!palavraValida) {
-            if (contador == 0) {
-                palavraValida = true;
-                out.println("Nenhum jogador jogou ou acertou alguma palavra ainda!");
-                // Resto do código continua igual
-            }
+            /*
+             * if (contador == 0) {
+             * palavraValida = true;
+             * // out.println("Nenhum jogador jogou ou acertou alguma palavra ainda!");
+             * // Resto do código continua igual
+             * }
+             */
 
-            if (contador == 0 || nome[0] == null || acertos[0] == 0) {
+            if (contador == 0) {
                 palavraValida = true;
                 out.println("Você ainda não jogou ou não acertou nenhuma palavra!");
                 out.printf("\nVocê deseja ir para o menu? (S/N): ");
                 char resposta = in.next().charAt(0);
                 if (resposta == 'S' || resposta == 's') {
+                    out.println("\033[H\033[2J");
+                    out.println(Welcome());
+
                     Menu();
                 }
                 if (resposta == 'N' || resposta == 'n') {
+                    out.println("\033[H\033[2J");
                     Sair();
                     palavraValida = true;
                     break;
@@ -207,6 +246,9 @@ public class AppForca {
 
             if (nome[0] == null) {
                 if (resposta == 'S' || resposta == 's') {
+                    out.println("\033[H\033[2J");
+
+                    out.println(Welcome());
                     Menu();
                 }
                 if (resposta == 'N' || resposta == 'n') {
@@ -224,17 +266,18 @@ public class AppForca {
             out.printf("\n%s, você deseja ir para o menu? (S/N): ", nome[0]);
             char resposta = in.next().charAt(0);
             if (resposta == 'S' || resposta == 's') {
+                out.println("\033[H\033[2J");
+                out.println(Welcome());
                 Menu();
             }
             if (resposta == 'N' || resposta == 'n') {
                 Sair();
                 palavraValida = true;
                 break;
-            }
-            if (resposta != 'S' || resposta != 's' || resposta != 'N' || resposta != 'n') {
-                out.println("Opção inválida!");
-                out.printf("\n%s, você deseja ir para o menu? (S/N): ", nome[0]);
+            } else if (resposta != 'S' || resposta != 's' || resposta != 'N' || resposta != 'n') {
+                /*out.printf("\nVocê deseja ir para o menu? (S/N): ");
                 resposta = in.next().charAt(0);
+                */
             }
             palavraValida = true;
 
@@ -244,7 +287,9 @@ public class AppForca {
                 break;
             }
         }
-
+        nome[0] = "";
+        acertos[0] = 0;
+        contador = 0;
         in.close();
         return "VerificarPontuacao";
 
@@ -255,12 +300,15 @@ public class AppForca {
         PrintStream out = System.out;
         out.println("\033[H\033[2J");
         out.println("Jogo encerrado.");
+        nome[0] = "";
+        acertos[0] = 0;
+        contador = 0;
         return "Jogo encerrado";
     }
 
     /* 5 */
     public static String Welcome() { // método boas vindas
-        return "Bem vindo ao Jogo da Forca!";
+        return "    Bem vindo ao Jogo da Forca!\n";
     }
 
 }
