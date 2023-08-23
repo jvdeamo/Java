@@ -101,11 +101,15 @@ public class AppForca {
          */
         String[] palavras = { "Venom", "Lemon", "Tenon", "Canon", "Senon" };
         Random random = new Random();
+        String[] tamanhoLetraVetor = { "a ", "b ", "c ", "d ", "e ", "f ", "g ", "h ", "i ", "j ",
+                "k ", "l ", "m ", "n ", "o ", "p ", "q ", "r ", "s ", "t ",
+                "u ", "v ", "x ", "w ", "y ", "z ", "ç ", "á ", "é ", "í ", "ó ", "ú ", "ã ", "õ ", "â ", "ê ", "î ",
+                "ô ", "û ", "à ", "è ", "ì ", "ò ", "ù ", "â ", "ê ", "î ", "ô ", "û ", "à ", "è ", "ì ", "ò ", "ù " };
+        String tamanhoLetra = tamanhoLetraVetor[tamanhoLetraVetor.length - 1];
         String palavraSecreta = palavras[random.nextInt(palavras.length)];
         StringBuilder palavraAtual = new StringBuilder();
         boolean palavraValida = false;
         int tentativas = 0;
-
         for (int i = 0; i < palavraSecreta.length(); i++) {
             palavraAtual.append("_");
         }
@@ -116,21 +120,38 @@ public class AppForca {
         while (!palavraValida) {
             // Solicita ao jogador que digite uma letra
             out.print("Digite uma letra: ");
-            char letra = in.next().charAt(0);
+            String letra = in.next();
+            char letraChar = letra.charAt(0);
             boolean LetraVerdadeiro = false;
             for (int i = 0; i < palavraSecreta.length(); i++) {
-                if (palavraSecreta.charAt(i) == letra) {
+                if (palavraSecreta.charAt(i) == letraChar) {
                     LetraVerdadeiro = true;
-                    palavraAtual.setCharAt(i, letra);
+                    palavraAtual.setCharAt(i, letraChar);
                 }
             }
-            // se o jogador digitar mais de uma letra
-            if (letra == ' ') {
-                out.println("Você digitou mais de uma letra!");
+            /*
+              se o jogador digitar mais de uma letra
+             * if (letra == ' ') {
+             * out.println("Você digitou mais de uma letra!");
+             * tentativas = tentativas + 1;
+             * }
+             * // usando a função isLetter para verificar se o jogador digitou um número
+             * if (Character.isLetter(letra) == false) {
+             * out.println("Você digitou um número!");
+             * tentativas = tentativas + 1;
+             * }
+             
+             verificar se o jogador digitou mais uma letra a partir do tamanho da palavra
+            if (letraChar > tamanhoLetra.length()) {
+                out.println("Você digitou mais de uma letra!1232");
                 tentativas = tentativas + 1;
             }
+            */
             out.printf("Palavra atual : %s\n", palavraAtual);
-
+            if (letra.length() > 1) {
+                out.println("Você digitou mais de uma letra! SALVE");
+                tentativas = tentativas + 1;
+            }
             if (LetraVerdadeiro) {
                 out.println("Letra correta! ");
             } else {
@@ -275,9 +296,10 @@ public class AppForca {
                 palavraValida = true;
                 break;
             } else if (resposta != 'S' || resposta != 's' || resposta != 'N' || resposta != 'n') {
-                /*out.printf("\nVocê deseja ir para o menu? (S/N): ");
-                resposta = in.next().charAt(0);
-                */
+                /*
+                 * out.printf("\nVocê deseja ir para o menu? (S/N): ");
+                 * resposta = in.next().charAt(0);
+                 */
             }
             palavraValida = true;
 
