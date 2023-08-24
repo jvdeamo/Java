@@ -1,0 +1,70 @@
+public class Animais {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        PrintStream out = System.out;
+
+        Mamifero leao = new Mamifero ("Leão", 5, "Macho");
+        // Define o nome do leão como "Cachorro"
+        leao.setNome("TESTE");
+
+        /* Defina os objetos aguia e cobra de forma semelhante
+        Ave aguia = new Ave("Águia", 3, 2.2);
+        Reptil cobra = new Reptil("Cobra", 2, "Fria");
+
+        */
+
+        leao.fazerSom();
+        leao.mover();
+        leao.amamentar();
+/*
+        aguia.fazerSom();
+        aguia.mover();
+        aguia.voar();
+
+        cobra.fazerSom();
+        cobra.mover();
+        cobra.regularTemperatura();
+
+ */
+    }
+}
+
+class Mamifero {
+    private String nome;
+    private int idade;
+    private String sexo;
+
+    public Mamifero(String nome, int idade, String sexo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+
+    public void setNome(String novoNome) {
+        nome = novoNome;
+    }
+
+    public void fazerSom() {
+        System.out.println(nome + " está fazendo um som!");
+    }
+
+    public void mover() {
+        System.out.println(nome + " está se movendo.");
+    }
+
+    public void amamentar() {
+        System.out.println(nome + " está amamentando seus filhotes.");
+    }
+}
+
+class Ave {
+    // Defina a classe Ave de forma semelhante
+}
+
+class Reptil {
+    // Defina a classe Reptil de forma semelhante
+}
+Aqui entao temos:
+Animais - classe principal e pública
+   - Método main da classe Animais
+Mamifero - classe secundária
