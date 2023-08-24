@@ -1,0 +1,64 @@
+/* ESTRUTURA DO ALGORITMO
+Classe AnimaisDesignacao
+    Atributos
+        reino
+    Construtor
+        AnimaisDesignacao()
+    Métodos
+        setReino()
+        getReino()
+Classe Animais extends AnimaisDesignacao
+    Métodos
+        imprimirReino()
+        Main()
+
+Classe Classes extends Animais
+    Métodos
+        Welcome()
+        Objetos()
+        ObjetosMamiferos()
+        ObjetosAves()
+        ObjetosRepteis()
+        chamarClasses()
+
+Classe Mamifero extends Animais
+    Atributos
+        nome
+        idade
+        sexo
+    Métodos
+        Executar()
+        Mamifero()
+        setNome()
+        ComportamentoLocomover()
+        ComportamentoSom()
+        ComportamentoAmamentar()
+        Comportamentos()
+
+Classe Ave extends Animais
+    Atributos
+        nome
+        idade
+        peso
+    Métodos
+        Executar()
+        Ave()
+        setNome()
+        ComportamentoVoar()
+        ComportamentoCantar()
+        ComportamentoNinho()
+        Comportamentos()
+
+Classe Reptil extends Animais
+    Atributos
+        nome
+        idade
+        sexo
+    Métodos
+        Executar()
+        setNome()
+        ComportamentoRastejar()
+        ComportamentoSom()
+        ComportamentoRegularTemperatura()
+        Comportamentos()
+---------------------------------------
