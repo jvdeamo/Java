@@ -1,15 +1,18 @@
 package java_src.src;
-// Autor: João Victor Martins Deamo
 
-// Date: 24/08/2023
-// Time: 18:23
-// IDE: Visual Studio Code
-// Session Duration: 18:23 - 19:50
-// Subject: POO
-// Version: 1.2
-// Senai - Desenvolvimento de Sistemas
+/*  
+Autor: João Victor Martins Deamo
+Date: 24/08/2023
+Time: 18:23
+IDE: Visual Studio Code
+Session Duration: 18:23 - 19:50
+Subject: POO
+Version: 1.2
+Branch: Animal Land
+Senai - Desenvolvimento de Sistemas
 
-/* ESTRUTURA DO ALGORITMO
+ 
+ ESTRUTURA DO ALGORITMO
 Classe
 
 OBSERVAÇÕES
@@ -27,6 +30,11 @@ Forma 2: public void Executar() {// Executar todas as ações
 */
 import java.util.Scanner;
 import java.io.PrintStream;
+
+// Interface para os comportamentos dos animais
+interface Acessorio {
+    void usarAcessorio();
+}
 
 class Animalia {
     // Atributos
@@ -57,8 +65,23 @@ class Animalia {
      */
 }
 
-public class Animais extends Animalia {
+public class Animais extends Animalia implements Acessorio {
     PrintStream out = System.out;
+    private String nome;
+    private int idade;
+    private String sexo;
+
+    // Construtor
+    public Animais(String nome, int idade, String sexo, double peso) {
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+
+    public void usarAcessorio() {
+        out.println(nome + " está usando um chapéu.");
+    }
+
     // Método imprimirReino
     public void imprimirReino() {
         out.println(super.getReino());
@@ -67,7 +90,7 @@ public class Animais extends Animalia {
     // Método main
     public static void main(String[] args) {
         // Criar um objeto da classe Animais e chamar o método imprimirReino
-        Animais animais = new Animais();
+        Animais animais = new Animais("", 0, "", 0);
         animais.imprimirReino();
         // Criar um objeto da classe e chamar o método chamarClasses
         Classes classes = new Classes();
@@ -105,12 +128,16 @@ public class Animais extends Animalia {
 }
 
 class Classes extends Animais {
-    PrintStream out = System.out;
 
     // Método Bem Vindo
     public void Welcome() {
         out.println("\033[H\033[2J");
         out.println("Conheça as classes dos animais!\n");
+    }
+
+    // Construtor
+    public Classes() {
+        super("", 0, "", 0);
     }
 
     // Método Geral Objetos
@@ -122,10 +149,11 @@ class Classes extends Animais {
 
     // Método ObjetosMamiferos
     public void ObjetosMamiferos() {
-        Mamifero leao = new Mamifero("Leão", 5, "Macho");
+        Mamifero leao = new Mamifero("Leão", 5, "Macho", 200);
         leao.Executar(); // Forma 1
+        leao.usarAcessorio();
         // Forma 2 leao.Executar(leao);
-        Mamifero Macaco = new Mamifero("Macaco", 6, "Macho");
+        Mamifero Macaco = new Mamifero("Macaco", 6, "Macho", 50);
         Macaco.Executar(); // Forma 1
         // Forma 2 Macaco.Executar(Macaco);
     }
@@ -133,15 +161,17 @@ class Classes extends Animais {
     // Método ObjetosAves
     public void ObjetosAves() {
         // Defina os objetos aguia e cobra de forma semelhante
-        Ave aguia = new Ave("Águia", 3, 2.2);
+        Ave aguia = new Ave("Águia", 3, "Macho", 2.2);
         aguia.Executar(); // Forma 1
+        aguia.usarAcessorio();
         // Forma 2 aguia.Executar(aguia);
     }
 
     // Método ObjetosRepteis
     public void ObjetosRepteis() {
-        Reptil cobra = new Reptil("Cobra", 2, "Fria");
+        Reptil cobra = new Reptil("Cobra", 2, "Fria", 1.5);
         cobra.Executar(); // Forma 1
+        cobra.usarAcessorio();
         // Forma 2 cobra.executar(cobra);
     }
 
@@ -170,10 +200,8 @@ class Mamifero extends Animais {
     // Definir a classe Mamifero
 
     // Construtor
-    public Mamifero(String nome, int idade, String sexo) {
-        this.nome = nome;
-        this.idade = idade;
-        this.sexo = sexo;
+    public Mamifero(String nome, int idade, String sexo, double peso) {
+        super(nome, idade, sexo, peso); // Chamar construtor da classe pai (Animais)
     }
     // Métodos da classe Mamifero
 
@@ -220,10 +248,8 @@ class Ave extends Animais {
     }
 
     // Construtor
-    public Ave(String nome, int idade, double peso) {
-        this.nome = nome;
-        this.idade = idade;
-        this.peso = peso;
+    public Ave(String nome, int idade, String sexo, double peso) {
+        super(nome, idade, sexo, peso); // Chamar construtor da classe pai (Animais)
     }
 
     // Métodos da classe Ave
@@ -270,10 +296,8 @@ class Reptil extends Animais {
     }
 
     // Construtor
-    public Reptil(String nome, int idade, String sexo) {
-        this.nome = nome;
-        this.idade = idade;
-        this.sexo = sexo;
+    public Reptil(String nome, int idade, String sexo, double peso) {
+        super(nome, idade, sexo, peso); // Chamar construtor da classe pai (Animais)
     }
 
     // Métodos da classe Reptil
