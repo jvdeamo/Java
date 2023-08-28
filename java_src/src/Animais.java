@@ -30,16 +30,25 @@ Forma 2: public void Executar() {// Executar todas as ações
 */
 import java.io.PrintStream;
 
-// Interface para os comportamentos dos animais
+// Interface para o uso de acessórios
 interface Acessorio {
     void usarAcessorio();
 }
 
-class Animalia {
+/*
+ * Forma 2 Impressao Reino
+ * interface AnimaliaReino {
+ * void ImpressaoReino();
+ * }
+ */
+// Reino Animalia
+class Animalia { // 35 linhas
+    PrintStream out = System.out;
     // Atributos
     private String reino;
 
     // Construtor
+    /* Forma 1 Impressao Reino */
     public Animalia() {
         this.reino = "Reino Animalia.";
     }
@@ -53,6 +62,10 @@ class Animalia {
     public String getReino() {
         return reino;
     }
+
+    public void ImpressaoReino() {
+        out.print("Reino animalia\n");
+    }
     /*
      * public static void main(String[] args) {
      * PrintStream out = System.out;
@@ -64,7 +77,7 @@ class Animalia {
      */
 }
 
-public class Animais extends Animalia implements Acessorio {
+public class Animais extends Animalia implements Acessorio { // 47 linhas
     PrintStream out = System.out;
     private String nome;
     private int idade;
@@ -95,7 +108,7 @@ public class Animais extends Animalia implements Acessorio {
         out.println(super.getReino());
     }
 
-    // Métodos getters e setters
+    // Método get
     public String getNome() {
         return nome;
     }
@@ -108,44 +121,15 @@ public class Animais extends Animalia implements Acessorio {
         // Criar um objeto da classe e chamar o método chamarClasses
         Classes classes = new Classes();
         classes.chamarClasses(classes);
-        /*
-         * =
-         * Mamifero leao = new Mamifero("Leão", 5, "Macho");
-         * // Define o nome do leão como "Cachorro"
-         * // leao.setNome("TESTE");
-         * leao.executar(leao);
-         * 
-         * Mamifero Macaco = new Mamifero("Macaco", 6, "Macho");
-         * Macaco.executar(Macaco);
-         * 
-         * // Defina os objetos aguia e cobra de forma semelhante
-         * Ave aguia = new Ave("Águia", 3, 2.2);
-         * aguia.executar(aguia);
-         * /*
-         * 
-         * /*
-         * 
-         * Reptil cobra = new Reptil("Cobra", 2, "Fria");
-         * 
-         * /*
-         * aguia.fazerSom();
-         * aguia.mover();
-         * aguia.voar();
-         * 
-         * cobra.fazerSom();
-         * cobra.mover();
-         * cobra.regularTemperatura();
-         * 
-         */
     }
 }
 
-class Classes extends Animais {
+class Classes extends Animais { // 59 linhas
 
     // Método Bem Vindo
     public void Welcome() {
         out.println("\033[H\033[2J");
-        out.println("Conheça as classes dos animais!");
+        out.printf("Conheça as classes do ", super.getReino());
     }
 
     // Construtor
@@ -155,6 +139,7 @@ class Classes extends Animais {
 
     // Método Geral Objetos
     public void Objetos() {
+        ImpressaoReino();
         ObjetosMamiferos();
         ObjetosAves();
         ObjetosRepteis();
@@ -198,12 +183,17 @@ class Classes extends Animais {
 
 }
 
-class Mamifero extends Animais {
+class Mamifero extends Animais { // 68 linhas
     PrintStream out = System.out;
     // Atributos
     private String nome;
     private int idade;
     private String sexo;
+
+    public void WelcomeMamifero() { // Método Bem Vindo Mamifero
+        out.println("\033[H\033[2J");
+        out.printf("Conheça as classes do ", super.getReino());
+    }
 
     // Métodos getters
     public String getNome() {
@@ -259,15 +249,19 @@ class Mamifero extends Animais {
         Comportamento.ComportamentoSom();
         Comportamento.ComportamentoAmamentar();
     }
-
 }
 
-class Ave extends Animais {
+class Ave extends Animais { // 68 linhas
     PrintStream out = System.out;
     // Atributos
     private String nome;
     private int idade;
     private double peso;
+
+    public void WelcomeAve() { // Método Bem Vindo Ave
+        out.println("\033[H\033[2J");
+        out.printf("Conheça as classes do ", super.getReino());
+    }
 
     // Métodos getters
     public String getNome() {
@@ -325,13 +319,17 @@ class Ave extends Animais {
     }
 }
 
-class Reptil extends Animais {
+class Reptil extends Animais { // 68 linhas
     PrintStream out = System.out;
     // Atributos
     private String nome;
     private int idade;
-
     private String sexo;
+
+    public void WelcomeReptil() { // Método Bem Vindo Reptil
+        out.println("\033[H\033[2J");
+        out.printf("Conheça as classes do ", super.getReino());
+    }
 
     // Métodos getters
     public String getNome() {
@@ -388,5 +386,4 @@ class Reptil extends Animais {
         Comportamento.ComportamentoSom();
         Comportamento.ComportamentoRegularTemperatura();
     }
-
 }
