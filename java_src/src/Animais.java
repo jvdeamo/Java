@@ -28,7 +28,6 @@ Forma 2: public void Executar() {// Executar todas as ações
         this.Comportamentos(this);
     }
 */
-import java.util.Scanner;
 import java.io.PrintStream;
 
 // Interface para os comportamentos dos animais
@@ -71,6 +70,15 @@ public class Animais extends Animalia implements Acessorio {
     private int idade;
     private String sexo;
 
+    // Métodos getters
+    public int getIdade() {
+        return idade;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
     // Construtor
     public Animais(String nome, int idade, String sexo, double peso) {
         this.nome = nome;
@@ -79,12 +87,17 @@ public class Animais extends Animalia implements Acessorio {
     }
 
     public void usarAcessorio() {
-        out.println(nome + " está usando um chapéu.");
+        out.print(nome + " está usando um chapéu.\n");
     }
 
     // Método imprimirReino
     public void imprimirReino() {
         out.println(super.getReino());
+    }
+
+    // Métodos getters e setters
+    public String getNome() {
+        return nome;
     }
 
     // Método main
@@ -132,7 +145,7 @@ class Classes extends Animais {
     // Método Bem Vindo
     public void Welcome() {
         out.println("\033[H\033[2J");
-        out.println("Conheça as classes dos animais!\n");
+        out.println("Conheça as classes dos animais!");
     }
 
     // Construtor
@@ -155,6 +168,8 @@ class Classes extends Animais {
         // Forma 2 leao.Executar(leao);
         Mamifero Macaco = new Mamifero("Macaco", 6, "Macho", 50);
         Macaco.Executar(); // Forma 1
+        Macaco.usarAcessorio();
+
         // Forma 2 Macaco.Executar(Macaco);
     }
 
@@ -190,9 +205,22 @@ class Mamifero extends Animais {
     private int idade;
     private String sexo;
 
+    // Métodos getters
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
     // Método Executar
     public void Executar() {// Executar todas as ações
-        out.println("Classe Mamifero:");
+        out.println("\nClasse Mamifero:");
         // Precisamos fazer a referência ao objeto que não é estático
         this.Comportamentos(this);
     }
@@ -202,6 +230,7 @@ class Mamifero extends Animais {
     // Construtor
     public Mamifero(String nome, int idade, String sexo, double peso) {
         super(nome, idade, sexo, peso); // Chamar construtor da classe pai (Animais)
+        this.nome = nome;
     }
     // Métodos da classe Mamifero
 
@@ -213,15 +242,15 @@ class Mamifero extends Animais {
     // Definir os comportamentos do animal
 
     public void ComportamentoLocomover() {
-        out.println(nome + " está se movendo.");
+        out.println(getNome() + " está se movendo.");
     }
 
     public void ComportamentoSom() {
-        out.println(nome + " está fazendo um som!");
+        out.println(getNome() + " está fazendo um som!");
     }
 
     public void ComportamentoAmamentar() {
-        out.println(nome + " está amamentando seus filhotes.\n");
+        out.println(getNome() + " está amamentando seus filhotes.");
     }
 
     // Criar um método geral Comportamentos
@@ -240,9 +269,22 @@ class Ave extends Animais {
     private int idade;
     private double peso;
 
+    // Métodos getters
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
     // Método Executar
     public void Executar() {// Executar todas as ações
-        out.println("Classe Ave:");
+        out.println("\nClasse Ave:");
         // Precisamos fazer a referência ao objeto que não é estático
         this.Comportamentos(this);
     }
@@ -250,6 +292,8 @@ class Ave extends Animais {
     // Construtor
     public Ave(String nome, int idade, String sexo, double peso) {
         super(nome, idade, sexo, peso); // Chamar construtor da classe pai (Animais)
+        this.nome = nome;
+
     }
 
     // Métodos da classe Ave
@@ -262,15 +306,15 @@ class Ave extends Animais {
     // Definir os comportamentos do animal
 
     public void ComportamentoVoar() {
-        out.println(nome + " está voando.");
+        out.println(getNome() + " está voando.");
     }
 
     public void ComportamentoCantar() {
-        out.println(nome + " está cantando!");
+        out.println(getNome() + " está cantando!");
     }
 
     public void ComportamentoNinho() {
-        out.println(nome + " está fazendo um ninho.\n");
+        out.println(getNome() + " está fazendo um ninho.");
     }
 
     // Criar um método geral Comportamentos
@@ -286,11 +330,25 @@ class Reptil extends Animais {
     // Atributos
     private String nome;
     private int idade;
+
     private String sexo;
+
+    // Métodos getters
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
 
     // Método Executar
     public void Executar() {
-        out.println("Classe Reptil:");
+        out.println("\nClasse Reptil:");
         // Precisamos fazer a referência ao objeto que não é estático
         this.Comportamentos(this);
     }
@@ -298,6 +356,7 @@ class Reptil extends Animais {
     // Construtor
     public Reptil(String nome, int idade, String sexo, double peso) {
         super(nome, idade, sexo, peso); // Chamar construtor da classe pai (Animais)
+        this.nome = nome;
     }
 
     // Métodos da classe Reptil
@@ -311,15 +370,15 @@ class Reptil extends Animais {
     // Definir os comportamentos do animal
 
     public void ComportamentoRastejar() {
-        out.println(nome + " está rastejando.");
+        out.println(getNome() + " está rastejando.");
     }
 
     public void ComportamentoSom() {
-        out.println(nome + " está fazendo um som!");
+        out.println(getNome() + " está fazendo um som!");
     }
 
     public void ComportamentoRegularTemperatura() {
-        out.println(nome + " está regulando sua temperatura.\n");
+        out.println(getNome() + " está regulando sua temperatura.");
     }
 
     // Criar um método geral Comportamentos
