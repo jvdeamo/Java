@@ -12,7 +12,7 @@ Branch: Animal Land
 Senai - Desenvolvimento de Sistemas
 
  
- ESTRUTURA DO ALGORITMO
+ESTRUTURA DO ALGORITMO
 Classe
 
 OBSERVAÇÕES
@@ -42,7 +42,7 @@ interface Acessorio {
  * }
  */
 // Reino Animalia
-class Animalia { // 35 linhas
+public class Animalia extends Eukarya { // 35 linhas
     PrintStream out = System.out;
     // Atributos
     private String reino;
@@ -64,12 +64,19 @@ class Animalia { // 35 linhas
     }
 
     public void ImpressaoReino() {
-        out.print("Reino animalia\n");
+        out.print(getReino());
+    }
+    
+    public static void main(String[] args) {
+        PrintStream out = System.out;
+        out.println("\033[H\033[2J");
+        AnimaliaManager teste = new AnimaliaManager();
+        teste.chamarClasses(teste);
     }
     /*
      * public static void main(String[] args) {
      * PrintStream out = System.out;
-     * out.println("\033[H\033[2J");
+     * 
      * out.flush();
      * // Criar um objeto da classe AnimaisReino
      * AnimaisDesignacao animaisDesignacao = new AnimaisDesignacao();
@@ -77,7 +84,7 @@ class Animalia { // 35 linhas
      */
 }
 
-public class Animais extends Animalia implements Acessorio { // 47 linhas
+class Animais extends Animalia implements Acessorio { // 47 linhas
     PrintStream out = System.out;
     private String nome;
     private int idade;
@@ -119,21 +126,21 @@ public class Animais extends Animalia implements Acessorio { // 47 linhas
         Animais animais = new Animais("", 0, "", 0);
         animais.imprimirReino();
         // Criar um objeto da classe e chamar o método chamarClasses
-        Classes classes = new Classes();
+        AnimaliaManager classes = new AnimaliaManager();
         classes.chamarClasses(classes);
     }
 }
 
-class Classes extends Animais { // 59 linhas
+class AnimaliaManager extends Animais { // 59 linhas
 
     // Método Bem Vindo
     public void Welcome() {
-        out.println("\033[H\033[2J");
+
         out.printf("Conheça as classes do ", super.getReino());
     }
 
     // Construtor
-    public Classes() {
+    public AnimaliaManager() {
         super("", 0, "", 0);
     }
 
@@ -176,7 +183,7 @@ class Classes extends Animais { // 59 linhas
     }
 
     // Método Geral Classes
-    public void chamarClasses(Classes Classes) {
+    public void chamarClasses(AnimaliaManager Classes) {
         Classes.Welcome();
         Classes.Objetos();
     }
@@ -191,7 +198,7 @@ class Mamifero extends Animais { // 68 linhas
     private String sexo;
 
     public void WelcomeMamifero() { // Método Bem Vindo Mamifero
-        out.println("\033[H\033[2J");
+
         out.printf("Conheça as classes do ", super.getReino());
     }
 
@@ -259,7 +266,7 @@ class Ave extends Animais { // 68 linhas
     private double peso;
 
     public void WelcomeAve() { // Método Bem Vindo Ave
-        out.println("\033[H\033[2J");
+
         out.printf("Conheça as classes do ", super.getReino());
     }
 
@@ -327,7 +334,7 @@ class Reptil extends Animais { // 68 linhas
     private String sexo;
 
     public void WelcomeReptil() { // Método Bem Vindo Reptil
-        out.println("\033[H\033[2J");
+
         out.printf("Conheça as classes do ", super.getReino());
     }
 

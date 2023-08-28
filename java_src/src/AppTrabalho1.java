@@ -4,7 +4,6 @@ package java_src.src;
 // Date: 18/08/2023
 // Version: 1.0
 // Senai - Desenvolvimento de Sistemas
-import java.util.*;
 import java.io.PrintStream; // Importar a classe PrintStream para imprimir
 import java.util.Scanner; // Importar a classe Scanner para ler
 import java.util.Random; // Importar a classe Random para gerar números aleatórios
