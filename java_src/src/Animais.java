@@ -59,6 +59,7 @@ class Animalia {
 
 public class Animais extends Animalia {
     PrintStream out = System.out;
+
     // Método imprimirReino
     public void imprimirReino() {
         out.println(super.getReino());
@@ -142,6 +143,8 @@ class Classes extends Animais {
     public void ObjetosRepteis() {
         Reptil cobra = new Reptil("Cobra", 2, "Fria");
         cobra.Executar(); // Forma 1
+        Reptil jacare = new Reptil("Jacaré", 4, "Frio");
+        jacare.Executar(); // Forma 1
         // Forma 2 cobra.executar(cobra);
     }
 

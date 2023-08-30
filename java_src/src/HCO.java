@@ -1,0 +1,161 @@
+package java_src.src;
+
+/*  
+Autor: João Victor Martins Deamo
+Date: 30/08/2023
+Time: 08:20
+IDE: Visual Studio Code
+Session Duration: 08:20 - 
+Subject: POO & Herança & Polimorfismo & HashMap
+Version: 1.0
+Branch: Main
+Senai - Desenvolvimento de Sistemas
+
+1. Exercício - Conta Bancária:
+Crie uma classe `ContaBancaria` que tenha atributos para o número da conta, nome do titular e saldo. Implemente métodos para depositar, sacar e exibir o saldo.
+
+2. Exercício - Livro:
+Crie uma classe `Livro` com atributos para título, autor e ano de publicação. Implemente um método para exibir as informações do livro.
+
+3. Exercício - Carro:
+Crie uma classe `Carro` com atributos para marca, modelo e ano. Implemente métodos para ligar o carro e desligar o carro.
+
+4. Exercício - Aluno:
+Crie uma classe `Aluno` com atributos para nome, matrícula e notas (um array de notas). Implemente métodos para calcular a média das notas e exibir os detalhes do aluno.
+
+5. Exercício - Produto:
+Crie uma classe `Produto` com atributos para nome, preço e quantidade em estoque. Implemente métodos para calcular o valor total do estoque e exibir os detalhes do produto.
+*/
+import java.io.PrintStream;
+
+public class HCO {
+    PrintStream out = System.out;
+
+    // Atributos
+    public static void main(String[] run) {
+        PrintStream out = System.out;
+        contaBancaria();
+        out.println("\n");
+        livro();
+        out.println("\n");
+        carro();
+        out.println("\n");
+    }
+
+    // Método Conta Bancária
+    public static void contaBancaria() {
+        ContaBancaria conta = new ContaBancaria(123, "João", 1000);
+        conta.exibirDados(conta);
+    }
+
+    // Método Livro
+    public static void livro() {
+        Livro livro = new Livro("O Senhor dos Anéis", "J. R. R. Tolkien", 1954);
+        livro.exibirDados(livro);
+    }
+
+    // Método Carro
+    public static void carro() {
+        Carro carro = new Carro("Fiat", "Uno", 1998);
+        carro.ligar();
+        carro.desligar();
+    }
+
+}
+
+class ContaBancaria {
+    // Atributos
+    private int numeroDaConta;
+    private String nomeDoTitular;
+    private double saldo;
+    PrintStream out = System.out;
+
+    // Construtor
+    public ContaBancaria(int numeroDaConta, String nomeDoTitular, double saldo) {
+        this.numeroDaConta = numeroDaConta;
+        this.nomeDoTitular = nomeDoTitular;
+        this.saldo = saldo;
+    }
+
+    // Método geral
+    public void exibirDados(ContaBancaria conta) {
+        out.println("Número da conta: " + this.numeroDaConta);
+        out.println("Nome do titular: " + this.nomeDoTitular);
+        out.println("Saldo: R$" + this.saldo);
+        depositar(1200);
+        sacar(100);
+        getSaldo();
+    }
+
+    // Métodos
+    public void depositar(double valor) {
+        out.println("Você depositou: R$" + valor);
+        this.saldo = this.saldo + valor;
+    }
+
+    public void sacar(double valor) {
+        out.println("Você sacou: R$" + valor);
+        this.saldo = this.saldo - valor;
+    }
+
+    public void exibirSaldo() {
+        out.printf("Saldo atual:\n", this.saldo);
+    }
+
+    // Método para retornar o saldo atual
+    public double getSaldo() {
+        out.println("Saldo atual: R$" + this.saldo);
+        return this.saldo;
+    }
+
+}
+
+class Livro {
+    // Atributos
+    private String titulo;
+    private String autor;
+    private int anoDePublicacao;
+    PrintStream out = System.out;
+
+    // Construtor
+    public Livro(String titulo, String autor, int anoDePublicacao) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoDePublicacao = anoDePublicacao;
+    }
+
+    // Método geral
+    public void exibirDados(Livro livro) {
+        out.println("Título: " + this.titulo);
+        out.println("Autor: " + this.autor);
+        out.println("Ano de publicação: " + this.anoDePublicacao);
+    }
+}
+
+class Carro {
+    // Atributos
+    private String marca;
+    private String modelo;
+    private int ano;
+    private boolean ligado;
+    PrintStream out = System.out;
+
+    // Construtor
+    public Carro(String marca, String modelo, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.ligado = false;
+    }
+
+    // Métodos
+    public void ligar() {
+        this.ligado = true;
+        out.println("O carro está ligado!");
+    }
+
+    public void desligar() {
+        this.ligado = false;
+        out.println("O carro está desligado!");
+    }
+}
