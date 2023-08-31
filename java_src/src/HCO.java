@@ -100,10 +100,21 @@ class Chamada {
     public static void banco() {
         PrintStream out = System.out;
         out.println("\n6. Exercício - Banco:");
-        Banco banco = new Banco("Banco do Brasil", "123");
-        banco.chamada();
+        /*
+         * Banco banco = new Banco("Banco do Brasil", "123");
+         * banco.chamada();
+         */
     }
 
+    public void biblioteca() {
+        PrintStream out = System.out;
+        out.println("\n7. Exercício - Biblioteca:");
+        Biblioteca biblioteca = new Biblioteca();
+        biblioteca.exibirDados();
+        biblioteca.menu();
+    }
+
+    // Método de chamada
     public void chamada() {
         contaBancaria();
         livro();
@@ -111,7 +122,9 @@ class Chamada {
         aluno();
         produto();
         banco();
+        biblioteca();
     }
+
 }
 
 class ContaBancaria {
@@ -272,191 +285,292 @@ class ProdutoEstoque {
     }
 }
 
-class Banco {
-    // Atributos
-    private String nomeBanco;
-    private String ContasBancarias;
+/*
+ * class Banco {
+ * // Atributos
+ * private String nomeBanco;
+ * private String ContasBancarias;
+ * PrintStream out = System.out;
+ * 
+ * // Construtor
+ * public Banco(String nomeBanco, String ContasBancarias) {
+ * this.nomeBanco = nomeBanco;
+ * this.ContasBancarias = ContasBancarias;
+ * }
+ * 
+ * public void exibirDados() {
+ * out.println("Nome do banco: " + this.nomeBanco);
+ * out.println("Contas bancárias: " + this.ContasBancarias);
+ * }
+ * 
+ * public void menu() {
+ * Scanner scanner = new Scanner(System.in);
+ * out.println("O que você deseja fazer?");
+ * out.println("1. Acessar como cliente");
+ * out.println("2. Acessar como funcionário");
+ * opcao();
+ * }
+ * 
+ * public void opcao() {
+ * Scanner in = new Scanner(System.in);
+ * int opcao = in.nextInt();
+ * switch (opcao) {
+ * case 1:
+ * menuCliente();
+ * break;
+ * case 2:
+ * menuFuncionario();
+ * break;
+ * default:
+ * out.println("Opção inválida!");
+ * menu();
+ * break;
+ * }
+ * }
+ * 
+ * public void menuCliente() {
+ * Scanner in = new Scanner(System.in);
+ * out.println("O que você deseja fazer?");
+ * out.println("1. Criar conta");
+ * out.println("2. Excluir conta");
+ * out.println("3. Exibir saldo total do banco");
+ * ProcessamentoCliente();
+ * }
+ * 
+ * public void menuFuncionario() {
+ * Scanner in = new Scanner(System.in);
+ * out.println("O que você irá fazer?");
+ * out.println("1. Atender cliente");
+ * out.println("2. Processar transações");
+ * out.println("3. Emitir cartões");
+ * ProcessamentoFuncionario();
+ * }
+ * 
+ * public void ProcessamentoCliente() {
+ * Scanner in = new Scanner(System.in);
+ * int opcao = in.nextInt();
+ * switch (opcao) {
+ * case 1:
+ * out.println("Digite o nome da conta:");
+ * String nomeConta = in.next();
+ * out.println("Digite o número da conta:");
+ * String numeroConta = in.next();
+ * out.println("Digite o depósito inicial:");
+ * String depositoInicial = in.next();
+ * out.print("Conta criada!\n");
+ * ClienteCriarConta(nomeConta, numeroConta, depositoInicial);
+ * break;
+ * case 2:
+ * out.println("Digite o nome da conta:");
+ * String nomeConta2 = in.next();
+ * out.println("Digite o número da conta:");
+ * String numeroConta2 = in.next();
+ * out.print("Conta excluída!\n");
+ * ClienteExcluirConta(nomeConta2, numeroConta2);
+ * break;
+ * case 3:
+ * ClienteExibirSaldoTotalDoBanco(1000);
+ * break;
+ * default:
+ * out.println("Opção inválida!");
+ * menuCliente();
+ * break;
+ * }
+ * }
+ * 
+ * public void ProcessamentoFuncionario() {
+ * Scanner in = new Scanner(System.in);
+ * int opcao = in.nextInt();
+ * switch (opcao) {
+ * case 1:
+ * out.println("Digite o nome do cliente:");
+ * String nomeCliente = in.next();
+ * out.println("Digite o número da conta:");
+ * String numeroConta = in.next();
+ * out.println("Qual a dúvida do cliente?");
+ * String ajuda = in.next();
+ * FuncionarioAtenderCliente(nomeCliente, numeroConta, ajuda);
+ * break;
+ * case 2:
+ * out.println("Digite o número da conta:");
+ * String numeroConta2 = in.next();
+ * out.println("Digite o código da transação:");
+ * String codigoTransacao = in.next();
+ * FuncionarioProcessarTransacoes(numeroConta2, codigoTransacao);
+ * out.println("Digite o registro da transação:");
+ * String registroTransacao = in.next();
+ * FuncionarioRegistroTransacoes(registroTransacao);
+ * break;
+ * case 3:
+ * out.println("Digite o nome do cliente:");
+ * String nomeCliente2 = in.next();
+ * out.println("Digite o número da conta:");
+ * String numeroConta3 = in.next();
+ * out.println("Qual o tipo do cartão?");
+ * out.println("1. Débito");
+ * out.println("2. Crédito");
+ * int opcao2 = in.nextInt();
+ * switch (opcao2) {
+ * case 1:
+ * FuncionarioEmitirCartoes(nomeCliente2, numeroConta3, "Débito");
+ * break;
+ * case 2:
+ * FuncionarioEmitirCartoes(nomeCliente2, numeroConta3, "Crédito");
+ * break;
+ * default:
+ * out.println("Opção inválida!");
+ * ProcessamentoFuncionario();
+ * break;
+ * }
+ * break;
+ * default:
+ * out.println("Opção inválida!");
+ * menuFuncionario();
+ * break;
+ * }
+ * }
+ * 
+ * // Métodos Clientes
+ * public void ClienteCriarConta(String nomeConta, String numeroConta, String
+ * depositoInicial) {
+ * out.println("Nome da conta: " + nomeConta);
+ * out.println("Número da conta: " + numeroConta);
+ * out.println("Depósito inicial: " + depositoInicial);
+ * }
+ * 
+ * public void ClienteExcluirConta(String nomeConta, String numeroConta) {
+ * out.println("Nome da conta: " + nomeConta);
+ * out.println("Número da conta: " + numeroConta);
+ * }
+ * 
+ * public void ClienteExibirSaldoTotalDoBanco(double saldoTotal) {
+ * out.println("Saldo total do banco: R$" + saldoTotal);
+ * }
+ * 
+ * // Métodos Funcionários
+ * public void FuncionarioAtenderCliente(String nomeCliente, String numeroConta,
+ * String ajuda) {
+ * out.println("Nome do cliente: " + nomeCliente);
+ * out.println("Número da conta: " + numeroConta);
+ * out.println("Ajuda: " + ajuda);
+ * }
+ * 
+ * public void FuncionarioProcessarTransacoes(String numeroConta, String
+ * codigoTransacao) {
+ * out.println("Número da conta: " + numeroConta);
+ * out.println("Número da transação: " + codigoTransacao);
+ * }
+ * 
+ * public void FuncionarioRegistroTransacoes(String registroTransacao) {
+ * out.println("Registro da transação: " + registroTransacao);
+ * }
+ * 
+ * public void FuncionarioEmitirCartoes(String nomeCliente, String numeroConta,
+ * String tipoCartao) {
+ * out.println("Nome do cliente: " + nomeCliente);
+ * out.println("Número da conta: " + numeroConta);
+ * out.println("Tipo do cartão: " + tipoCartao);
+ * }
+ * 
+ * // Método de chamada
+ * public void chamada() {
+ * exibirDados();
+ * menu();
+ * }
+ * }
+ */
+
+class Biblioteca {
+    private String nome;
     PrintStream out = System.out;
 
-    // Construtor
-    public Banco(String nomeBanco, String ContasBancarias) {
-        this.nomeBanco = nomeBanco;
-        this.ContasBancarias = ContasBancarias;
-    }
+    // Criar uma matriz para armazenar os livros e seus dados
+    String[][] livros = {
+            { "O Senhor dos Anéis", "J. R. R. Tolkien", "1954", "123" },
+            { "O Hobbit", "J. R. R. Tolkien", "1937", "456" },
+            { "O Silmarillion", "J. R. R. Tolkien", "1977", "789" }
+    };
 
     public void exibirDados() {
-        out.println("Nome do banco: " + this.nomeBanco);
-        out.println("Contas bancárias: " + this.ContasBancarias);
+        out.println("Nome da biblioteca: " + this.nome);
+        out.println("Livros: " + this.livros);
+    }
+
+    // Métodos
+    public void AdicionarLivro(String nomeLivro, String autorLivro, String anoLivro, String codigoLivro) {
+        out.println("Nome do livro: " + nomeLivro);
+        out.println("Autor do livro: " + autorLivro);
+        out.println("Ano do livro: " + anoLivro);
+        out.println("Código do livro: " + codigoLivro);
+        for (int i = 0; i < livros.length; i++) {
+            for (int j = 0; j < livros[i].length; j++) {
+                livros[i][j] = nomeLivro;
+                livros[i][j] = autorLivro;
+                livros[i][j] = String.valueOf(anoLivro);
+                livros[i][j] = codigoLivro;
+            }
+        }
+    }
+
+    public void RemoverLivro(String codigoLivro) {
+        for (int i = 0; i < livros.length; i++) {
+            for (int j = 0; j < livros[i].length; j++) {
+                livros[i][j] = codigoLivro;
+                if (livros[i][j] == codigoLivro) {
+                    livros[i][j] = null;
+                }
+            }
+        }
+    }
+
+    public void EncontrarLivroPorAutor(String autorLivro) {
+        out.println("Autor do livro: " + autorLivro);
     }
 
     public void menu() {
-        Scanner scanner = new Scanner(System.in);
-        out.println("O que você deseja fazer?");
-        out.println("1. Acessar como cliente");
-        out.println("2. Acessar como funcionário");
-        opcao();
-    }
-
-    public void opcao() {
-        Scanner in = new Scanner(System.in);
-        int opcao = in.nextInt();
-        switch (opcao) {
-            case 1:
-                menuCliente();
-                break;
-            case 2:
-                menuFuncionario();
-                break;
-            default:
-                out.println("Opção inválida!");
-                menu();
-                break;
-        }
-    }
-
-    public void menuCliente() {
         Scanner in = new Scanner(System.in);
         out.println("O que você deseja fazer?");
-        out.println("1. Criar conta");
-        out.println("2. Excluir conta");
-        out.println("3. Exibir saldo total do banco");
-        ProcessamentoCliente();
-    }
-
-    public void menuFuncionario() {
-        Scanner in = new Scanner(System.in);
-        out.println("O que você irá fazer?");
-        out.println("1. Atender cliente");
-        out.println("2. Processar transações");
-        out.println("3. Emitir cartões");
-        ProcessamentoFuncionario();
-    }
-
-    public void ProcessamentoCliente() {
-        Scanner in = new Scanner(System.in);
+        out.println("0. Ver o acervo");
+        out.println("1. Adicionar livro");
+        out.println("2. Remover livro");
+        out.println("3. Encontrar livro por autor");
         int opcao = in.nextInt();
         switch (opcao) {
-            case 1:
-                out.println("Digite o nome da conta:");
-                String nomeConta = in.next();
-                out.println("Digite o número da conta:");
-                String numeroConta = in.next();
-                out.println("Digite o depósito inicial:");
-                String depositoInicial = in.next();
-                out.print("Conta criada!\n");
-                ClienteCriarConta(nomeConta, numeroConta, depositoInicial);
-                break;
-            case 2:
-                out.println("Digite o nome da conta:");
-                String nomeConta2 = in.next();
-                out.println("Digite o número da conta:");
-                String numeroConta2 = in.next();
-                out.print("Conta excluída!\n");
-                ClienteExcluirConta(nomeConta2, numeroConta2);
-                break;
-            case 3:
-                ClienteExibirSaldoTotalDoBanco(1000);
-                break;
-            default:
-                out.println("Opção inválida!");
-                menuCliente();
-                break;
-        }
-    }
-
-    public void ProcessamentoFuncionario() {
-        Scanner in = new Scanner(System.in);
-        int opcao = in.nextInt();
-        switch (opcao) {
-            case 1:
-                out.println("Digite o nome do cliente:");
-                String nomeCliente = in.next();
-                out.println("Digite o número da conta:");
-                String numeroConta = in.next();
-                out.println("Qual a dúvida do cliente?");
-                String ajuda = in.next();
-                FuncionarioAtenderCliente(nomeCliente, numeroConta, ajuda);
-                break;
-            case 2:
-                out.println("Digite o número da conta:");
-                String numeroConta2 = in.next();
-                out.println("Digite o código da transação:");
-                String codigoTransacao = in.next();
-                FuncionarioProcessarTransacoes(numeroConta2, codigoTransacao);
-                out.println("Digite o registro da transação:");
-                String registroTransacao = in.next();
-                FuncionarioRegistroTransacoes(registroTransacao);
-                break;
-            case 3:
-                out.println("Digite o nome do cliente:");
-                String nomeCliente2 = in.next();
-                out.println("Digite o número da conta:");
-                String numeroConta3 = in.next();
-                out.println("Qual o tipo do cartão?");
-                out.println("1. Débito");
-                out.println("2. Crédito");
-                int opcao2 = in.nextInt();
-                switch (opcao2) {
-                    case 1:
-                        FuncionarioEmitirCartoes(nomeCliente2, numeroConta3, "Débito");
-                        break;
-                    case 2:
-                        FuncionarioEmitirCartoes(nomeCliente2, numeroConta3, "Crédito");
-                        break;
-                    default:
-                        out.println("Opção inválida!");
-                        ProcessamentoFuncionario();
-                        break;
+            case 0:
+            // Exibir o acervo
+                out.println("Acervo:");
+                for (int i = 0; i < livros.length; i++) {
+                    for (int j = 0; j < livros[i].length; j++) {
+                        out.print("[ " + livros[i][j] + " ]");
+                    }
                 }
                 break;
+            case 1:
+                out.println("Digite o nome do livro:");
+                String nomeLivro = in.nextLine();
+                out.println("Digite o autor do livro:");
+                String autorLivro = in.nextLine();
+                out.println("Digite o ano do livro:");
+                String anoLivro = in.nextLine();
+                out.println("Digite o código do livro:");
+                String codigoLivro = in.next();
+                AdicionarLivro(nomeLivro, autorLivro, anoLivro, codigoLivro);
+                break;
+            case 2:
+                out.println("Para remover um livro do acervo, forneça o código do livro: ");
+                String codigoLivro2 = in.next();
+                RemoverLivro(codigoLivro2);
+                out.println("Livro removido!");
+                menu();
+                break;
+            case 3:
+                out.println("Digite o autor do livro:");
+                String autorLivro3 = in.next();
+                EncontrarLivroPorAutor(autorLivro3);
+                break;
             default:
                 out.println("Opção inválida!");
-                menuFuncionario();
                 break;
         }
-    }
-
-    // Métodos Clientes
-    public void ClienteCriarConta(String nomeConta, String numeroConta, String depositoInicial) {
-        out.println("Nome da conta: " + nomeConta);
-        out.println("Número da conta: " + numeroConta);
-        out.println("Depósito inicial: " + depositoInicial);
-    }
-
-    public void ClienteExcluirConta(String nomeConta, String numeroConta) {
-        out.println("Nome da conta: " + nomeConta);
-        out.println("Número da conta: " + numeroConta);
-    }
-
-    public void ClienteExibirSaldoTotalDoBanco(double saldoTotal) {
-        out.println("Saldo total do banco: R$" + saldoTotal);
-    }
-
-    // Métodos Funcionários
-    public void FuncionarioAtenderCliente(String nomeCliente, String numeroConta, String ajuda) {
-        out.println("Nome do cliente: " + nomeCliente);
-        out.println("Número da conta: " + numeroConta);
-        out.println("Ajuda: " + ajuda);
-    }
-
-    public void FuncionarioProcessarTransacoes(String numeroConta, String codigoTransacao) {
-        out.println("Número da conta: " + numeroConta);
-        out.println("Número da transação: " + codigoTransacao);
-    }
-
-    public void FuncionarioRegistroTransacoes(String registroTransacao) {
-        out.println("Registro da transação: " + registroTransacao);
-    }
-
-    public void FuncionarioEmitirCartoes(String nomeCliente, String numeroConta, String tipoCartao) {
-        out.println("Nome do cliente: " + nomeCliente);
-        out.println("Número da conta: " + numeroConta);
-        out.println("Tipo do cartão: " + tipoCartao);
-    }
-
-    // Método de chamada
-    public void chamada() {
-        exibirDados();
-        menu();
     }
 }

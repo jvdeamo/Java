@@ -1,0 +1,126 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Animais",
+            "request": "launch",
+            "mainClass": "java_src.src.Animais",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "java_src.src.App",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppForca",
+            "request": "launch",
+            "mainClass": "java_src.src.AppForca",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppGym",
+            "request": "launch",
+            "mainClass": "java_src.src.AppGym",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppIndustria",
+            "request": "launch",
+            "mainClass": "java_src.src.AppIndustria",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppLeandro",
+            "request": "launch",
+            "mainClass": "java_src.src.AppLeandro",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppRandom",
+            "request": "launch",
+            "mainClass": "java_src.src.AppRandom",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppSenai",
+            "request": "launch",
+            "mainClass": "java_src.src.AppSenai",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppSenaiArray1",
+            "request": "launch",
+            "mainClass": "java_src.src.AppSenaiArray1",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppSenaiArray2",
+            "request": "launch",
+            "mainClass": "java_src.src.AppSenaiArray2",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppTrabalho1",
+            "request": "launch",
+            "mainClass": "java_src.src.AppTrabalho1",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "AppTrabalhoF",
+            "request": "launch",
+            "mainClass": "java_src.src.AppTrabalhoF",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "DadosRPG",
+            "request": "launch",
+            "mainClass": "java_src.src.DadosRPG",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "HCO",
+            "request": "launch",
+            "mainClass": "java_src.src.HCO",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "Vetores",
+            "request": "launch",
+            "mainClass": "java_src.src.Vetores",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
+            "name": "Vetores_2",
+            "request": "launch",
+            "mainClass": "java_src.src.Vetores_2",
+            "projectName": "java e python_2b658a2b"
+        }
+    ]
+}
