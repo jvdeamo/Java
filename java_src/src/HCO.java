@@ -2,13 +2,13 @@ package java_src.src;
 
 /*  
 Autor: João Victor Martins Deamo
-Date: 31/08/2023
+Date: 01/09/2023
 Time: 08:20
 IDE: Visual Studio Code
 Path: java_src/src/HCO.java
-Session Duration: 08:20 - 11:54
+Session Duration: 08:20 - 11:30
 Subject: POO & Herança & Polimorfismo & HashMap
-Version: 1.1
+Version: 1.2
 Branch: Main
 Senai - Desenvolvimento de Sistemas
 
@@ -44,6 +44,8 @@ Crie uma classe LojaOnline com atributos para o nome da loja e uma lista de prod
 */
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HCO {
     PrintStream out = System.out;
@@ -109,9 +111,20 @@ class Chamada {
     public void biblioteca() {
         PrintStream out = System.out;
         out.println("\n7. Exercício - Biblioteca:");
-        Biblioteca biblioteca = new Biblioteca();
-        biblioteca.exibirDados();
-        biblioteca.menu();
+        /*
+         * Biblioteca biblioteca = new Biblioteca();
+         * biblioteca.exibirDados();
+         * biblioteca.menu();
+         */
+    }
+
+    public void concessionaria() {
+        PrintStream out = System.out;
+        out.println("\n8. Exercício - Concessionária:");
+        Concessionaria concessionaria = new Concessionaria("Concessionária", new ArrayList<Carro>(), 0);
+        concessionaria.AdicionarCarro("Fiat123", "Palio", 2000, "FJ1H1238");
+        concessionaria.Carro(new Carro("Fiat", "Palio", 2000));
+        //concessionaria.Carro("Fiat", "Palio", "2000", "FJ1H1238");
     }
 
     // Método de chamada
@@ -123,6 +136,7 @@ class Chamada {
         produto();
         banco();
         biblioteca();
+        concessionaria();
     }
 
 }
@@ -478,99 +492,199 @@ class ProdutoEstoque {
  * menu();
  * }
  * }
+ * 
+ * 
+ * class Biblioteca {
+ * private String nome;
+ * // Definir tamanhoAcervo com o valor máximo usando o MAX_VALUE
+ * private int tamanhoAcervo;
+ * PrintStream out = System.out;
+ * 
+ * // Construtor
+ * public Biblioteca() {
+ * this.nome = "Biblioteca Municipal";
+ * this.tamanhoAcervo = 4;
+ * }
+ * 
+ * // Criar uma matriz para armazenar os livros e seus dados
+ * String[][] livros = {
+ * { "O Senhor dos Anéis", "J. R. R. Tolkien", "1954", "123" },
+ * { "O Hobbit", "J. R. R. Tolkien", "1937", "456" },
+ * { "O Silmarillion", "J. R. R. Tolkien", "1977", "789" },
+ * { "As aventuras de Peter Pan", "Faustao", "2003", "coracao" },
+ * { " ", " ", " ", " " },
+ * { " ", " ", " ", " " },
+ * { " ", " ", " ", " " },
+ * { " ", " ", " ", " " },
+ * };
+ * 
+ * public void exibirDados() {
+ * out.println("Nome da biblioteca: " + this.nome);
+ * out.println("Acervo:");
+ * for (int j = 0; j < livros.length; j++) {
+ * out.print("[" + livros[j][0] + "] ");
+ * }
+ * }
+ * 
+ * public void Acervo(String nomeLivro, String autorLivro, String anoLivro,
+ * String codigoLivro) {
+ * out.println("Nome do livro: " + nomeLivro);
+ * out.println("Autor do livro: " + autorLivro);
+ * out.println("Ano do livro: " + anoLivro);
+ * out.println("Código do livro: " + codigoLivro);
+ * }
+ * 
+ * // Métodos
+ * public void AdicionarLivro(String nomeLivro, String autorLivro, String
+ * anoLivro, String codigoLivro) {
+ * if (tamanhoAcervo < livros.length) {
+ * livros[tamanhoAcervo][0] = nomeLivro;
+ * livros[tamanhoAcervo][1] = autorLivro;
+ * livros[tamanhoAcervo][2] = anoLivro;
+ * livros[tamanhoAcervo][3] = codigoLivro;
+ * out.println("Livro adicionado!");
+ * tamanhoAcervo++;
+ * } else {
+ * out.println("Acervo cheio!");
+ * }
+ * }
+ * 
+ * public void RemoverLivro(String codigoLivro) {
+ * for (int i = 0; i < tamanhoAcervo; i++) {
+ * if (livros[i][3].equals(codigoLivro)) {
+ * livros[i][0] = " ";
+ * livros[i][1] = " ";
+ * livros[i][2] = " ";
+ * livros[i][3] = " ";
+ * out.println("Livro removido!");
+ * tamanhoAcervo--;
+ * return; // Saia do loop assim que o livro for removido.
+ * } else if (livros[tamanhoAcervo][3] != codigoLivro) {
+ * out.println("Livro não encontrado!");
+ * }
+ * }
+ * // Livro removido!
+ * if (tamanhoAcervo == 0) {
+ * out.println("Acervo vazio!");
+ * }
+ * }
+ * 
+ * public void EncontrarLivroPorAutor(String autorLivro) {
+ * boolean encontrouLivro = false;
+ * out.println("Livros do autor " + autorLivro + ":");
+ * for (int i = 0; i < livros.length; i++) {
+ * if (livros[i][1] != null && livros[i][1].equals(autorLivro)) {
+ * out.println("Nome do livro: " + livros[i][0]);
+ * out.println("Ano do livro: " + livros[i][2]);
+ * out.println("Código do livro: " + livros[i][3]);
+ * encontrouLivro = true;
+ * }
+ * }
+ * if (!encontrouLivro) {
+ * out.println("Livro não encontrado!");
+ * }
+ * }
+ * 
+ * public void menu() {
+ * Scanner in = new Scanner(System.in);
+ * out.println("\nO que você deseja fazer?");
+ * out.println("0. Ver o acervo");
+ * out.println("1. Adicionar livro");
+ * out.println("2. Remover livro");
+ * out.println("3. Encontrar livro por autor");
+ * int opcao = in.nextInt();
+ * switch (opcao) {
+ * case 0:
+ * out.println("\nAcervo detalhado:");
+ * for (int j = 0; j < livros.length; j++) {
+ * out.print("Nome do livro: [" + livros[j][0] + "] ");
+ * out.print(" Autor: [" + livros[j][1] + "]");
+ * out.println(" Ano do livro: [" + livros[j][2] + "] ");
+ * }
+ * menu();
+ * break;
+ * case 1:
+ * out.println("Digite o nome do livro:");
+ * String nomeLivro = in.next();
+ * out.println("Digite o autor do livro:");
+ * String autorLivro = in.next();
+ * out.println("Digite o ano do livro:");
+ * String anoLivro = in.next();
+ * out.println("Digite o código do livro:");
+ * String codigoLivro = in.next();
+ * AdicionarLivro(nomeLivro, autorLivro, anoLivro, codigoLivro);
+ * menu();
+ * break;
+ * case 2:
+ * out.println("Para remover um livro do acervo, forneça o código do livro: ");
+ * String codigoLivro2 = in.next();
+ * RemoverLivro(codigoLivro2);
+ * out.println("Livro removido!");
+ * menu();
+ * break;
+ * case 3:
+ * out.println("Digite o autor do livro:");
+ * String autorLivro3 = in.next();
+ * EncontrarLivroPorAutor(autorLivro3);
+ * menu();
+ * break;
+ * default:
+ * out.println("Opção inválida!");
+ * break;
+ * }
+ * }
+ * }
  */
-
-class Biblioteca {
+class Concessionaria {
+    // Atributos
     private String nome;
+    private int tamanhoEstoque;
+    private List<Carro> carrosDisponiveis;
+    private double lucroTotal;
     PrintStream out = System.out;
 
-    // Criar uma matriz para armazenar os livros e seus dados
-    String[][] livros = {
-            { "O Senhor dos Anéis", "J. R. R. Tolkien", "1954", "123" },
-            { "O Hobbit", "J. R. R. Tolkien", "1937", "456" },
-            { "O Silmarillion", "J. R. R. Tolkien", "1977", "789" }
-    };
+    // Construtor
+    public Concessionaria(String Nome,List<Carro> CarrosDisponiveis, double LucroTotal) {
+        this.nome = Nome;
+        this.tamanhoEstoque = 10;
+        this.carrosDisponiveis = CarrosDisponiveis;
+        this.lucroTotal = LucroTotal;
+    }
 
+    /*
+     * Criar uma matriz para armazenar os carros e seus dados
+     * String[][] carros = {
+     * { "Fiat", "Palio", "2000", "456" },
+     * { "Volks", "Polo", "2007", "789" },
+     * { "Fiat", "Strada", "2005", "789" },
+     * { "Volks", "Gol", "2003", "123" },
+     * { "Volks", "Fox", "2005", "456" },
+     * { "Fiat", "Uno", "1998", "123" },
+     * };
+     */
     public void exibirDados() {
-        out.println("Nome da biblioteca: " + this.nome);
-        out.println("Livros: " + this.livros);
-    }
-
-    // Métodos
-    public void AdicionarLivro(String nomeLivro, String autorLivro, String anoLivro, String codigoLivro) {
-        out.println("Nome do livro: " + nomeLivro);
-        out.println("Autor do livro: " + autorLivro);
-        out.println("Ano do livro: " + anoLivro);
-        out.println("Código do livro: " + codigoLivro);
-        for (int i = 0; i < livros.length; i++) {
-            for (int j = 0; j < livros[i].length; j++) {
-                livros[i][j] = nomeLivro;
-                livros[i][j] = autorLivro;
-                livros[i][j] = String.valueOf(anoLivro);
-                livros[i][j] = codigoLivro;
-            }
+        out.println("Nome da concessionária: " + this.nome);
+        out.printf("Marcas da concessionária %s: ", this.nome);
+        for (Carro contador : carrosDisponiveis) {
+            out.print("[" + carrosDisponiveis + "] ");
         }
+        out.println();
     }
 
-    public void RemoverLivro(String codigoLivro) {
-        for (int i = 0; i < livros.length; i++) {
-            for (int j = 0; j < livros[i].length; j++) {
-                livros[i][j] = codigoLivro;
-                if (livros[i][j] == codigoLivro) {
-                    livros[i][j] = null;
-                }
-            }
-        }
+    // Método para mostrar os dados do carro
+    public void Carro(Carro Carro) {
+        out.println("Marca: " + Carro);
+        out.println("Modelo: " + Carro);
+        out.println("Ano: " + Carro);
     }
 
-    public void EncontrarLivroPorAutor(String autorLivro) {
-        out.println("Autor do livro: " + autorLivro);
-    }
-
-    public void menu() {
-        Scanner in = new Scanner(System.in);
-        out.println("O que você deseja fazer?");
-        out.println("0. Ver o acervo");
-        out.println("1. Adicionar livro");
-        out.println("2. Remover livro");
-        out.println("3. Encontrar livro por autor");
-        int opcao = in.nextInt();
-        switch (opcao) {
-            case 0:
-            // Exibir o acervo
-                out.println("Acervo:");
-                for (int i = 0; i < livros.length; i++) {
-                    for (int j = 0; j < livros[i].length; j++) {
-                        out.print("[ " + livros[i][j] + " ]");
-                    }
-                }
-                break;
-            case 1:
-                out.println("Digite o nome do livro:");
-                String nomeLivro = in.nextLine();
-                out.println("Digite o autor do livro:");
-                String autorLivro = in.nextLine();
-                out.println("Digite o ano do livro:");
-                String anoLivro = in.nextLine();
-                out.println("Digite o código do livro:");
-                String codigoLivro = in.next();
-                AdicionarLivro(nomeLivro, autorLivro, anoLivro, codigoLivro);
-                break;
-            case 2:
-                out.println("Para remover um livro do acervo, forneça o código do livro: ");
-                String codigoLivro2 = in.next();
-                RemoverLivro(codigoLivro2);
-                out.println("Livro removido!");
-                menu();
-                break;
-            case 3:
-                out.println("Digite o autor do livro:");
-                String autorLivro3 = in.next();
-                EncontrarLivroPorAutor(autorLivro3);
-                break;
-            default:
-                out.println("Opção inválida!");
-                break;
+    public void AdicionarCarro(String marcaCarro, String modeloCarro, Integer anoCarro, String placaCarro) {
+        if (tamanhoEstoque < carrosDisponiveis.size()) {
+            carrosDisponiveis.add(new Carro(marcaCarro, modeloCarro, anoCarro));
+            out.println("Carro adicionado!");
+            tamanhoEstoque++;
+        } else if (tamanhoEstoque == carrosDisponiveis.size()) {
+            out.println("Estoque cheio!");
         }
     }
 }
