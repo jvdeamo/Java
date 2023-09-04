@@ -2,13 +2,13 @@ package java_src.src;
 
 /*  
 Autor: João Victor Martins Deamo
-Date: 01/09/2023
-Time: 08:20
+Date: 04/09/2023
+Time: 15:15
 IDE: Visual Studio Code
 Path: java_src/src/HCO.java
-Session Duration: 08:20 - 11:30
+Session Duration: 15:15 - 
 Subject: POO & Herança & Polimorfismo & HashMap
-Version: 1.2
+Version: 1.3
 Branch: Main
 Senai - Desenvolvimento de Sistemas
 
@@ -43,7 +43,6 @@ Crie uma classe Escola com atributos para o nome da escola e uma lista de alunos
 Crie uma classe LojaOnline com atributos para o nome da loja e uma lista de produtos à venda. Implemente métodos para adicionar um produto, remover um produto, calcular o valor total do carrinho de um cliente e processar uma compra.
 */
 import java.io.PrintStream;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +78,7 @@ class Chamada {
     public static void carro() {
         PrintStream out = System.out;
         out.println("\n3. Exercício - Carro:");
-        Carro carro = new Carro("Fiat", "Uno", 1998);
+        Carro carro = new Carro("Fiat", "Uno", 1998, "IU3V5238");
         carro.exibirDados();
         carro.getEstado();
     }
@@ -121,10 +120,16 @@ class Chamada {
     public void concessionaria() {
         PrintStream out = System.out;
         out.println("\n8. Exercício - Concessionária:");
-        Concessionaria concessionaria = new Concessionaria("Concessionária", new ArrayList<Carro>(), 0);
-        concessionaria.AdicionarCarro("Fiat123", "Palio", 2000, "FJ1H1238");
-        concessionaria.Carro(new Carro("Fiat", "Palio", 2000));
-        //concessionaria.Carro("Fiat", "Palio", "2000", "FJ1H1238");
+        Concessionaria concessionaria = new Concessionaria("Concessionária Lelê Linguiça");
+        concessionaria.AdicionarCarro("Fiat", "Palio", 2000, "FJ1H1238");
+        concessionaria.AdicionarCarro("Volks", "Polo", 2007, "PO1H1238");
+        concessionaria.AdicionarCarro("Fiat", "Strada", 2005, "UJ1H1238");
+        concessionaria.AdicionarCarro("Volks", "Gol", 2003, "JH1H1238");
+        concessionaria.VenderCarro("FJ1H1238");
+        concessionaria.VenderCarro("PO1H1238");
+        concessionaria.Lucro();
+        concessionaria.exibirDados();
+        // concessionaria.Carro("Fiat", "Palio", "2000", "FJ1H1238");
     }
 
     // Método de chamada
@@ -210,19 +215,22 @@ class Livro {
     }
 }
 
-class Carro {
+class Carro extends Concessionaria {
     // Atributos
-    private String marca;
-    private String modelo;
-    private int ano;
+    protected String marca;
+    protected String modelo;
+    protected int ano;
+    protected String placa;
     private boolean ligado;
     PrintStream out = System.out;
 
     // Construtor
-    public Carro(String marca, String modelo, int ano) {
+    public Carro(String marca, String modelo, int ano, String placa) {
+        super("Concessionária Lelê Linguiça");
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+        this.placa = placa;
         this.ligado = false;
     }
 
@@ -640,15 +648,17 @@ class Concessionaria {
     private String nome;
     private int tamanhoEstoque;
     private List<Carro> carrosDisponiveis;
+    private List<Carro> carrosVendidos;
     private double lucroTotal;
     PrintStream out = System.out;
 
     // Construtor
-    public Concessionaria(String Nome,List<Carro> CarrosDisponiveis, double LucroTotal) {
-        this.nome = Nome;
+    public Concessionaria(String nome) {
+        this.nome = nome;
         this.tamanhoEstoque = 10;
-        this.carrosDisponiveis = CarrosDisponiveis;
-        this.lucroTotal = LucroTotal;
+        this.carrosDisponiveis = new ArrayList<Carro>();
+        this.carrosVendidos = new ArrayList<Carro>();
+        this.lucroTotal = 0.0;
     }
 
     /*
@@ -664,27 +674,53 @@ class Concessionaria {
      */
     public void exibirDados() {
         out.println("Nome da concessionária: " + this.nome);
-        out.printf("Marcas da concessionária %s: ", this.nome);
-        for (Carro contador : carrosDisponiveis) {
-            out.print("[" + carrosDisponiveis + "] ");
+        out.printf("Carros disponíveis na %s:\n", this.nome);
+        for (Carro ListaCarros : this.carrosDisponiveis) {
+            out.println("Marca: " + ListaCarros.marca);
+            out.println("Modelo: " + ListaCarros.modelo);
+            out.println("Ano: " + ListaCarros.ano);
+            out.println(); // Adicione uma linha em branco para separar os carros
         }
-        out.println();
-    }
-
-    // Método para mostrar os dados do carro
-    public void Carro(Carro Carro) {
-        out.println("Marca: " + Carro);
-        out.println("Modelo: " + Carro);
-        out.println("Ano: " + Carro);
     }
 
     public void AdicionarCarro(String marcaCarro, String modeloCarro, Integer anoCarro, String placaCarro) {
-        if (tamanhoEstoque < carrosDisponiveis.size()) {
-            carrosDisponiveis.add(new Carro(marcaCarro, modeloCarro, anoCarro));
-            out.println("Carro adicionado!");
-            tamanhoEstoque++;
-        } else if (tamanhoEstoque == carrosDisponiveis.size()) {
+        if (carrosDisponiveis.size() < tamanhoEstoque) {
+            Carro novoCarro = new Carro(marcaCarro, modeloCarro, anoCarro, placaCarro);
+            carrosDisponiveis.add(novoCarro);
+        } else {
             out.println("Estoque cheio!");
         }
     }
+
+    public void VenderCarro(String placaCarro) {
+        // laço de repetição para verificar se o carro está disponível
+        for (int i = 0; i < carrosDisponiveis.size(); i++) {
+            // Se o carro estiver disponível, remova-o da lista de carros disponíveis e
+            // adicione-o à lista de carros vendidos.
+            if (carrosDisponiveis.get(i).placa.equals(placaCarro)) {
+                carrosDisponiveis.remove(i);
+                Carro carroVendido = new Carro(carrosDisponiveis.get(i).marca, carrosDisponiveis.get(i).modelo,
+                        carrosDisponiveis.get(i).ano, carrosDisponiveis.get(i).placa);
+                carrosVendidos.add(carroVendido);
+                out.println("Carro vendido!");
+                return; // Saia do loop assim que o carro for vendido.
+            }
+        }
+        // Carro vendido!
+        if (carrosDisponiveis.size() == 0) {
+            out.println("Estoque vazio!");
+        }
+    }
+
+    public double Lucro() {
+        for (int i = 0; i < carrosVendidos.size(); i++) {
+            lucroTotal = lucroTotal + 25000;
+        }
+        out.println("Lucro total: R$" + lucroTotal);
+        return lucroTotal;
+    }
+}
+
+class LojaOnline {
+
 }

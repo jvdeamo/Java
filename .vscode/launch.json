@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HCO",
+            "request": "launch",
+            "mainClass": "java_src.src.HCO",
+            "projectName": "java-e-python_62e38ac9"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
