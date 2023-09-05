@@ -1,3 +1,4 @@
+import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,8 +9,9 @@ public class ConsultaSQL {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/animais";
     private static final String USER = "root";
     private static final String PASSWORD = "";
+    PrintStream out = System.out;
 
-    public static void ConsultaSQL() {
+    public static void Consulta() {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM animais");
              ResultSet resultSet = stmt.executeQuery()) {
