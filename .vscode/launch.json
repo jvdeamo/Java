@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EnterpriseIntel",
+            "request": "launch",
+            "mainClass": "java_src.Enterprise.Intel.EnterpriseIntel",
+            "projectName": "java e python_2b658a2b"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
