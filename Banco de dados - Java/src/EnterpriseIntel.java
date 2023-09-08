@@ -2,9 +2,13 @@ import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 import java.util.Scanner;
+
+import javax.naming.spi.DirStateFactory.Result;
 
 /* Autor: João Victor Martins Deamo
 Date: 06/09/2023
@@ -88,11 +92,11 @@ class Menu extends Produtos {
         // // Criar um while para que o usuário possa adicionar mais de um animal
         // while (!sair) {
         while (!sair) {
-            out.println("\033[H\033[2J");
             out.println("Bem-vindo ao sistema da Intel.");
             out.println("Escolha uma opção:");
             out.println("1. Cadastrar produto");
-            out.println("2. Sair");
+            out.println("2. Listar produtos");
+            out.println("3. Sair");
             int opcao = in.nextInt();
             switch (opcao) {
                 case 1:
@@ -105,25 +109,44 @@ class Menu extends Produtos {
                     int escolha = in.nextInt();
                     switch (escolha) {
                         case 1:
-                            Produtos processador = new Produtos();
-                            processador.cadastrarProduto(escolha);
+                            BancoDeDados consultaProcessador = new BancoDeDados();
+                            consultaProcessador.listarProcessadores();
                             break;
                         case 2:
-                            Produtos sistemaOperacional = new Produtos();
-                            sistemaOperacional.cadastrarProduto(escolha);
+                            BancoDeDados consultaSistema = new BancoDeDados();
+                            consultaSistema.listarSistemasOperacionais();
                             break;
                         case 3:
-                            Produtos computador = new Produtos();
-                            computador.cadastrarProduto(escolha);
+                            BancoDeDados consultaComputador = new BancoDeDados();
+                            consultaComputador.listarComputadores();
+                            break;
+                        default:
+                            out.println("Opção inválida");
+                            break;
+                    }
+                case 2:
+                    out.println("Escolha o tipo de produto:");
+                    out.println("1. Processador");
+                    out.println("2. Sistema Operacional");
+                    out.println("3. Computador");
+                    int escolhaListar = in.nextInt();
+                    switch (escolhaListar) {
+                        case 1:
+                            BancoDeDados.listarProcessadores();
+                            break;
+                        case 2:
+                            BancoDeDados.listarSistemasOperacionais();
+                            break;
+                        case 3:
+                            BancoDeDados.listarComputadores();
                             break;
                         default:
                             out.println("Opção inválida");
                             break;
                     }
                     break;
-                case 2:
+                case 3:
                     sair = true;
-                    out.println("\033[H\033[2J");
                     out.println("Programa finalizado. Obrigado por utilizar o sistema da Intel.");
                     break;
             }
@@ -170,6 +193,7 @@ class Produtos extends EnterpriseIntel {
     }
 
     public void listarProdutos() {
+        BancoDeDados.listarProcessadores();
         // Listar produtos
     }
 
@@ -298,9 +322,29 @@ class Computadores extends Produtos {
     protected String processador; // i5 9400F
     protected String sistemaOperacional; // Windows 10
     protected static String preco; // R$ 1.000,00
+    Scanner in = new Scanner(System.in);
+    PrintStream out = System.out;
+
+    public void DadosComputadores(Scanner in, PrintStream out) {
+        out.println("Digite o nome do computador: ");
+        nome = in.nextLine();
+
+        out.print("Digite a marca do computador: ");
+        marca = in.nextLine();
+
+        out.print("Digite o modelo do computador: ");
+        modelo = in.nextLine();
+
+        processador = Processadores.modelo;
+        sistemaOperacional = SistemasOperacionais.nome;
+
+        out.print("Digite o preço do computador: ");
+        preco = in.nextLine();
+    }
 
     // Métodos
     public void cadastrarComputador() {
+        DadosComputadores(in, out);
         // Cadastrar computador
     }
 
@@ -350,7 +394,6 @@ class BancoDeDados {
             String disableChecksSQL = "SET FOREIGN_KEY_CHECKS = 0;";
             stmtCreate.executeUpdate(disableChecksSQL);
         } catch (SQLException e) {
-            out.println("\033[H\033[2J");
             out.println("Erro ao criar banco de dados: " + e.getMessage());
         }
     }
@@ -488,6 +531,115 @@ class BancoDeDados {
             out.println("Computador cadastrado com sucesso.");
         } catch (SQLException e) {
             out.printf("Erro ao inserir dados na tabela '%s'.", Computadores.getComputadores(), e.getMessage());
+        }
+    }
+
+    // Criar um método para listar os processadores
+    public static void listarProcessadores() {
+        PrintStream out = System.out;
+        try (
+                Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Processadores");
+                ResultSet resultados = stmt.executeQuery()) {
+
+            while (resultados.next()) {
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String marca = resultados.getString("marca");
+                String modelo = resultados.getString("modelo");
+                String socket = resultados.getString("socket");
+                String frequencia = resultados.getString("frequencia");
+                String cores = resultados.getString("cores");
+                String threads = resultados.getString("threads");
+                String TDP = resultados.getString("TDP");
+                String preco = resultados.getString("preco");
+
+                out.println("ID: " + id);
+                out.println("Nome: " + nome);
+                out.println("Marca: " + marca);
+                out.println("Modelo: " + modelo);
+                out.println("Socket: " + socket);
+                out.println("Frequência: " + frequencia);
+                out.println("Cores: " + cores);
+                out.println("Threads: " + threads);
+                out.println("TDP: " + TDP);
+                out.println("Preço: " + preco);
+                out.println();
+
+            }
+        } catch (
+
+        SQLException e) {
+            out.printf("Erro ao listar dados da tabela '%s'.", Processadores.getProcessadores(), e.getMessage());
+        }
+    }
+
+    // Criar um método para listar os sistemas operacionais
+    public static void listarSistemasOperacionais() {
+        PrintStream out = System.out;
+        try (
+                Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM SistemasOperacionais");
+                ResultSet resultados = stmt.executeQuery()) {
+
+            while (resultados.next()) {
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String marca = resultados.getString("marca");
+                String modelo = resultados.getString("modelo");
+                String anoLancamento = resultados.getString("anoLancamento");
+                String preco = resultados.getString("preco");
+
+                out.println("ID: " + id);
+                out.println("Nome: " + nome);
+                out.println("Marca: " + marca);
+                out.println("Modelo: " + modelo);
+                out.println("Ano de lançamento: " + anoLancamento);
+                out.println("Preço: " + preco);
+                out.println();
+
+            }
+        }
+
+        catch (SQLException e) {
+            out.printf("Erro ao listar dados da tabela '%s'.", SistemasOperacionais.getSistemasOperacionais(),
+                    e.getMessage());
+        }
+    }
+
+    // Criar um método para listar os computadores
+    public static void listarComputadores() {
+        PrintStream out = System.out;
+        try (
+                Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Computadores");
+                ResultSet resultados = stmt.executeQuery()) {
+            {
+
+                while (resultados.next()) {
+                    int id = resultados.getInt("id");
+                    String nome = resultados.getString("nome");
+                    String marca = resultados.getString("marca");
+                    String modelo = resultados.getString("modelo");
+                    String processador = resultados.getString("processador");
+                    String sistemaOperacional = resultados.getString("sistemaOperacional");
+                    String preco = resultados.getString("preco");
+
+                    out.println("ID: " + id);
+                    out.println("Nome: " + nome);
+                    out.println("Marca: " + marca);
+                    out.println("Modelo: " + modelo);
+                    out.println("Processador: " + processador);
+                    out.println("Sistema Operacional: " + sistemaOperacional);
+                    out.println("Preço: " + preco);
+                    out.println();
+                }
+            }
+
+        } catch (
+
+        SQLException e) {
+            out.printf("Erro ao listar dados da tabela '%s'.", Computadores.getComputadores(), e.getMessage());
         }
     }
 }
