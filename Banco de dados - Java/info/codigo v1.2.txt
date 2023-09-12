@@ -270,7 +270,7 @@ class Processadores extends Produtos {
     // Declaração de variáveis
     protected static String nome;
     protected static String marca; // Intel
-    protected static String modelo; // i5 9400F
+    protected String modelo; // i5 9400F
     protected static String socket; // LGA 1151
     protected static String frequencia; // 2.9 GHz
     protected static String cores; // 6
@@ -316,15 +316,15 @@ class Processadores extends Produtos {
         // Cadastrar processador
     }
 
-    public static String getProcessadores() {
-        return nome;
+    public String getProcessadores() {
+        return modelo;
     }
 }
 
 // Criar uma classe para sistemas operacionais
 class SistemasOperacionais extends Produtos {
     // Declaração de variáveis
-    protected static String nome;
+    protected String nome;
     protected static String marca; // Intel
     protected static String modelo; // Windows 10 22H2
     protected static String anoLancamento; // 2015
@@ -355,7 +355,7 @@ class SistemasOperacionais extends Produtos {
         // Cadastrar sistema operacional
     }
 
-    public static String getSistemasOperacionais() {
+    public String getSistemasOperacionais() {
         return nome;
     }
 }
@@ -381,9 +381,13 @@ class Computadores extends Produtos {
 
         out.print("Digite o modelo do computador: ");
         modelo = in.nextLine();
+        Processadores processadorObj = new Processadores();
+        processadorObj.cadastrarProcessador(); // Preencha os dados do processador aqui
+        processador = processadorObj.modelo; // Atribua o modelo do processador à variável
 
-        processador = Processadores.modelo;
-        sistemaOperacional = SistemasOperacionais.nome;
+        SistemasOperacionais sistemaOperacionalObj = new SistemasOperacionais();
+        sistemaOperacionalObj.cadastrarSistemaOperacional(); // Preencha os dados do sistema operacional aqui
+        sistemaOperacional = sistemaOperacionalObj.nome; // Atribua o nome do sistema operacional à variável
 
         out.print("Digite o preço do computador: ");
         preco = in.nextLine();
@@ -393,6 +397,14 @@ class Computadores extends Produtos {
     public void cadastrarComputador() {
         DadosComputadores(in, out);
         // Cadastrar computador
+    }
+
+    public void listarComputadores() {
+        // Listar computadores
+    }
+
+    public void buscarComputador() {
+        // Buscar computador
     }
 
     public static String getComputadores() {
@@ -459,7 +471,8 @@ class BancoDeDados {
             stmt.executeUpdate(TabelaProcessadores);
 
         } catch (SQLException e) {
-            out.printf("Erro ao criar tabela '%s'.", Processadores.getProcessadores(), e.getMessage());
+            Processadores processador = new Processadores();
+            out.printf("Erro ao criar tabela '%s'.", processador.getProcessadores(), e.getMessage());
         }
 
         try (
@@ -478,7 +491,8 @@ class BancoDeDados {
             stmt.executeUpdate(TabelaSistemasOperacionais);
 
         } catch (SQLException e) {
-            out.printf("\nErro ao criar tabela '%s'.", SistemasOperacionais.getSistemasOperacionais(), e.getMessage());
+            SistemasOperacionais sistemaOperacional = new SistemasOperacionais();
+            out.printf("\nErro ao criar tabela '%s'.", sistemaOperacional.getSistemasOperacionais(), e.getMessage());
         }
 
         try (
@@ -512,9 +526,10 @@ class BancoDeDados {
                 PreparedStatement stmt = conn.prepareStatement(
                         "INSERT INTO Processadores(nome, marca, modelo, socket, frequencia, cores, threads, TDP, preco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
+            Processadores processador = new Processadores();
             stmt.setString(1, Processadores.nome);
             stmt.setString(2, Processadores.marca);
-            stmt.setString(3, Processadores.modelo);
+            stmt.setString(3, processador.modelo);
             stmt.setString(4, Processadores.socket);
             stmt.setString(5, Processadores.frequencia);
             stmt.setString(6, Processadores.cores);
@@ -527,7 +542,8 @@ class BancoDeDados {
             out.println("Processador cadastrado com sucesso.");
 
         } catch (SQLException e) {
-            out.printf("Erro ao inserir dados na tabela '%s'.", Processadores.getProcessadores(), e.getMessage());
+            Processadores processador = new Processadores();
+            out.printf("Erro ao inserir dados na tabela '%s'.", processador.getProcessadores(), e.getMessage());
         }
     }
 
@@ -539,7 +555,8 @@ class BancoDeDados {
                 PreparedStatement stmt = conn.prepareStatement(
                         "INSERT INTO SistemasOperacionais(nome, marca, modelo, anoLancamento, preco) VALUES (?, ?, ?, ?, ?)")) {
 
-            stmt.setString(1, SistemasOperacionais.nome);
+            SistemasOperacionais sistemaOperacional = new SistemasOperacionais();
+            stmt.setString(1, sistemaOperacional.nome);
             stmt.setString(2, SistemasOperacionais.marca);
             stmt.setString(3, SistemasOperacionais.modelo);
             stmt.setString(4, SistemasOperacionais.anoLancamento);
@@ -550,7 +567,8 @@ class BancoDeDados {
             out.println("Sistema Operacional cadastrado com sucesso.");
 
         } catch (SQLException e) {
-            out.printf("Erro ao inserir dados na tabela '%s'.", SistemasOperacionais.getSistemasOperacionais(),
+            SistemasOperacionais sistemaOperacional = new SistemasOperacionais();
+            out.printf("Erro ao inserir dados na tabela '%s'.", sistemaOperacional.getSistemasOperacionais(),
                     e.getMessage());
         }
     }
@@ -563,11 +581,13 @@ class BancoDeDados {
                 PreparedStatement stmt = conn.prepareStatement(
                         "INSERT INTO Computadores(nome, marca, modelo, processador, sistemaOperacional, preco) VALUES (?, ?, ?, ?, ?, ?)")) {
 
+            Processadores processador = new Processadores();
+            SistemasOperacionais sistemaOperacional = new SistemasOperacionais();
             stmt.setString(1, Computadores.nome);
             stmt.setString(2, Computadores.marca);
             stmt.setString(3, Computadores.modelo);
-            stmt.setString(4, Processadores.modelo);
-            stmt.setString(5, SistemasOperacionais.nome);
+            stmt.setString(4, processador.modelo);
+            stmt.setString(5, sistemaOperacional.nome);
             stmt.setString(6, Computadores.preco);
             stmt.executeUpdate();
 
@@ -621,7 +641,8 @@ class BancoDeDados {
         } catch (
 
         SQLException e) {
-            out.printf("Erro ao listar dados da tabela '%s'.\n", Processadores.getProcessadores(), e.getMessage());
+            Processadores processador = new Processadores();
+            out.printf("Erro ao listar dados da tabela '%s'.\n", processador.getProcessadores(), e.getMessage());
         }
     }
 
@@ -660,7 +681,8 @@ class BancoDeDados {
         }
 
         catch (SQLException e) {
-            out.printf("Erro ao listar dados da tabela '%s'.\n", SistemasOperacionais.getSistemasOperacionais(),
+            SistemasOperacionais sistemaOperacional = new SistemasOperacionais();
+            out.printf("Erro ao listar dados da tabela '%s'.\n", sistemaOperacional.getSistemasOperacionais(),
                     e.getMessage());
         }
     }
