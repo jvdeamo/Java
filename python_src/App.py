@@ -1,6 +1,14 @@
 # Calculando a soma, média, resto, ano bissexto e fatorial
 # Autor: João Victor Martins Deamo
 
+# Date: 12/09/2023
+# Time: 08:15
+# IDE: Visual Studio Code
+# Session Duration: 08:15 -
+# Subject: Python
+# Version: 1.0
+# Senai - Desenvolvimento de Sistemas
+
 
 # Definindo a função delimitador
 def imprimir_delimitador(caractere, vezes):
