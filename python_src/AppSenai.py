@@ -14,7 +14,7 @@ Autor: João Victor Martins Deamo
 Date: 12/09/2023
 Time: 23:15
 IDE: Visual Studio Code
-Session Duration: 23:15 - 
+Session Duration: 23:15 - 00:15
 Subject: Python
 Version: 1.0
 Senai - Desenvolvimento de Sistemas
