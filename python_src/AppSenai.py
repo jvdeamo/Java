@@ -2,8 +2,12 @@ import Calc
 import random
 import os
 
-# Limpa o console
-os.system('cls')  # Para Windows
+def Clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# limpa o console
+Clear()
+
 
 '''
 Autor: João Victor Martins Deamo
