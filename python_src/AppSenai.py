@@ -1,194 +1,219 @@
 import Calc
 import random
 import os
-
-def Clear():
-    os.system('cls')
 '''
 Autor: João Victor Martins Deamo
 Date: 14/09/2023
-Time: 08:20
+Time: 18:25
 IDE: Visual Studio Code
-Session Duration: 08:20 - 09:00
+Session Duration: 18:25 - 
 Subject: Python
-Version: 1.2
+Version: 1.3
 Senai - Desenvolvimento de Sistemas
 
-def print_delimitador(caractere, vezes):
-    print(caractere * vezes)
 '''
-def Welcome():
+def main():
+    iniciar()
+def clear_screen():
+    os.system('cls')
+def welcome_message():
     print("Seja bem-vindo(a) ao App Senai!")
-
-def Main():
-    Clear()
-    Welcome()
+def iniciar():
+    clear_screen()
+    welcome_message()
+    try:
+        entrar = int(input("Pressione 1 para continuar..."))
+        clear_screen()
+        if entrar == 1:
+            while True:
+                print("Menu principal: ")
+                print("1 - Calculadora")
+                print("2 - Jogos")
+                print("3 - Sair")
+                opcao = int(input("Digite a opção: "))
+                clear_screen()
+                if opcao == 1:
+                    calculadora_menu()
+                elif opcao == 2:
+                    jogos_menu()
+                elif opcao == 3:
+                    print("Software encerrado!")
+                    break
+                else:
+                    print("Opção inválida!")
+                break
+        else:
+            print("Software encerrado!")
+    except ValueError:
+            print("Entrada inválida.")
     
+def calculadora_menu():
     while True:
-        print("1 - Calculadora de matriz")
-        print("2 - Calculadora geométrica")
-        print("3 - Calculadora de palíndromo")
-        print("4 - Calculadora de fatorial")
-        print("12 - Jogo de adivinhação")
-        print("13 - Jogo de dados")
-        print("14 - Jogo da velha")
-        print("15 - Sair")
+        try:
+            print("Calculadora:")
+            print("1 - Calculadora de matriz")
+            print("2 - Calculadora geométrica")
+            print("3 - Calculadora de palíndromo")
+            print("4 - Calculadora de fatorial")
+            print("5 - Voltar ao menu principal")
 
-        opcao = int(input("Digite a opção: "))
-        Clear()
-        if opcao == 1:
-            Calc.CalculadoraMatriz()
-            operacao_Matriz()
-        elif opcao == 2:
-            print("2 - Calculadora de área de formas geométricas")
-            operacao_Geometrica()
-        elif opcao == 3:
-            print("3 - Palíndromo")
-            operacao_Palindromo()
-        elif opcao == 4:
-            print("Calculadora de fatorial - Em desenvolvimento")
-        elif opcao == 5:
-            print("Calculadora de vogais - Em desenvolvimento")
-        elif opcao == 6:
-            print("Calculadora de temperatura - Em desenvolvimento")
-        elif opcao == 7:
-            print("Calculadora de números primos - Em desenvolvimento")
-        elif opcao == 8:
-            print("Lista de tarefas - Em desenvolvimento")
-        elif opcao == 9:
-            print("Calculadora de IMC - Em desenvolvimento")
-        elif opcao == 10:
-            print("Jogo da forca - Em desenvolvimento")
-        elif opcao == 11:
-            print("Gerador de senhas - Em desenvolvimento")
-        elif opcao == 12:
-            JogoAdivinhar()
-        elif opcao == 13:
-            JogoDados()
-            break
-        elif opcao == 14:
-            JogoVelha()
-        elif opcao == 15:
-            break
-        else:
-            print("Opção inválida!")
-
-def operacao_Matriz():
-    matriz1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    matriz2 = [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
-    while True:
-        print("Que operação deseja fazer?")
-        print("1 - Soma")
-        print("2 - Subtração")
-        print("3 - Multiplicação")
-        print("4 - Divisão")
-        print("5 - Sair")
-        opcao = int(input("Digite a opção: "))
-        Clear()
-        if opcao == 1:
-            matriz_soma = Calc.SomaMatriz(matriz1, matriz2)
-            Calc.PrintMatriz(matriz_soma)
-        elif opcao == 2:
-            matriz_subtracao = Calc.SubMatriz(matriz1, matriz2)
-            Calc.PrintMatriz(matriz_subtracao)
-        elif opcao == 3:
-            matriz_multiplicacao = Calc.MultMatriz(matriz1, matriz2)
-            Calc.PrintMatriz(matriz_multiplicacao)
-        elif opcao == 4:
-            matriz_divisao = Calc.DivMatriz(matriz1, matriz2)
-            Calc.PrintMatriz(matriz_divisao)
-        elif opcao == 5:
-            break
-        else:
-            print("Opção inválida!")
-
-def operacao_Geometrica():
-    while True:
-        print("Que forma geométrica deseja calcular a área?")
-        print("1 - Círculo")
-        print("2 - Triângulo")
-        print("3 - Retângulo")
-        print("4 - Sair")
-        opcao = int(input("Digite a opção: "))
-        Clear()
-        if opcao == 1:
-            raio = float(input("Digite o raio: "))
-            area = Calc.CirculoGeometria(raio)
-            print(f"A área do círculo é {area:.2f} cm².".format(area))
-        elif opcao == 2:
-            base = float(input("Digite a base: "))
-            altura = float(input("Digite a altura: "))
-            area = Calc.TrianguloGeometria(base, altura)
-            print(f"A área do triângulo é {area:.2f} cm².".format(area))
-        elif opcao == 3:
-            comprimento = float(input("Digite o comprimento: "))
-            largura = float(input("Digite a largura: "))
-            area = Calc.RetanguloGeometria(comprimento, largura)
-            print(f"A área do retângulo é {area:.2f} cm².".format(area))
-        elif opcao == 4:
-            break
-        else:
-            print("Opção inválida!")
-
-def operacao_Palindromo():
-    while True:
-        print("Que operação deseja fazer?")
-        print("1 - Verificar se é palíndromo")
-        print("2 - Sair")
-        opcao = int(input("Digite a opção: "))
-        Clear()
-
-        if opcao == 1:
-            palavra = input("Digite a palavra: ")
-            palavra_invertida = palavra[::-1]
-            if palavra == palavra_invertida:
-                print(f"{palavra} é palíndromo!");
+            opcao = int(input("Digite a opção: "))
+            clear_screen()
+            
+            if opcao == 1:
+                calculadoraMatriz_menu()
+            elif opcao == 2:
+                calculadoraGeometrica_menu()
+            elif opcao == 3:
+                calculadoraPalavras_menu()
+            elif opcao == 4:
+                print("Calculadora de fatorial - Em desenvolvimento")
+            elif opcao == 5:
+                break
             else:
-                print(f"{palavra[::-1]} não é palíndromo!");
+                print("Opção inválida!")
+        except ValueError:
+            print("Entrada inválida.")
+def calculadoraMatriz_menu():
+    Calc.CalculadoraMatriz()
+    while True:
+        try:
+            print("Que operação deseja fazer?")
+            print("1 - Soma")
+            print("2 - Subtração")
+            print("3 - Multiplicação")
+            print("4 - Divisão")
+            print("5 - Sair")
+            opcao = int(input("Digite a opção: "))
+            clear_screen()
+            if opcao == 1:
+                operacao = Calc.SomaMatriz
+                descricao = "Soma"
+            elif opcao == 2:
+                operacao = Calc.SubMatriz
+                descricao = "Subtração"
+            elif opcao == 3:
+                operacao = Calc.MultMatriz
+                descricao = "Multiplicação"
+            elif opcao == 4:
+                operacao = Calc.DivMatriz
+                descricao = "Divisão"
+            elif opcao == 5:
+                break
+            if opcao in [1, 2, 3, 4]:
+                resultado = operacao(Calc.matriz1, Calc.matriz2)
+                print(f"Resultado da {descricao}:")
+                for row in resultado:
+                    print(row)
+            else:
+                print("Opção inválida!")     
+        except ValueError:
+            print("Entrada inválida.")    
+def calculadoraGeometrica_menu():
+    while True:
+        try:
+            print("Que forma geométrica deseja calcular a área?")
+            print("1 - Círculo")
+            print("2 - Triângulo")
+            print("3 - Retângulo")
+            print("4 - Sair")
+            opcao = int(input("Digite a opção: "))
+            clear_screen()
+            if opcao == 1:
+                Calc.CirculoGeometria()
+            elif opcao == 2:
+                Calc.TrianguloGeometria()
+            elif opcao == 3:
+                Calc.RetanguloGeometria()
+            elif opcao == 4:
+                break
+            else:
+                print("Opção inválida!")
+        except ValueError:
+            print("Entrada inválida.")
+def calculadoraPalavras_menu():
+    while True:
+        try:
+            print("Que operação deseja fazer?")
+            print("1 - Verificar se é palíndromo")
+            print("2 - Sair")
+            opcao = int(input("Digite a opção: "))
+            clear_screen()
 
-        elif opcao == 2:
-            break
-        else:
-            print("Opção inválida!")
-       
+            if opcao == 1:
+                palavra = input("Digite a palavra: ")
+                palavra_invertida = palavra[::-1]
+                if palavra == palavra_invertida:
+                    print(f"{palavra} é palíndromo!")
+                else:
+                    print(f"{palavra[::-1]} não é palíndromo!")
+
+            elif opcao == 2:
+                break
+            else:
+                print("Opção inválida!")
+        except ValueError:
+            print("Entrada inválida.")       
+def jogos_menu():
+    while True:
+        try:
+            print("Jogos:")
+            print("1 - Jogo de adivinhação")
+            print("2 - Jogo de dados")
+            print("3 - Jogo da velha")
+            print("4 - Voltar ao menu principal")
+
+            opcao = int(input("Digite a opção: "))
+            clear_screen()
+            
+            if opcao == 1:
+                JogoAdivinhar()
+            elif opcao == 2:
+                JogoDados()
+            elif opcao == 3:
+                JogoVelha()
+            elif opcao == 4:
+                break
+            else:
+                print("Opção inválida!")
+        except ValueError:
+            print("Entrada inválida.")
 def JogoAdivinhar():
     numero_secreto = random.randint(1, 100)
     tentativas = 0
-    
-    print("Jogo de adivinhação")
-    print("Acerte o número secreto entre 1 e 100")
-    
-    while True:
-        numero = int(input("Digite um número: "))
-        while numero < 1 or numero > 100:
-            print("Número inválido!")
-            numero = int(input("Digite o número: "))
+    try:
+        print("Jogo de adivinhação")
+        print("Acerte o número secreto entre 1 e 100")
         
-        if numero == numero_secreto:
-            print(f"Você acertou! O número secreto era: {numero_secreto}")
-            break
-        else:
-            print("Você errou!")
-            tentativas += 1
+        while True:
+            numero = int(input("Digite um número: "))
+            while numero < 1 or numero > 100:
+                print("Número inválido!")
+                numero = int(input("Digite o número: "))
             
-            if numero > numero_secreto:
-                print("O número secreto é menor!")
-            else:
-                print("O número secreto é maior!")
-            
-            if tentativas == 5:
-                print("Você perdeu!")
-                print(f"O número secreto era: {numero_secreto}")
+            if numero == numero_secreto:
+                print(f"Você acertou! O número secreto era: {numero_secreto}")
                 break
-
+            else:
+                print("Você errou!")
+                tentativas += 1
+                
+                if numero > numero_secreto:
+                    print("O número secreto é menor!")
+                else:
+                    print("O número secreto é maior!")
+                
+                if tentativas == 5:
+                    print("Você perdeu!")
+                    print(f"O número secreto era: {numero_secreto}")
+                    break
+    except ValueError:
+        print("Entrada inválida.")
 def JogoDados():
     print("Jogo de dados")
     print("Em desenvolvimento")
-
 def JogoVelha():
     print("Jogo da velha")
     print("Em desenvolvimento")
-
-
 if __name__ == "__main__":
-    Main()
+    main()
