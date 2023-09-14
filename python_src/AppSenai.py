@@ -6,7 +6,7 @@ def Clear():
     os.system('cls')
 '''
 Autor: João Victor Martins Deamo
-Date: 12/09/2023
+Date: 14/09/2023
 Time: 08:20
 IDE: Visual Studio Code
 Session Duration: 08:20 - 09:00
