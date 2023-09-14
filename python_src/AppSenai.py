@@ -9,9 +9,9 @@ Autor: João Victor Martins Deamo
 Date: 12/09/2023
 Time: 08:20
 IDE: Visual Studio Code
-Session Duration: 08:20 - 11:30
+Session Duration: 08:20 - 
 Subject: Python
-Version: 1.1
+Version: 1.2
 Senai - Desenvolvimento de Sistemas
 
 def print_delimitador(caractere, vezes):
@@ -142,9 +142,9 @@ def operacao_Palindromo():
             palavra = input("Digite a palavra: ")
             palavra_invertida = palavra[::-1]
             if palavra == palavra_invertida:
-                print("É palíndromo!")
+                print(f"{palavra} é palíndromo!");
             else:
-                print("Não é palíndromo!")
+                print(f"{palavra[::-1]} não é palíndromo!");
 
         elif opcao == 2:
             break
