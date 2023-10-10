@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Banco",
+            "request": "launch",
+            "mainClass": "java_src.src.Banco",
+            "projectName": "Java_ab62b912"
+        },
+        {
+            "type": "java",
+            "name": "appForca1",
+            "request": "launch",
+            "mainClass": "java_src.src.appForca1",
+            "projectName": "Java_ab62b912"
+        },
+        {
+            "type": "java",
+            "name": "atividadeSenai",
+            "request": "launch",
+            "mainClass": "java_src.src.atividadeSenai",
+            "projectName": "Java_ab62b912"
+        },
+        {
+            "type": "java",
             "name": "HCO",
             "request": "launch",
             "mainClass": "java_src.src.HCO",

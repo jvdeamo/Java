@@ -332,5 +332,4 @@ public class AppForca {
     public static String Welcome() { // método boas vindas
         return "    Bem vindo ao Jogo da Forca!\n";
     }
-
 }
